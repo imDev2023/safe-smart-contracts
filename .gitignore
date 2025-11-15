@@ -1,0 +1,68 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Compilation
+build/
+dist/
+*.o
+*.a
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Testing
+coverage/
+.coverage
+.pytest_cache/
+
+# Hardhat
+artifacts/
+cache/
+
+# Foundry
+out/
+lib/
+.git/modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Sync system
+.knowledge-base-sync/logs/
+.knowledge-base-sync/reports/
+.knowledge-base-sync/backups/
+
+# Temporary
+*.tmp
+*.bak
+.tmp/
+temp/
+
+# Private keys (NEVER commit)
+*.key
+*.pem
+privatekey*
+mnemonic*
+
+# Configuration
+.env
+.env.example
+.env.*.example
