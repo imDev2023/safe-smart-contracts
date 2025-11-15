@@ -1,0 +1,221 @@
+{
+  "version": "1.0.0",
+  "created": "2025-11-15",
+  "description": "Configuration for syncing Research KB → Action KB",
+  "enabled": true,
+  "sync_rules": {
+    "vulnerabilities": {
+      "name": "Vulnerability Content Sync",
+      "description": "Merge vulnerability files from research into action KB",
+      "research_sources": [
+        "knowledge-base-research/repos/consensys/03-attacks/",
+        "knowledge-base-research/repos/vulnerabilities/",
+        "knowledge-base-research/repos/not-so-smart/",
+        "knowledge-base-research/repos/patterns/02-security/"
+      ],
+      "action_target": "knowledge-base-action/03-attack-prevention/",
+      "synthesis_method": "merge_and_deduplicate",
+      "dedup_strategy": "keep_most_comprehensive",
+      "priority_order": [
+        "knowledge-base-research/repos/vulnerabilities/",
+        "knowledge-base-research/repos/consensys/03-attacks/",
+        "knowledge-base-research/repos/not-so-smart/"
+      ],
+      "update_frequency": "on_repo_update",
+      "file_count_target": 10,
+      "priority_vulnerabilities": [
+        "reentrancy",
+        "access-control",
+        "integer-overflow",
+        "frontrunning",
+        "dos-attacks",
+        "timestamp-dependence",
+        "unsafe-delegatecall",
+        "unchecked-returns",
+        "tx-origin",
+        "flash-loan-attacks"
+      ]
+    },
+    "patterns": {
+      "name": "Design Pattern Sync",
+      "description": "Consolidate design patterns into quick reference",
+      "research_sources": [
+        "knowledge-base-research/repos/patterns/",
+        "knowledge-base-research/repos/openzeppelin/03-upgrade-patterns/",
+        "knowledge-base-research/repos/consensys/02-development-recommendations/",
+        "knowledge-base-research/repos/not-so-smart/"
+      ],
+      "action_target": "knowledge-base-action/01-quick-reference/pattern-catalog.md",
+      "synthesis_method": "extract_essential_only",
+      "dedup_strategy": "best_explanation",
+      "min_patterns": 10,
+      "max_patterns": 20,
+      "update_frequency": "quarterly",
+      "last_updated": "2025-11-15",
+      "content_type": "markdown"
+    },
+    "gas_optimization": {
+      "name": "Gas Optimization Sync",
+      "description": "Merge gas optimization techniques by impact",
+      "research_sources": [
+        "knowledge-base-research/repos/gas-optimization/0xisk/",
+        "knowledge-base-research/repos/gas-optimization/harendra-shakya/",
+        "knowledge-base-research/repos/gas-optimization/wtf-academy/"
+      ],
+      "action_target": "knowledge-base-action/01-quick-reference/gas-optimization-wins.md",
+      "synthesis_method": "rank_by_impact",
+      "dedup_strategy": "verified_benchmarks_first",
+      "ranking_metric": "gas_savings_percentage",
+      "update_frequency": "monthly",
+      "last_updated": "2025-11-15",
+      "technique_count_target": 20,
+      "tiers": {
+        "high_impact": {
+          "threshold": 1000,
+          "count": 8
+        },
+        "medium_impact": {
+          "threshold": 100,
+          "count": 6
+        },
+        "low_impact": {
+          "threshold": 0,
+          "count": 6
+        }
+      }
+    },
+    "templates": {
+      "name": "Contract Template Sync",
+      "description": "Update templates from OZ and patterns",
+      "research_sources": [
+        "knowledge-base-research/repos/openzeppelin/",
+        "knowledge-base-research/repos/patterns/"
+      ],
+      "action_target": "knowledge-base-action/02-contract-templates/",
+      "synthesis_method": "production_ready_only",
+      "dedup_strategy": "most_tested",
+      "update_frequency": "on_oz_release",
+      "last_updated": "2025-11-15",
+      "template_count_target": 8,
+      "quality_requirements": {
+        "test_coverage": ">95%",
+        "natspec_complete": true,
+        "security_audited": true,
+        "gas_optimized": true
+      }
+    },
+    "quick_reference": {
+      "name": "Quick Reference Sync",
+      "description": "Update quick reference guides",
+      "research_sources": [
+        "knowledge-base-research/repos/vulnerabilities/",
+        "knowledge-base-research/repos/openzeppelin/",
+        "knowledge-base-research/repos/patterns/",
+        "knowledge-base-research/repos/gas-optimization/"
+      ],
+      "action_target": "knowledge-base-action/01-quick-reference/",
+      "synthesis_method": "extract_and_consolidate",
+      "dedup_strategy": "most_actionable",
+      "update_frequency": "monthly",
+      "last_updated": "2025-11-15",
+      "file_count_target": 5,
+      "files": [
+        "vulnerability-matrix.md",
+        "pattern-catalog.md",
+        "gas-optimization-wins.md",
+        "oz-quick-ref.md",
+        "security-checklist.md"
+      ]
+    },
+    "code_snippets": {
+      "name": "Code Snippet Sync",
+      "description": "Update code snippets from templates and OZ",
+      "research_sources": [
+        "knowledge-base-research/repos/openzeppelin/",
+        "knowledge-base-research/repos/patterns/",
+        "knowledge-base-research/repos/consensys/02-development-recommendations/"
+      ],
+      "action_target": "knowledge-base-action/04-code-snippets/",
+      "synthesis_method": "extract_reusable",
+      "dedup_strategy": "most_gas_efficient",
+      "update_frequency": "quarterly",
+      "last_updated": "2025-11-15",
+      "file_count_target": 5,
+      "files": [
+        "oz-imports.md",
+        "modifiers.md",
+        "events.md",
+        "errors.md",
+        "libraries.md"
+      ]
+    }
+  },
+  "deduplication": {
+    "enabled": true,
+    "strategy": "content_hash_and_semantic",
+    "similarity_threshold": 0.85,
+    "hash_algorithm": "sha256",
+    "keep_method": "most_comprehensive",
+    "log_duplicates": true,
+    "duplicate_log_file": ".knowledge-base-sync/duplicates-found.log"
+  },
+  "monitoring": {
+    "enabled": true,
+    "check_frequency": "monthly",
+    "alerts": {
+      "file_count_variance": {
+        "threshold": 10,
+        "action": "warn"
+      },
+      "new_vulnerabilities": {
+        "threshold": 0,
+        "action": "alert"
+      },
+      "missing_files": {
+        "threshold": 0,
+        "action": "error"
+      }
+    }
+  },
+  "maintenance": {
+    "monthly_sync": {
+      "enabled": true,
+      "day_of_month": 15,
+      "script": "update-action-kb.sh",
+      "target": "gas-optimization, quick-reference"
+    },
+    "quarterly_review": {
+      "enabled": true,
+      "months": [2, 5, 8, 11],
+      "script": "quarterly-review.sh",
+      "tasks": [
+        "content_quality_check",
+        "completeness_audit",
+        "gap_analysis",
+        "recommendation_generation"
+      ]
+    },
+    "annual_audit": {
+      "enabled": true,
+      "month": 11,
+      "comprehensive_review": true
+    }
+  },
+  "rollback": {
+    "enabled": true,
+    "backup_directory": ".knowledge-base-sync/backups/",
+    "keep_versions": 5,
+    "retention_days": 90
+  },
+  "logging": {
+    "enabled": true,
+    "log_directory": ".knowledge-base-sync/logs/",
+    "log_level": "info",
+    "retention_days": 30,
+    "log_files": {
+      "sync_log": "sync.log",
+      "error_log": "errors.log",
+      "dedup_log": "deduplication.log"
+    }
+  }
+}
