@@ -447,9 +447,9 @@ Each file follows this structure:
 
 ---
 
-### 06-DEFI-TRADING (10 Quick-Action Files + 7 Research Files, 1200+ KB Total, 200,000+ words)
+### 06-DEFI-TRADING (13 Quick-Action Files + 7 Research Files, 1400+ KB Total, 230,000+ words)
 
-**ACTION FILES (10 Files, 8-25 KB each):**
+**ACTION FILES (13 Files, 8-26 KB each):**
 Quick reference guides, decision matrices, checklists, and step-by-step integration instructions (2-5 min reads)
 
 **RESEARCH FILES (7 Files in kbr, 50-70 KB each):**
@@ -568,6 +568,33 @@ knowledge-base-action/06-defi-trading/
 │   • Testing & deployment (11 items)
 │   TIME: 3 minutes to check
 │
+├── 13-uniswap-v2-integration.md            (22 KB, 550 lines)
+│   STEP-BY-STEP UNISWAP V2:
+│   • 4-step swap integration
+│   • Token approval pattern
+│   • Slippage protection
+│   • Multi-hop routing
+│   • Complete working example (ETH swaps)
+│   TIME: 5 minutes to read
+│
+├── 14-uniswap-v3-integration.md            (24 KB, 600 lines)
+│   STEP-BY-STEP UNISWAP V3:
+│   • 3-step swap with concentrated liquidity
+│   • Fee tier selection (0.05%, 0.30%, 1.00%)
+│   • Tick range calculation
+│   • Add/remove liquidity positions
+│   • Fee collection pattern
+│   TIME: 5 minutes to read
+│
+├── 15-uniswap-v4-integration.md            (26 KB, 650 lines)
+│   STEP-BY-STEP UNISWAP V4:
+│   • 4-step swap with hook support
+│   • Hook permission flags (14 types)
+│   • PoolManager singleton pattern
+│   • ERC6909 token tracking
+│   • Custom fee hook example
+│   TIME: 5 minutes to read
+│
 └── 00-DEX-OVERVIEW.md                      (18 KB, 480 lines)
     GENERAL REFERENCE:
     • AMM fundamentals
@@ -577,7 +604,7 @@ knowledge-base-action/06-defi-trading/
     TIME: 5 minutes to read
 ```
 
-**Use This Section For**: Quick lookups, step-by-step integration, security checklists, decision matrices
+**Use This Section For**: Quick lookups, step-by-step integration (Uniswap V2/V3/V4, Chainlink), security checklists, decision matrices
 
 ---
 
