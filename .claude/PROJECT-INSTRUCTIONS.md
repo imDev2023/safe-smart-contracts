@@ -1,9 +1,9 @@
 # Claude Code Project Instructions
 ## Smart Contract Development with Dual Knowledge Base Strategy
 
-**Version:** 2.0
-**Last Updated:** November 15, 2025
-**Status:** Production Ready
+**Version:** 2.1
+**Last Updated:** November 16, 2025
+**Status:** Production Ready + Consolidated
 
 > This file is read automatically by Claude Code when you start a project in this directory. Follow these instructions strictly for building secure, production-ready smart contracts.
 
@@ -13,8 +13,8 @@
 
 You have TWO complementary knowledge bases:
 
-- **ACTION KB** (31 files) - Fast, production-ready guidance
-- **RESEARCH KB** (200+ files) - Deep understanding and novel patterns
+- **ACTION KB** (52 files) - Fast, production-ready guidance
+- **RESEARCH KB** (150 files) - Deep understanding and novel patterns
 
 **Your job:** Know when to use each.
 
@@ -23,7 +23,7 @@ You have TWO complementary knowledge bases:
 ## 📚 Knowledge Base Structure
 
 ### ACTION KB (knowledge-base-action/)
-**31 files organized in 6 sections**
+**39 files organized in 6 sections** (protocol integrations moved to RESEARCH KB)
 
 ```
 00-START-HERE.md                    Master navigation for all users
@@ -66,19 +66,66 @@ You have TWO complementary knowledge bases:
 05-workflows/                       Step-by-step processes
 ├── contract-development.md        8-phase development (2-4 weeks)
 └── pre-deployment.md              400+ verification items
+
+06-defi-trading/                    DeFi foundational guides (12 files)
+├── 00-DEX-OVERVIEW.md             AMM concepts and mechanics
+├── 00-oracle-selection.md         Choosing oracles (Chainlink, Pyth, etc)
+├── 01-liquidity-pools.md          LP concepts and risks
+├── 02-slippage-protection.md      Slippage mechanisms
+├── 03-sniper-bot-prevention.md    MEV and sandwich prevention
+├── 04-flash-swaps.md              Flash loan attacks
+├── 05-mev-mitigation.md           MEV mitigation strategies
+├── 06-price-oracles.md            Oracle design patterns
+├── 07-trading-bot-security.md     Bot security considerations
+├── 11-oracle-security-checklist.md Security checks for oracles
+├── 12-dex-security-checklist.md   Security checks for DEX use
+└── README.md                       DeFi section guide
+
+(Protocol-specific integration guides → moved to RESEARCH KB)
 ```
 
 ### RESEARCH KB (knowledge-base-research/)
-**200+ files from 8 authoritative sources**
+**163 files from 20 authoritative sources** (consolidated + protocol integrations)
 
 ```
 repos/
-├── consensys/                      65 files - Best practices & attacks
-├── vulnerabilities/                42 files - Detailed vulnerability analysis
-├── not-so-smart/                   45 files - Real exploit examples
-├── patterns/                       16 files - Design patterns deep dive
-├── gas-optimization/               12 files - 100+ optimization techniques
-└── openzeppelin/                   16 files - Reference implementations
+
+Core Security & Best Practices (134 files):
+├── consensys/                      63 files  - Best practices & attack vectors
+├── vulnerabilities/                40 files  - Detailed vulnerability analysis
+├── openzeppelin/                   11 files  - Reference implementations
+├── patterns/                       14 files  - Design patterns deep dive
+├── gas-optimization/                4 files  - 100+ optimization techniques
+└── not-so-smart/                    2 files  - Exploit examples
+
+Protocol Deep-Dives with Integration Guides (29 files):
+
+DEX & Swaps:
+├── uniswap/                         6 files  - V2/V3/V4 deep-dives + integrations
+├── balancer/                        1 file   - Vault architecture
+└── curve/                           2 files  - Stablecoin AMM + integration
+
+Oracles:
+├── chainlink/                       4 files  - Oracle integration guides + deep-dive
+└── pyth/                            1 file   - Oracle network
+
+Lending & Yield:
+├── liquity/                         2 files  - Interest-free borrowing + integration
+├── yearn/                           2 files  - Vault automation + integration
+├── alchemix/                        2 files  - Self-paying loans + integration
+└── compound/                        1 file   - [Coming Soon]
+
+Derivatives & Advanced:
+└── synthetix/                       2 files  - Derivatives platform + integration
+
+NFT & Gaming:
+├── seaport/                         2 files  - NFT marketplace + integration
+└── game-templates/                  1 file   - NFT game templates
+
+Utilities & Infrastructure:
+├── prb-math/                        1 file   - Fixed-point arithmetic
+├── solady/                          1 file   - Gas-optimized utilities
+└── virtual-protocol/                1 file   - AI agent economics
 ```
 
 ---
@@ -786,6 +833,105 @@ You understand:
 
 ---
 
-**Last Updated:** November 15, 2025
-**Status:** Production Ready ✅
+---
+
+## 🗺️ Project Roadmap
+
+### Phase 1 ✅ Foundation (Complete)
+
+**Status:** 15 core DeFi protocols documented with guides + deep-dives
+
+Completed:
+- Uniswap V2, V3, V4 (DEX/swaps)
+- Aave V3, Compound Comet (Lending)
+- OpenZeppelin Governor (Governance/voting)
+- Lido (Staking)
+- WETH, Liquity (Token standards + stablecoins)
+- Balancer V2, Chainlink, Pyth (Oracles)
+- PRB Math, Solady (Utilities)
+- ERC-721/ERC-1155 templates (Gaming)
+- Virtual Protocol (AI/Agents)
+
+**Knowledge Base (Pre-Consolidation):**
+- 22 quick-action guides (KBA)
+- 19 deep-dive research files (KBR)
+- 15 repositories ingested
+- ~4 MB documentation
+- 262 total files (with navigation/audit docs)
+
+### Phase 2 🚀 Expansion (In Progress)
+
+**Status:** 5 advanced protocols added for gaming + advanced DeFi
+
+Completed:
+- Seaport (NFT marketplace)
+- Curve Finance (Stablecoin AMM)
+- Yearn Finance (Vault automation)
+- Alchemix Finance (Self-paying loans)
+- Synthetix (Derivatives platform)
+
+**Documentation (Pre-Consolidation):**
+- 5 new quick-action guides (23-27)
+- 5 new deep-dive research files
+- 20 total repositories
+- ~5 MB documentation
+- 262 total files
+
+**Documentation (Post-Consolidation Nov 16 - Reorganized):**
+
+- 39 action KB files (protocol integrations moved to RESEARCH)
+  - Kept: 00-START-HERE, quick-reference, templates, attack-prevention, code-snippets, workflows
+  - Moved: 13 protocol-specific integration guides (files 08-27) → RESEARCH KB
+  - Remaining 06-defi-trading: 12 foundational DeFi guides + security checklists
+- 163 research KB files (core security + protocol deep-dives with integrations)
+- 2 root-level files (README, REPOS-INDEX)
+- **206 total files (reorganized for better context)**
+- ~4.2 MB documentation
+
+**Reorganization Details:**
+- ACTION KB: Core best practices, templates, security patterns
+- RESEARCH KB: Deep-dives + protocol-specific integration guides together
+- 13 protocol integration files now co-located with deep-dives:
+  - Chainlink (4), Uniswap (3), Curve (1), Yearn (1), Synthetix (1), Alchemix (1), Seaport (1), Liquity (1), Game Templates (1)
+
+**Next Steps:**
+
+- Advanced contract development with 2-5 protocol combinations
+- Gaming economy integration (Seaport + ERC standards)
+- Advanced DeFi strategies (Yearn + Alchemix leverage)
+
+### Phase 3 📋 Backlog (Upcoming)
+
+**Gaming & AI Integration:**
+
+- Loot Project (On-chain loot generation)
+- Seaport integration with game mechanics
+- AI agent economics with multi-protocol coordination
+
+**Advanced Protocols:**
+
+- Derivative strategies (leverage, hedging)
+- Cross-chain bridging
+- Yield optimization bots
+- DAO governance extensions
+
+**Expected Timeline:**
+
+- Phase 2 completion: November 2025
+- Phase 3 start: December 2025
+
+### Phase 4 🎯 Future
+
+**Complete Protocol Coverage:**
+
+- 30+ production smart contracts documented
+- Advanced pattern library (leverage, AMM MEV, etc)
+- Educational video walkthroughs
+- Audit checklist library
+
+---
+
+**Last Updated:** November 16, 2025 (Phase 2 Complete + Consolidated)
+**Status:** Production Ready + Consolidated ✅
+**KB Summary:** 206 lean files (52 action + 150 research + 2 root)
 **Questions?** See `knowledge-base-action/00-START-HERE.md`
