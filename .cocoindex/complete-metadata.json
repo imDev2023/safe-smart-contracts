@@ -1,0 +1,1082 @@
+{
+  "version": "2.0.0",
+  "created": "2025-11-16",
+  "description": "Complete metadata for CocoIndex (Action KB + Research KB)",
+  "scope": "Full Repository - 284 files",
+  "knowledge_bases": {
+    "action": {
+      "file_count": 39,
+      "purpose": "Production-ready, quick-reference, workflow-oriented"
+    },
+    "research": {
+      "file_count": 162,
+      "purpose": "Deep-dive, multi-source, academic-depth"
+    }
+  },
+  "entities": {
+    "vulnerabilities": {
+      "vuln_reentrancy": {
+        "id": "vuln_reentrancy",
+        "name": "Reentrancy",
+        "severity": "CRITICAL",
+        "cwe": "Multiple",
+        "file_path": "knowledge-base-action/03-attack-prevention/reentrancy.md",
+        "kb_type": "action",
+        "keywords": [
+          "reentrancy",
+          "delegatecall",
+          "external call",
+          "recursive"
+        ],
+        "description": "Classic, cross-function, and read-only reentrancy attacks",
+        "prevention_methods": [
+          {
+            "id": "prevent_reentrancyguard",
+            "name": "ReentrancyGuard",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_checks_effects_interactions",
+            "name": "Checks-Effects-Interactions",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_mutex",
+            "name": "Mutex",
+            "type": "TECHNIQUE"
+          }
+        ],
+        "real_exploits": [
+          {
+            "id": "exploit_the_dao",
+            "name": "The DAO",
+            "loss_usd": 0
+          }
+        ]
+      },
+      "vuln_access_control": {
+        "id": "vuln_access_control",
+        "name": "Access Control",
+        "severity": "CRITICAL",
+        "cwe": "CWE-276",
+        "file_path": "knowledge-base-action/03-attack-prevention/access-control.md",
+        "kb_type": "action",
+        "keywords": [
+          "access",
+          "control",
+          "permission",
+          "authorization",
+          "owner"
+        ],
+        "description": "Missing and weak access control vulnerabilities",
+        "prevention_methods": [
+          {
+            "id": "prevent_ownable",
+            "name": "Ownable",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_accesscontrol",
+            "name": "AccessControl",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_role_based_permissions",
+            "name": "Role-based Permissions",
+            "type": "TECHNIQUE"
+          }
+        ],
+        "real_exploits": [
+          {
+            "id": "exploit_rubixi",
+            "name": "Rubixi",
+            "loss_usd": 5000000.0
+          },
+          {
+            "id": "exploit_parity_wallet",
+            "name": "Parity Wallet",
+            "loss_usd": 280000000.0
+          }
+        ]
+      },
+      "vuln_integer_overflow": {
+        "id": "vuln_integer_overflow",
+        "name": "Integer Overflow",
+        "severity": "HIGH",
+        "cwe": "CWE-190",
+        "file_path": "knowledge-base-action/03-attack-prevention/integer-overflow.md",
+        "kb_type": "action",
+        "keywords": [
+          "overflow",
+          "underflow",
+          "integer",
+          "arithmetic",
+          "safemath"
+        ],
+        "description": "Integer overflow and underflow vulnerabilities",
+        "prevention_methods": [
+          {
+            "id": "prevent_solidity_0.8+_checks",
+            "name": "Solidity 0.8+ Checks",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_safemath",
+            "name": "SafeMath",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_checked_operations",
+            "name": "Checked Operations",
+            "type": "TECHNIQUE"
+          }
+        ],
+        "real_exploits": [
+          {
+            "id": "exploit_beautychain",
+            "name": "BeautyChain",
+            "loss_usd": 0
+          }
+        ]
+      },
+      "vuln_frontrunning": {
+        "id": "vuln_frontrunning",
+        "name": "Frontrunning",
+        "severity": "HIGH",
+        "cwe": "CWE-362",
+        "file_path": "knowledge-base-action/03-attack-prevention/frontrunning.md",
+        "kb_type": "action",
+        "keywords": [
+          "frontrunning",
+          "mempool",
+          "sandwich",
+          "mev",
+          "ordering"
+        ],
+        "description": "Mempool manipulation and sandwich attacks",
+        "prevention_methods": [
+          {
+            "id": "prevent_commit_reveal",
+            "name": "Commit-Reveal",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_private_pools",
+            "name": "Private Pools",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_batch_auctions",
+            "name": "Batch Auctions",
+            "type": "TECHNIQUE"
+          }
+        ],
+        "real_exploits": []
+      },
+      "vuln_dos_attacks": {
+        "id": "vuln_dos_attacks",
+        "name": "Dos Attacks",
+        "severity": "HIGH",
+        "cwe": "CWE-674",
+        "file_path": "knowledge-base-action/03-attack-prevention/dos-attacks.md",
+        "kb_type": "action",
+        "keywords": [
+          "dos",
+          "denial",
+          "service",
+          "unbounded",
+          "loop",
+          "gas"
+        ],
+        "description": "Denial of service attacks",
+        "prevention_methods": [
+          {
+            "id": "prevent_bounded_operations",
+            "name": "Bounded Operations",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_pull_pattern",
+            "name": "Pull Pattern",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_withdrawal_pattern",
+            "name": "Withdrawal Pattern",
+            "type": "TECHNIQUE"
+          }
+        ],
+        "real_exploits": []
+      },
+      "vuln_timestamp_dependence": {
+        "id": "vuln_timestamp_dependence",
+        "name": "Timestamp Dependence",
+        "severity": "MEDIUM",
+        "cwe": "CWE-340",
+        "file_path": "knowledge-base-action/03-attack-prevention/timestamp-dependence.md",
+        "kb_type": "action",
+        "keywords": [
+          "timestamp",
+          "randomness",
+          "block",
+          "predictable",
+          "entropy"
+        ],
+        "description": "Block timestamp manipulation and weak randomness",
+        "prevention_methods": [
+          {
+            "id": "prevent_chainlink_vrf",
+            "name": "Chainlink VRF",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_time_locks",
+            "name": "Time Locks",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_probabilistic",
+            "name": "Probabilistic",
+            "type": "TECHNIQUE"
+          }
+        ],
+        "real_exploits": []
+      },
+      "vuln_unsafe_delegatecall": {
+        "id": "vuln_unsafe_delegatecall",
+        "name": "Unsafe Delegatecall",
+        "severity": "CRITICAL",
+        "cwe": "CWE-471",
+        "file_path": "knowledge-base-action/03-attack-prevention/unsafe-delegatecall.md",
+        "kb_type": "action",
+        "keywords": [
+          "delegatecall",
+          "storage",
+          "collision",
+          "proxy",
+          "erc1967"
+        ],
+        "description": "Unsafe delegatecall and storage collision attacks",
+        "prevention_methods": [
+          {
+            "id": "prevent_proper_proxy_patterns",
+            "name": "Proper Proxy Patterns",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_storage_validation",
+            "name": "Storage Validation",
+            "type": "TECHNIQUE"
+          }
+        ],
+        "real_exploits": [
+          {
+            "id": "exploit_parity_wallet",
+            "name": "Parity Wallet",
+            "loss_usd": 280000000.0
+          }
+        ]
+      },
+      "vuln_unchecked_returns": {
+        "id": "vuln_unchecked_returns",
+        "name": "Unchecked Returns",
+        "severity": "HIGH",
+        "cwe": "CWE-252",
+        "file_path": "knowledge-base-action/03-attack-prevention/unchecked-returns.md",
+        "kb_type": "action",
+        "keywords": [
+          "unchecked",
+          "return",
+          "silent",
+          "failure",
+          "require"
+        ],
+        "description": "Unchecked return values and silent failures",
+        "prevention_methods": [
+          {
+            "id": "prevent_explicit_checks",
+            "name": "Explicit Checks",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_wrapper_patterns",
+            "name": "Wrapper Patterns",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_safeerc20",
+            "name": "SafeERC20",
+            "type": "TECHNIQUE"
+          }
+        ],
+        "real_exploits": []
+      },
+      "vuln_tx_origin": {
+        "id": "vuln_tx_origin",
+        "name": "Tx Origin",
+        "severity": "HIGH",
+        "cwe": "CWE-477",
+        "file_path": "knowledge-base-action/03-attack-prevention/tx-origin.md",
+        "kb_type": "action",
+        "keywords": [
+          "tx.origin",
+          "msg.sender",
+          "authentication",
+          "phishing"
+        ],
+        "description": "tx.origin authentication bypass",
+        "prevention_methods": [
+          {
+            "id": "prevent_use_msg.sender",
+            "name": "Use msg.sender",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_signature_verification",
+            "name": "Signature Verification",
+            "type": "TECHNIQUE"
+          }
+        ],
+        "real_exploits": []
+      },
+      "vuln_flash_loan_attacks": {
+        "id": "vuln_flash_loan_attacks",
+        "name": "Flash Loan Attacks",
+        "severity": "HIGH",
+        "cwe": "CWE-1021",
+        "file_path": "knowledge-base-action/03-attack-prevention/flash-loan-attacks.md",
+        "kb_type": "action",
+        "keywords": [
+          "flash",
+          "loan",
+          "oracle",
+          "manipulation",
+          "arbitrage"
+        ],
+        "description": "Flash loan attacks and oracle manipulation",
+        "prevention_methods": [
+          {
+            "id": "prevent_price_oracles",
+            "name": "Price Oracles",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_time_locks",
+            "name": "Time Locks",
+            "type": "TECHNIQUE"
+          },
+          {
+            "id": "prevent_sanity_checks",
+            "name": "Sanity Checks",
+            "type": "TECHNIQUE"
+          }
+        ],
+        "real_exploits": [
+          {
+            "id": "exploit_harvest_finance",
+            "name": "Harvest Finance",
+            "loss_usd": 34000000.0
+          }
+        ]
+      }
+    },
+    "templates": {
+      "template_secure_erc20": {
+        "id": "template_secure_erc20",
+        "name": "secure-erc20.sol",
+        "file_path": "knowledge-base-action/02-contract-templates/secure-erc20.sol",
+        "kb_type": "action",
+        "solidity_version": "0.8.20",
+        "lines": 232,
+        "features": [
+          "AccessControl",
+          "Pausable",
+          "Burnable",
+          "Permit",
+          "Custom Errors"
+        ],
+        "use_cases": [
+          "governance tokens",
+          "utility tokens",
+          "reward tokens"
+        ],
+        "keywords": [
+          "erc20",
+          "token",
+          "fungible",
+          "transfer",
+          "approve"
+        ]
+      },
+      "template_secure_erc721": {
+        "id": "template_secure_erc721",
+        "name": "secure-erc721.sol",
+        "file_path": "knowledge-base-action/02-contract-templates/secure-erc721.sol",
+        "kb_type": "action",
+        "solidity_version": "0.8.20",
+        "lines": 298,
+        "features": [
+          "Enumerable",
+          "URIStorage",
+          "SafeMint"
+        ],
+        "use_cases": [
+          "nft collections",
+          "digital collectibles",
+          "gaming assets"
+        ],
+        "keywords": [
+          "erc721",
+          "nft",
+          "non-fungible",
+          "token",
+          "enumerable"
+        ]
+      },
+      "template_access_control_template": {
+        "id": "template_access_control_template",
+        "name": "access-control-template.sol",
+        "file_path": "knowledge-base-action/02-contract-templates/access-control-template.sol",
+        "kb_type": "action",
+        "solidity_version": "0.8.20",
+        "lines": 268,
+        "features": [
+          "Role-based Access Control",
+          "Three-tier hierarchy"
+        ],
+        "use_cases": [
+          "complex governance",
+          "multi-admin systems",
+          "permission layers"
+        ],
+        "keywords": [
+          "access",
+          "control",
+          "rbac",
+          "role",
+          "permission"
+        ]
+      },
+      "template_upgradeable_template": {
+        "id": "template_upgradeable_template",
+        "name": "upgradeable-template.sol",
+        "file_path": "knowledge-base-action/02-contract-templates/upgradeable-template.sol",
+        "kb_type": "action",
+        "solidity_version": "0.8.20",
+        "lines": 295,
+        "features": [
+          "UUPS Pattern",
+          "Storage Gaps",
+          "Version Tracking"
+        ],
+        "use_cases": [
+          "long-term contracts",
+          "evolving systems",
+          "bug fixes"
+        ],
+        "keywords": [
+          "upgradeable",
+          "proxy",
+          "uups",
+          "storage",
+          "versioning"
+        ]
+      },
+      "template_staking_template": {
+        "id": "template_staking_template",
+        "name": "staking-template.sol",
+        "file_path": "knowledge-base-action/02-contract-templates/staking-template.sol",
+        "kb_type": "action",
+        "solidity_version": "0.8.20",
+        "lines": 409,
+        "features": [
+          "Continuous Rewards",
+          "Lockup Periods",
+          "ReentrancyGuard"
+        ],
+        "use_cases": [
+          "defi protocols",
+          "reward systems",
+          "liquidity incentives"
+        ],
+        "keywords": [
+          "staking",
+          "rewards",
+          "lockup",
+          "defi",
+          "incentives"
+        ]
+      },
+      "template_pausable_template": {
+        "id": "template_pausable_template",
+        "name": "pausable-template.sol",
+        "file_path": "knowledge-base-action/02-contract-templates/pausable-template.sol",
+        "kb_type": "action",
+        "solidity_version": "0.8.20",
+        "lines": 298,
+        "features": [
+          "Emergency Stop",
+          "Admin Controls"
+        ],
+        "use_cases": [
+          "emergency response",
+          "maintenance mode"
+        ],
+        "keywords": [
+          "pausable",
+          "emergency",
+          "stop",
+          "circuit",
+          "breaker"
+        ]
+      },
+      "template_multisig_template": {
+        "id": "template_multisig_template",
+        "name": "multisig-template.sol",
+        "file_path": "knowledge-base-action/02-contract-templates/multisig-template.sol",
+        "kb_type": "action",
+        "solidity_version": "0.8.20",
+        "lines": 396,
+        "features": [
+          "ECDSA Signatures",
+          "Quorum-based Execution"
+        ],
+        "use_cases": [
+          "treasury management",
+          "multi-party control",
+          "cold wallets"
+        ],
+        "keywords": [
+          "multisig",
+          "multi-signature",
+          "wallet",
+          "gnosis",
+          "treasury"
+        ]
+      }
+    },
+    "deepdives": {
+      "deepdive_uniswap_v2": {
+        "id": "deepdive_uniswap_v2",
+        "name": "Uniswap V2 Architecture Deep-Dive",
+        "protocol": "Uniswap V2",
+        "file_path": "knowledge-base-research/repos/uniswap/08-uniswap-v2-deep-dive.md",
+        "kb_type": "research",
+        "lines": 982,
+        "type": "DEEP_DIVE",
+        "estimated_read_time": "4 hours"
+      },
+      "deepdive_uniswap_v3": {
+        "id": "deepdive_uniswap_v3",
+        "name": "Uniswap V3 Architecture Deep-Dive",
+        "protocol": "Uniswap V3",
+        "file_path": "knowledge-base-research/repos/uniswap/10-uniswap-v3-deep-dive.md",
+        "kb_type": "research",
+        "lines": 807,
+        "type": "DEEP_DIVE",
+        "estimated_read_time": "4 hours"
+      },
+      "deepdive_uniswap_v4": {
+        "id": "deepdive_uniswap_v4",
+        "name": "Uniswap V4 Architecture Deep-Dive",
+        "protocol": "Uniswap V4",
+        "file_path": "knowledge-base-research/repos/uniswap/09-uniswap-v4-deep-dive.md",
+        "kb_type": "research",
+        "lines": 1104,
+        "type": "DEEP_DIVE",
+        "estimated_read_time": "5 hours"
+      },
+      "deepdive_chainlink": {
+        "id": "deepdive_chainlink",
+        "name": "Chainlink Oracle Deep-Dive",
+        "protocol": "Chainlink",
+        "file_path": "knowledge-base-research/repos/chainlink/11-chainlink-oracle-deep-dive.md",
+        "kb_type": "research",
+        "lines": 711,
+        "type": "DEEP_DIVE",
+        "estimated_read_time": "3-4 hours"
+      },
+      "deepdive_curve": {
+        "id": "deepdive_curve",
+        "name": "Curve StableSwap Deep-Dive",
+        "protocol": "Curve StableSwap",
+        "file_path": "knowledge-base-research/repos/curve/01-stablecoin-amm-deep-dive.md",
+        "kb_type": "research",
+        "lines": 429,
+        "type": "DEEP_DIVE"
+      },
+      "deepdive_balancer": {
+        "id": "deepdive_balancer",
+        "name": "Balancer Vault Deep-Dive",
+        "protocol": "Balancer Vault",
+        "file_path": "knowledge-base-research/repos/balancer/01-vault-architecture.md",
+        "kb_type": "research",
+        "lines": 385,
+        "type": "DEEP_DIVE"
+      },
+      "deepdive_synthetix": {
+        "id": "deepdive_synthetix",
+        "name": "Synthetix Derivatives Deep-Dive",
+        "protocol": "Synthetix Derivatives",
+        "file_path": "knowledge-base-research/repos/synthetix/01-derivatives-protocol-deep-dive.md",
+        "kb_type": "research",
+        "lines": 524,
+        "type": "DEEP_DIVE"
+      },
+      "deepdive_alchemix": {
+        "id": "deepdive_alchemix",
+        "name": "Alchemix Self-Paying Loans Deep-Dive",
+        "protocol": "Alchemix Self-Paying Loans",
+        "file_path": "knowledge-base-research/repos/alchemix/01-self-paying-loans-deep-dive.md",
+        "kb_type": "research",
+        "lines": 450,
+        "type": "DEEP_DIVE"
+      },
+      "deepdive_yearn": {
+        "id": "deepdive_yearn",
+        "name": "Yearn Vault Automation Deep-Dive",
+        "protocol": "Yearn Vault Automation",
+        "file_path": "knowledge-base-research/repos/yearn/01-vault-automation-deep-dive.md",
+        "kb_type": "research",
+        "lines": 426,
+        "type": "DEEP_DIVE"
+      },
+      "deepdive_liquity": {
+        "id": "deepdive_liquity",
+        "name": "Liquity Protocol Deep-Dive",
+        "protocol": "Liquity Protocol",
+        "file_path": "knowledge-base-research/repos/liquity/01-protocol-architecture.md",
+        "kb_type": "research",
+        "lines": 527,
+        "type": "DEEP_DIVE"
+      },
+      "deepdive_seaport": {
+        "id": "deepdive_seaport",
+        "name": "Seaport NFT Marketplace Deep-Dive",
+        "protocol": "Seaport NFT Marketplace",
+        "file_path": "knowledge-base-research/repos/seaport/01-nft-marketplace-deep-dive.md",
+        "kb_type": "research",
+        "lines": 477,
+        "type": "DEEP_DIVE"
+      }
+    },
+    "integrations": {
+      "integration_uniswap_v2": {
+        "id": "integration_uniswap_v2",
+        "name": "Uniswap V2 Integration Guide",
+        "protocol": "Uniswap V2",
+        "file_path": "knowledge-base-research/repos/uniswap/02-uniswap-v2-integration.md",
+        "kb_type": "research",
+        "lines": 245,
+        "type": "INTEGRATION",
+        "difficulty": "MEDIUM",
+        "estimated_time": "49 minutes"
+      },
+      "integration_uniswap_v3": {
+        "id": "integration_uniswap_v3",
+        "name": "Uniswap V3 Integration Guide",
+        "protocol": "Uniswap V3",
+        "file_path": "knowledge-base-research/repos/uniswap/03-uniswap-v3-integration.md",
+        "kb_type": "research",
+        "lines": 330,
+        "type": "INTEGRATION",
+        "difficulty": "MEDIUM",
+        "estimated_time": "66 minutes"
+      },
+      "integration_uniswap_v4": {
+        "id": "integration_uniswap_v4",
+        "name": "Uniswap V4 Integration Guide",
+        "protocol": "Uniswap V4",
+        "file_path": "knowledge-base-research/repos/uniswap/04-uniswap-v4-integration.md",
+        "kb_type": "research",
+        "lines": 347,
+        "type": "INTEGRATION",
+        "difficulty": "HIGH",
+        "estimated_time": "69 minutes"
+      },
+      "integration_chainlink_datafeed": {
+        "id": "integration_chainlink_datafeed",
+        "name": "Chainlink Data Feeds Integration Guide",
+        "protocol": "Chainlink Data Feeds",
+        "file_path": "knowledge-base-research/repos/chainlink/02-chainlink-datafeed-integration.md",
+        "kb_type": "research",
+        "lines": 216,
+        "type": "INTEGRATION",
+        "difficulty": "LOW",
+        "estimated_time": "43 minutes"
+      },
+      "integration_chainlink_vrf": {
+        "id": "integration_chainlink_vrf",
+        "name": "Chainlink VRF Integration Guide",
+        "protocol": "Chainlink VRF",
+        "file_path": "knowledge-base-research/repos/chainlink/03-chainlink-vrf-integration.md",
+        "kb_type": "research",
+        "lines": 270,
+        "type": "INTEGRATION",
+        "difficulty": "MEDIUM",
+        "estimated_time": "54 minutes"
+      },
+      "integration_chainlink_automation": {
+        "id": "integration_chainlink_automation",
+        "name": "Chainlink Automation Integration Guide",
+        "protocol": "Chainlink Automation",
+        "file_path": "knowledge-base-research/repos/chainlink/04-chainlink-automation-integration.md",
+        "kb_type": "research",
+        "lines": 334,
+        "type": "INTEGRATION",
+        "difficulty": "MEDIUM",
+        "estimated_time": "66 minutes"
+      },
+      "integration_curve": {
+        "id": "integration_curve",
+        "name": "Curve Finance Integration Guide",
+        "protocol": "Curve Finance",
+        "file_path": "knowledge-base-research/repos/curve/02-curve-integration.md",
+        "kb_type": "research",
+        "lines": 284,
+        "type": "INTEGRATION",
+        "difficulty": "MEDIUM",
+        "estimated_time": "56 minutes"
+      },
+      "integration_synthetix": {
+        "id": "integration_synthetix",
+        "name": "Synthetix Integration Guide",
+        "protocol": "Synthetix",
+        "file_path": "knowledge-base-research/repos/synthetix/02-synthetix-integration.md",
+        "kb_type": "research",
+        "lines": 284,
+        "type": "INTEGRATION",
+        "difficulty": "HIGH",
+        "estimated_time": "56 minutes"
+      },
+      "integration_alchemix": {
+        "id": "integration_alchemix",
+        "name": "Alchemix Integration Guide",
+        "protocol": "Alchemix",
+        "file_path": "knowledge-base-research/repos/alchemix/02-alchemix-integration.md",
+        "kb_type": "research",
+        "lines": 284,
+        "type": "INTEGRATION",
+        "difficulty": "HIGH",
+        "estimated_time": "56 minutes"
+      },
+      "integration_yearn": {
+        "id": "integration_yearn",
+        "name": "Yearn Integration Guide",
+        "protocol": "Yearn",
+        "file_path": "knowledge-base-research/repos/yearn/02-yearn-integration.md",
+        "kb_type": "research",
+        "lines": 284,
+        "type": "INTEGRATION",
+        "difficulty": "MEDIUM",
+        "estimated_time": "56 minutes"
+      },
+      "integration_liquity": {
+        "id": "integration_liquity",
+        "name": "Liquity Integration Guide",
+        "protocol": "Liquity",
+        "file_path": "knowledge-base-research/repos/liquity/02-liquity-integration.md",
+        "kb_type": "research",
+        "lines": 284,
+        "type": "INTEGRATION",
+        "difficulty": "MEDIUM",
+        "estimated_time": "56 minutes"
+      },
+      "integration_seaport": {
+        "id": "integration_seaport",
+        "name": "Seaport Integration Guide",
+        "protocol": "Seaport",
+        "file_path": "knowledge-base-research/repos/seaport/02-seaport-integration.md",
+        "kb_type": "research",
+        "lines": 284,
+        "type": "INTEGRATION",
+        "difficulty": "MEDIUM",
+        "estimated_time": "56 minutes"
+      }
+    },
+    "vulnerable_contracts": {
+      "vulnerable_reentrancy": {
+        "id": "vulnerable_reentrancy",
+        "name": "Reentrancy.sol",
+        "file_path": "knowledge-base-research/repos/not-so-smart/reentrancy/Reentrancy.sol",
+        "kb_type": "research",
+        "vulnerability_type": "Reentrancy",
+        "description": "The DAO pattern",
+        "loss_usd": 60000000,
+        "type": "VULNERABLE_CONTRACT"
+      },
+      "vulnerable_reentrancy_cross_function": {
+        "id": "vulnerable_reentrancy_cross_function",
+        "name": "Reentrancy_cross_function.sol",
+        "file_path": "knowledge-base-research/repos/not-so-smart/reentrancy/Reentrancy_cross_function.sol",
+        "kb_type": "research",
+        "vulnerability_type": "Reentrancy",
+        "description": "Cross-function variant",
+        "loss_usd": 0,
+        "type": "VULNERABLE_CONTRACT"
+      },
+      "vulnerable_reentrancy_bonus": {
+        "id": "vulnerable_reentrancy_bonus",
+        "name": "Reentrancy_bonus.sol",
+        "file_path": "knowledge-base-research/repos/not-so-smart/reentrancy/Reentrancy_bonus.sol",
+        "kb_type": "research",
+        "vulnerability_type": "Reentrancy",
+        "description": "Single-function variant",
+        "loss_usd": 0,
+        "type": "VULNERABLE_CONTRACT"
+      },
+      "vulnerable_integer_overflow_1": {
+        "id": "vulnerable_integer_overflow_1",
+        "name": "integer_overflow_1.sol",
+        "file_path": "knowledge-base-research/repos/not-so-smart/integer_overflow/integer_overflow_1.sol",
+        "kb_type": "research",
+        "vulnerability_type": "Integer Overflow",
+        "historical_exploit": "BEC Token",
+        "loss_usd": 900000000,
+        "type": "VULNERABLE_CONTRACT"
+      },
+      "vulnerable_rubixi": {
+        "id": "vulnerable_rubixi",
+        "name": "rubixi.sol",
+        "file_path": "knowledge-base-research/repos/not-so-smart/access_control/rubixi.sol",
+        "kb_type": "research",
+        "vulnerability_type": "Access Control",
+        "historical_exploit": "Rubixi ponzi",
+        "loss_usd": 5000000,
+        "type": "VULNERABLE_CONTRACT"
+      }
+    },
+    "protocol_versions": {
+      "protocol_uniswap_v2": {
+        "id": "protocol_uniswap_v2",
+        "name": "Uniswap V2",
+        "protocol_family": "Uniswap",
+        "version": "2",
+        "release_date": "2020-05-05",
+        "major_features": [
+          "Constant Product AMM",
+          "ERC20 LP Tokens"
+        ],
+        "supersedes": null,
+        "type": "PROTOCOL_VERSION"
+      },
+      "protocol_uniswap_v3": {
+        "id": "protocol_uniswap_v3",
+        "name": "Uniswap V3",
+        "protocol_family": "Uniswap",
+        "version": "3",
+        "release_date": "2021-05-05",
+        "major_features": [
+          "Concentrated Liquidity",
+          "NFT Positions"
+        ],
+        "supersedes": "protocol_uniswap_v2",
+        "type": "PROTOCOL_VERSION"
+      },
+      "protocol_uniswap_v4": {
+        "id": "protocol_uniswap_v4",
+        "name": "Uniswap V4",
+        "protocol_family": "Uniswap",
+        "version": "4",
+        "release_date": "2024-01-01",
+        "major_features": [
+          "Hook System",
+          "Singleton Pattern"
+        ],
+        "supersedes": "protocol_uniswap_v3",
+        "type": "PROTOCOL_VERSION"
+      }
+    },
+    "source_repositories": {
+      "source_consensys": {
+        "id": "source_consensys",
+        "name": "ConsenSys Diligence",
+        "github_url": "https://consensysdiligence.github.io/smart-contract-best-practices/",
+        "file_count": 65,
+        "perspective": "Industry Best Practices",
+        "authority_level": "HIGH",
+        "type": "SOURCE_REPOSITORY"
+      },
+      "source_vulnerabilities": {
+        "id": "source_vulnerabilities",
+        "name": "Smart Contract Vulnerabilities",
+        "github_url": "https://github.com/kadenzipfel/smart-contract-vulnerabilities",
+        "file_count": 40,
+        "perspective": "Academic Analysis",
+        "authority_level": "HIGH",
+        "type": "SOURCE_REPOSITORY"
+      },
+      "source_not_so_smart": {
+        "id": "source_not_so_smart",
+        "name": "Not So Smart Contracts",
+        "github_url": "https://github.com/crytic/not-so-smart-contracts",
+        "file_count": 46,
+        "perspective": "Vulnerable Examples",
+        "authority_level": "MEDIUM",
+        "type": "SOURCE_REPOSITORY"
+      },
+      "source_patterns": {
+        "id": "source_patterns",
+        "name": "Solidity Patterns",
+        "github_url": "https://fravoll.github.io/solidity-patterns/",
+        "file_count": 14,
+        "perspective": "Design Patterns",
+        "authority_level": "MEDIUM",
+        "type": "SOURCE_REPOSITORY"
+      },
+      "source_openzeppelin": {
+        "id": "source_openzeppelin",
+        "name": "OpenZeppelin Contracts",
+        "github_url": "https://github.com/OpenZeppelin/openzeppelin-contracts",
+        "file_count": 16,
+        "perspective": "Production Implementation",
+        "authority_level": "HIGH",
+        "type": "SOURCE_REPOSITORY"
+      }
+    }
+  },
+  "relationships": [
+    {
+      "source": "protocol_uniswap_v3",
+      "target": "protocol_uniswap_v2",
+      "type": "SUPERSEDES",
+      "properties": {
+        "date": "2021-05-05",
+        "major_changes": [
+          "Concentrated Liquidity",
+          "NFT Positions"
+        ]
+      }
+    },
+    {
+      "source": "protocol_uniswap_v4",
+      "target": "protocol_uniswap_v3",
+      "type": "SUPERSEDES",
+      "properties": {
+        "date": "2024-01-01",
+        "major_changes": [
+          "Hook System",
+          "Singleton Pattern"
+        ]
+      }
+    },
+    {
+      "source": "deepdive_uniswap_v2",
+      "target": "integration_uniswap_v2",
+      "type": "PAIRS_WITH",
+      "properties": {
+        "depth_ladder": "theory_to_practice"
+      }
+    },
+    {
+      "source": "deepdive_uniswap_v3",
+      "target": "integration_uniswap_v3",
+      "type": "PAIRS_WITH",
+      "properties": {
+        "depth_ladder": "theory_to_practice"
+      }
+    },
+    {
+      "source": "deepdive_uniswap_v4",
+      "target": "integration_uniswap_v4",
+      "type": "PAIRS_WITH",
+      "properties": {
+        "depth_ladder": "theory_to_practice"
+      }
+    },
+    {
+      "source": "deepdive_chainlink",
+      "target": "integration_chainlink_datafeed",
+      "type": "PAIRS_WITH",
+      "properties": {
+        "depth_ladder": "theory_to_practice"
+      }
+    },
+    {
+      "source": "deepdive_curve",
+      "target": "integration_curve",
+      "type": "PAIRS_WITH",
+      "properties": {
+        "depth_ladder": "theory_to_practice"
+      }
+    },
+    {
+      "source": "deepdive_uniswap_v2",
+      "target": "protocol_uniswap_v2",
+      "type": "EXPLAINS",
+      "properties": {}
+    },
+    {
+      "source": "deepdive_uniswap_v3",
+      "target": "protocol_uniswap_v3",
+      "type": "EXPLAINS",
+      "properties": {}
+    },
+    {
+      "source": "deepdive_uniswap_v4",
+      "target": "protocol_uniswap_v4",
+      "type": "EXPLAINS",
+      "properties": {}
+    },
+    {
+      "source": "vulnerable_reentrancy",
+      "target": "vuln_reentrancy",
+      "type": "DEMONSTRATES",
+      "properties": {
+        "exploit_name": "The DAO",
+        "loss_usd": 60000000,
+        "year": 2016
+      }
+    },
+    {
+      "source": "source_consensys",
+      "target": "topic_reentrancy",
+      "type": "PROVIDES_PERSPECTIVE",
+      "properties": {
+        "perspective": "Industry Best Practices"
+      }
+    },
+    {
+      "source": "source_vulnerabilities",
+      "target": "topic_reentrancy",
+      "type": "PROVIDES_PERSPECTIVE",
+      "properties": {
+        "perspective": "Academic Analysis"
+      }
+    },
+    {
+      "source": "source_not_so_smart",
+      "target": "topic_reentrancy",
+      "type": "PROVIDES_PERSPECTIVE",
+      "properties": {
+        "perspective": "Vulnerable Examples"
+      }
+    },
+    {
+      "source": "source_patterns",
+      "target": "topic_reentrancy",
+      "type": "PROVIDES_PERSPECTIVE",
+      "properties": {
+        "perspective": "Design Patterns"
+      }
+    },
+    {
+      "source": "source_openzeppelin",
+      "target": "topic_reentrancy",
+      "type": "PROVIDES_PERSPECTIVE",
+      "properties": {
+        "perspective": "Production Implementation"
+      }
+    }
+  ],
+  "statistics": {
+    "total_files": 284,
+    "total_entities": 53,
+    "total_relationships": 16,
+    "action_kb_entities": 17,
+    "research_kb_entities": 36,
+    "protocols_covered": 20,
+    "vulnerability_sources": 5,
+    "protocol_versions_tracked": 3
+  }
+}
