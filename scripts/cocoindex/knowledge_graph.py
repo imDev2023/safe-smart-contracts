@@ -35,6 +35,13 @@ class KnowledgeGraph:
 
         # Create tables
         self.conn.executescript("""
+            -- Graph metadata and versioning
+            CREATE TABLE IF NOT EXISTS graph_metadata (
+                key TEXT PRIMARY KEY,
+                value TEXT,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+
             -- Nodes table (entities)
             CREATE TABLE IF NOT EXISTS nodes (
                 id TEXT PRIMARY KEY,
@@ -299,6 +306,11 @@ class KnowledgeGraph:
         stats["total_nodes"] = sum(stats["nodes_by_type"].values())
         stats["total_edges"] = sum(stats["edges_by_type"].values())
 
+        # Add version and metadata info
+        stats["version"] = self.get_version()
+        stats["kb_files_count"] = self.get_metadata_value("kb_files_count", "0")
+        stats["last_rebuild"] = self.get_metadata_value("last_rebuild", "unknown")
+
         return stats
 
     def get_node_count(self) -> int:
@@ -315,6 +327,46 @@ class KnowledgeGraph:
         """Export graph in GraphML format for visualization"""
         # Would export to format readable by Gephi, Neo4j, etc.
         pass
+
+    def set_metadata_value(self, key: str, value: str):
+        """Set a metadata value with automatic timestamping"""
+        self.conn.execute("""
+            INSERT OR REPLACE INTO graph_metadata (key, value, updated_at)
+            VALUES (?, ?, CURRENT_TIMESTAMP)
+        """, (key, value))
+        self.conn.commit()
+
+    def get_metadata_value(self, key: str, default: str = None) -> str:
+        """Get a metadata value"""
+        cursor = self.conn.execute("""
+            SELECT value FROM graph_metadata WHERE key = ?
+        """, (key,))
+        row = cursor.fetchone()
+        return row[0] if row else default
+
+    def get_version(self) -> str:
+        """Get current graph version"""
+        return self.get_metadata_value("version", "1.0.0")
+
+    def increment_version(self, bump_type: str = "patch"):
+        """Increment version number (major.minor.patch)"""
+        current = self.get_version()
+        parts = current.split('.')
+        major, minor, patch = int(parts[0]), int(parts[1]), int(parts[2])
+
+        if bump_type == "major":
+            major += 1
+            minor = 0
+            patch = 0
+        elif bump_type == "minor":
+            minor += 1
+            patch = 0
+        else:  # patch
+            patch += 1
+
+        new_version = f"{major}.{minor}.{patch}"
+        self.set_metadata_value("version", new_version)
+        return new_version
 
     def close(self):
         """Close database connection"""

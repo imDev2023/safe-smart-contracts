@@ -40,17 +40,29 @@
             </div>
             <div class="col-md-3">
                 <div class="stat-card">
-                    <h3>284</h3>
+                    <h3>{{ stats.get('kb_files_count', '284') }}</h3>
                     <p>KB Files</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stat-card">
-                    <h3>4</h3>
-                    <p>Domains</p>
+                    <h3>v{{ stats.get('version', '1.0.0') }}</h3>
+                    <p>Graph Version</p>
                 </div>
             </div>
         </div>
+
+        <!-- Version Info -->
+        {% if stats.get('last_rebuild') and stats.get('last_rebuild') != 'unknown' %}
+        <div class="alert alert-info mb-4">
+            <i class="fas fa-info-circle"></i>
+            <strong>Last Rebuild:</strong> {{ stats.get('last_rebuild') }}
+            |
+            <strong>Version:</strong> {{ stats.get('version', '1.0.0') }}
+            |
+            <strong>Auto-upgradeable:</strong> Add new content to KB and run <code>./scripts/cocoindex/rebuild_graph.sh</code>
+        </div>
+        {% endif %}
 
         <!-- Features -->
         <h2 class="mb-4"><i class="fas fa-star"></i> Features</h2>
