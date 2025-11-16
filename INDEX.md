@@ -447,8 +447,8 @@ Each file follows this structure:
 
 ---
 
-### 06-DEFI-TRADING (12 Files, 750+ KB Total, 140,000+ words)
-**Purpose:** Decentralized exchange (DEX), automated market maker (AMM), and trading protocol security
+### 06-DEFI-TRADING (13 Files, 1000+ KB Total, 170,000+ words)
+**Purpose:** Decentralized exchange (DEX), automated market maker (AMM), oracle networks, and trading protocol security
 
 ```
 06-defi-trading/
@@ -617,16 +617,33 @@ Each file follows this structure:
 │   • 150+ code snippets with file:line references
 │   KEYWORDS: Uniswap V4, hooks, concentrated liquidity, singleton, ERC6909
 │
+├── 11-chainlink-oracle-deep-dive.md        (70 KB, 2500+ lines)
+│   COVERS:
+│   • Chainlink decentralized oracle network architecture
+│   • Data Feeds: pluggable aggregators (median, identical, reduce, LLO, secure mint)
+│   • Off-Chain Reporting (OCR): v1, v2, v3 consensus mechanisms
+│   • Verifiable Random Function (VRF): ECVRF, proof generation, uniqueness verification
+│   • Data pipeline: sources → processing → aggregation → blockchain
+│   • Job types: FluxMonitor (legacy), OCR (current), Automation (Keepers)
+│   • Feeds Manager integration: registration, job distribution, configuration
+│   • Multi-chain support: EVM, Solana, Starknet, Aptos, Tron, TON, Sui
+│   • Security models: economic staking, cryptographic proofs, operational security
+│   • Smart contract integration: AggregatorV3Interface, VRFConsumerBaseV2, AutomationCompatible
+│   • Chainlink vs Band, Pyth, UMA oracle comparison
+│   • 250+ code patterns with source references from oracle node implementation
+│   KEYWORDS: Chainlink, oracle, data feed, VRF, OCR, aggregator, consensus, keeper
+│
 └── README.md                               (See top for overview)
     CROSS-REFERENCES:
     • Slippage 02-slippage-protection.md
     • Sniper/MEV 03-sniper-bot-prevention.md, 05-mev-mitigation.md
-    • Oracle 06-price-oracles.md
+    • Oracle 06-price-oracles.md, 11-chainlink-oracle-deep-dive.md
     • Bot security 07-trading-bot-security.md
     • Flash attacks 04-flash-swaps.md
     • Uniswap V2 08-uniswap-v2-deep-dive.md
     • Uniswap V3 09-uniswap-v3-deep-dive.md (concentrated liquidity, TWAP)
     • Uniswap V4 10-uniswap-v4-deep-dive.md (hooks, singleton pattern)
+    • Chainlink oracle 11-chainlink-oracle-deep-dive.md (VRF, OCR, data feeds)
 ```
 
 **Use This Section For**: DEX integration, trading protocol security, MEV protection, oracle selection, bot development
