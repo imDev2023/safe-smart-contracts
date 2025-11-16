@@ -447,7 +447,7 @@ Each file follows this structure:
 
 ---
 
-### 06-DEFI-TRADING (9 Files, 350+ KB Total, 50,000+ words)
+### 06-DEFI-TRADING (11 Files, 550+ KB Total, 90,000+ words)
 **Purpose:** Decentralized exchange (DEX), automated market maker (AMM), and trading protocol security
 
 ```
@@ -571,6 +571,37 @@ Each file follows this structure:
 │   • Monitoring and performance metrics
 │   KEYWORDS: Bot, trading, security, private key, circuit breaker, monitoring
 │
+├── 08-uniswap-v2-deep-dive.md              (50 KB, 1500+ lines)
+│   COVERS:
+│   • Complete V2 architecture with exact source references
+│   • Factory pattern and CREATE2 deterministic addresses
+│   • Pair contract core mechanics (reserves, reentrancy guard)
+│   • Constant product formula (x*y=k) with fee
+│   • Swap mechanism with k invariant verification
+│   • Liquidity provider economics and LP tokens
+│   • Fee collection and protocol fees
+│   • TWAP oracle with cumulative prices
+│   • Flash swap pattern and callback system
+│   • Safe transfer pattern for non-standard ERC20
+│   • 100+ code snippets with file:line references
+│   KEYWORDS: Uniswap V2, AMM, swap, liquidity, factory, oracle
+│
+├── 09-uniswap-v4-deep-dive.md              (60 KB, 1800+ lines)
+│   COVERS:
+│   • V4 architecture: Singleton PoolManager pattern
+│   • Hook system with 14 permission flags (address-based)
+│   • Concentrated liquidity with ticks and tick bitmap
+│   • Core swap logic with liquidity changes at tick boundaries
+│   • Fee growth calculation and position fee accrual
+│   • ERC6909 token standard for balance tracking
+│   • Balance delta encoding (packing two int128 in int256)
+│   • Hook validation and execution with assembly
+│   • Dynamic fee override via hooks
+│   • Position tracking with salt for uniqueness
+│   • Complete V2 vs V3 vs V4 comparison
+│   • 150+ code snippets with file:line references
+│   KEYWORDS: Uniswap V4, hooks, concentrated liquidity, singleton, ERC6909
+│
 └── README.md                               (See top for overview)
     CROSS-REFERENCES:
     • Slippage 02-slippage-protection.md
@@ -578,6 +609,8 @@ Each file follows this structure:
     • Oracle 06-price-oracles.md
     • Bot security 07-trading-bot-security.md
     • Flash attacks 04-flash-swaps.md
+    • Uniswap V2 08-uniswap-v2-deep-dive.md
+    • Uniswap V4 09-uniswap-v4-deep-dive.md
 ```
 
 **Use This Section For**: DEX integration, trading protocol security, MEV protection, oracle selection, bot development
