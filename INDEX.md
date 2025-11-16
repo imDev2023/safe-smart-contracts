@@ -1,10 +1,10 @@
 # Safe Smart Contract Knowledge Base - Complete Index
 
-> A searchable, comprehensive index of all 238 files in the knowledge base with quick navigation, topics, and locations.
+> A searchable, comprehensive index of all 247 files in the knowledge base with quick navigation, topics, and locations.
 
-**Last Updated**: November 15, 2025
-**Total Files**: 238 (200 research + 31 action + 4 sync + 3 version control)
-**Total Size**: 822 KB | **Total Lines**: 40,000+
+**Last Updated**: November 16, 2025
+**Total Files**: 247 (200 research + 40 action + 4 sync + 3 version control)
+**Total Size**: 1,172 KB | **Total Lines**: 90,000+
 
 ---
 
@@ -16,12 +16,14 @@
 - **Code Snippets**: `knowledge-base-action/04-code-snippets/` (172+ reusable snippets)
 - **Quick Refs**: `knowledge-base-action/01-quick-reference/` (Fast lookup guides)
 - **Security**: `knowledge-base-action/03-attack-prevention/` (10 vulnerability guides)
+- **DEX/Trading**: `knowledge-base-action/06-defi-trading/` (Uniswap, oracles, MEV, bots)
 
 ### For Auditors
 - **Security Checklist**: `knowledge-base-action/01-quick-reference/security-checklist.md` (360+ checks)
 - **Vulnerability Reference**: `knowledge-base-action/01-quick-reference/vulnerability-matrix.md`
 - **Attack Prevention**: `knowledge-base-action/03-attack-prevention/` (All 10 critical attacks)
 - **Workflows**: `knowledge-base-action/05-workflows/pre-deployment.md`
+- **DEX Audit**: `knowledge-base-action/06-defi-trading/README.md` (Audit checklists and attack patterns)
 
 ### For Architects
 - **Pattern Catalog**: `knowledge-base-action/01-quick-reference/pattern-catalog.md` (10 patterns)
@@ -445,6 +447,143 @@ Each file follows this structure:
 
 ---
 
+### 06-DEFI-TRADING (9 Files, 350+ KB Total, 50,000+ words)
+**Purpose:** Decentralized exchange (DEX), automated market maker (AMM), and trading protocol security
+
+```
+06-defi-trading/
+├── README.md                               (40 KB)
+│   WHAT'S HERE:
+│   • Quick start by use case (builder, integrator, auditor)
+│   • Integration examples for swaps, oracles, MEV protection
+│   • Real attacks covered (Harvest Finance $34M, liquidation races)
+│   • Tools & services comparison table
+│   • Common mistakes to avoid
+│
+├── 00-DEX-OVERVIEW.md                      (18 KB, 480 lines)
+│   COVERS:
+│   • Automated Market Maker (AMM) fundamentals
+│   • Constant product formula (x × y = k)
+│   • Uniswap V2, V3, V4 architecture comparison
+│   • Liquidity pool structure and LP tokens
+│   • Concentrated liquidity in V3
+│   • Trading flow and multi-hop swaps
+│   • Liquidity provider economics
+│   • Impermanent loss calculation
+│   • Core attack vectors overview
+│   KEYWORDS: AMM, DEX, Uniswap, liquidity, pool, constant product
+│
+├── 01-liquidity-pools.md                   (16 KB, 420 lines)
+│   COVERS:
+│   • Pool creation and initialization
+│   • Adding/removing liquidity safely
+│   • Fee collection and compounding
+│   • Pool health monitoring
+│   • TWAP oracle calculation
+│   • LP position management pattern
+│   • Gas optimization for pool operations
+│   • Impermanent loss avoidance
+│   KEYWORDS: Pool, liquidity, fees, TWAP, position management
+│
+├── 02-slippage-protection.md               (22 KB, 560 lines)
+│   COVERS:
+│   • Price impact slippage vs volatility slippage vs MEV slippage
+│   • AmountMin / AmountOutMin protection
+│   • Deadline enforcement
+│   • Multi-hop routing optimization
+│   • Dynamic slippage based on volatility
+│   • Batch swap patterns
+│   • Time-weighted slippage adjustment
+│   • Flash loan attack scenarios
+│   • MEV sandwich attacks
+│   KEYWORDS: Slippage, protection, amountMin, deadline, MEV
+│
+├── 03-sniper-bot-prevention.md             (25 KB, 650 lines)
+│   COVERS:
+│   • Sniper bot mechanics and real-world MEV extraction
+│   • Sequence analysis detection (timing, frequency, volumes)
+│   • Price impact anomaly detection
+│   • Mempool monitoring detection
+│   • Private mempool integration (Flashbots Protect)
+│   • MEV auction mechanisms
+│   • Intent-based architecture (UniswapX)
+│   • Rate limiting and account restrictions
+│   • Commit-reveal two-step execution
+│   • Sandwich attack, liquidation race, oracle manipulation
+│   KEYWORDS: Bot, MEV, frontrunning, sandwich, private mempool
+│
+├── 04-flash-swaps.md                       (21 KB, 540 lines)
+│   COVERS:
+│   • Flash swap vs flash loan mechanics
+│   • Step-by-step flash swap execution
+│   • Fee calculation and repayment
+│   • Price oracle manipulation attacks
+│   • Flash loan arbitrage attacks
+│   • Collateral theft via flash loans
+│   • Reentrancy guards + state validation
+│   • TWAP oracle immunity to flash attacks
+│   • Minimum balances and rate limiting
+│   • Strict post-callback validation
+│   • Safe flash swap usage pattern
+│   KEYWORDS: Flash swap, flash loan, oracle manipulation, TWAP
+│
+├── 05-mev-mitigation.md                    (24 KB, 620 lines)
+│   COVERS:
+│   • MEV categories (sandwich, liquidation, arbitrage)
+│   • Annual MEV statistics ($500M+)
+│   • Private mempool strategy (Flashbots Protect)
+│   • Batch auction mechanisms (CoW Protocol)
+│   • MEV-burn approach
+│   • Intent-based architecture
+│   • Threshold encryption (MPC networks)
+│   • Gas price monitoring strategies
+│   • Fair liquidation auctions
+│   • MEV protection comparison table
+│   KEYWORDS: MEV, extraction, mitigation, batch, auction, intent
+│
+├── 06-price-oracles.md                     (20 KB, 520 lines)
+│   COVERS:
+│   • Oracle problem and price manipulation
+│   • DEX prices vs TWAP vs Chainlink feeds vs hybrid
+│   • Chainlink Data Feeds integration
+│   • Chainlink Automation (Keeper Network)
+│   • Chainlink SVR feeds (OEV mitigation)
+│   • Stale price detection
+│   • Flash loan immunity verification
+│   • Multiple feed consensus
+│   • Price range validation
+│   • Oracle aggregation patterns
+│   • Real price oracle attacks
+│   KEYWORDS: Oracle, Chainlink, price feed, TWAP, flash attack
+│
+├── 07-trading-bot-security.md              (22 KB, 570 lines)
+│   COVERS:
+│   • Bot categories (arbitrage, market maker, liquidation, MEV)
+│   • Private key management (hardware wallet, KMS, encrypted)
+│   • Rate limiting and circuit breakers
+│   • Slippage validation and dynamic limits
+│   • Position management and risk limits
+│   • Attack vectors (sandwich, oracle manipulation, key theft, liquidation race)
+│   • Safe bot architecture pattern
+│   • External signer integration
+│   • Daily loss limits and stop losses
+│   • Deployment strategy (testnet → small → scale)
+│   • Monitoring and performance metrics
+│   KEYWORDS: Bot, trading, security, private key, circuit breaker, monitoring
+│
+└── README.md                               (See top for overview)
+    CROSS-REFERENCES:
+    • Slippage 02-slippage-protection.md
+    • Sniper/MEV 03-sniper-bot-prevention.md, 05-mev-mitigation.md
+    • Oracle 06-price-oracles.md
+    • Bot security 07-trading-bot-security.md
+    • Flash attacks 04-flash-swaps.md
+```
+
+**Use This Section For**: DEX integration, trading protocol security, MEV protection, oracle selection, bot development
+
+---
+
 ## 🔬 KNOWLEDGE-BASE-RESEARCH (200+ Files)
 
 Research files organized by source repository with allowed overlaps for reference.
@@ -551,6 +690,14 @@ knowledge-base-action/
 # Search by keyword across all files
 ./search.sh "reentrancy"
 
+# Search DEX/trading content
+./search.sh "uniswap"         # Uniswap architecture
+./search.sh "slippage"        # Slippage protection
+./search.sh "MEV"             # MEV extraction and mitigation
+./search.sh "oracle"          # Price oracle integration
+./search.sh "sniper"          # Sniper bot prevention
+./search.sh "flash"           # Flash swap/loan attacks
+
 # Search in specific section
 ./search.sh "ERC20" --section action
 
@@ -565,6 +712,9 @@ knowledge-base-action/
 
 # Show me template files
 ./search.sh --templates
+
+# Search DEX section
+./search.sh "liquidation" --section defi-trading
 ```
 
 #### **Option 2: Manual Search by Category**
@@ -575,10 +725,15 @@ knowledge-base-action/
 | **Code to copy/paste** | `02-contract-templates/` or `04-code-snippets/` |
 | **How to prevent vulnerability** | `03-attack-prevention/` |
 | **Complete workflow** | `05-workflows/` |
+| **DEX/Trading protocol** | `06-defi-trading/` |
 | **OpenZeppelin reference** | `01-quick-reference/oz-quick-ref.md` |
 | **Gas optimization tips** | `01-quick-reference/gas-optimization-wins.md` |
 | **Design patterns** | `01-quick-reference/pattern-catalog.md` |
 | **Pre-deployment checklist** | `01-quick-reference/security-checklist.md` |
+| **Chainlink oracles** | `06-defi-trading/06-price-oracles.md` |
+| **Slippage protection** | `06-defi-trading/02-slippage-protection.md` |
+| **MEV mitigation** | `06-defi-trading/05-mev-mitigation.md` |
+| **Trading bot security** | `06-defi-trading/07-trading-bot-security.md` |
 | **Deep research** | `knowledge-base-research/` |
 
 #### **Option 3: Search by Solidity Concept**
@@ -635,11 +790,11 @@ Patterns listed in `01-quick-reference/pattern-catalog.md`:
 
 | Category | Files | Size | Lines | Content |
 |----------|-------|------|-------|---------|
-| **Action KB** | 31 | 500 KB | 20,000+ | Production-ready |
+| **Action KB** | 40 | 850 KB | 50,000+ | Production-ready + DEX |
 | **Research KB** | 200+ | 250 KB | 18,000+ | Deep dives |
 | **Sync System** | 4 | 40 KB | 1,000+ | Automation |
 | **Version Control** | 3 | 32 KB | 1,000+ | Tracking |
-| **TOTAL** | 238 | 822 KB | 40,000+ | Comprehensive |
+| **TOTAL** | 247 | 1,172 KB | 90,000+ | Comprehensive |
 
 ---
 
