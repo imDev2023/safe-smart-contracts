@@ -1,0 +1,310 @@
+{% extends "base.html" %}
+
+{% block title %}Search - Safe Smart Contracts{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="container-main">
+        <h1 class="mb-4">
+            <i class="fas fa-search text-primary"></i>
+            Knowledge Base Search
+        </h1>
+
+        <!-- Search Box -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search for vulnerabilities, templates, protocols...">
+                    <button class="btn btn-primary" type="button" onclick="performSearch()">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+                <small class="text-muted">
+                    Try: "reentrancy", "uniswap v4", "chainlink", "flash loan", etc.
+                </small>
+            </div>
+        </div>
+
+        <!-- Quick Filters -->
+        <div class="mb-4">
+            <h5>Quick Filters:</h5>
+            <button class="btn btn-outline-primary me-2" onclick="quickSearch('vulnerabilities')">
+                <i class="fas fa-bug"></i> Vulnerabilities
+            </button>
+            <button class="btn btn-outline-success me-2" onclick="quickSearch('templates')">
+                <i class="fas fa-file-code"></i> Templates
+            </button>
+            <button class="btn btn-outline-info me-2" onclick="quickSearch('deepdives')">
+                <i class="fas fa-book-open"></i> Deep Dives
+            </button>
+            <button class="btn btn-outline-warning me-2" onclick="quickSearch('integrations')">
+                <i class="fas fa-plug"></i> Integrations
+            </button>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div class="loading" id="loading">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3">Searching knowledge base...</p>
+        </div>
+
+        <!-- Results -->
+        <div id="results"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function performSearch() {
+    const query = document.getElementById('searchInput').value;
+    if (!query) return;
+
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('results').innerHTML = '';
+
+    fetch('/api/search', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({query: query, limit: 20})
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('loading').style.display = 'none';
+
+        if (data.success) {
+            displayResults(data.results);
+        } else {
+            document.getElementById('results').innerHTML = `
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> Error: ${data.error}
+                </div>
+            `;
+        }
+    })
+    .catch(error => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('results').innerHTML = `
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i> Error: ${error}
+            </div>
+        `;
+    });
+}
+
+function displayResults(results) {
+    if (results.length === 0) {
+        document.getElementById('results').innerHTML = `
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No results found. Try a different search term.
+            </div>
+        `;
+        return;
+    }
+
+    let html = `<h3 class="mb-3">Found ${results.length} results:</h3>`;
+
+    results.forEach(result => {
+        const typeColor = getTypeColor(result.type);
+        const icon = getTypeIcon(result.type);
+
+        html += `
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h5 class="card-title">
+                                <i class="${icon} ${typeColor}"></i>
+                                ${result.name}
+                            </h5>
+                            <p class="mb-2">
+                                <span class="badge badge-custom ${typeColor}">${result.type}</span>
+                                <span class="badge bg-secondary">${result.kb_source}</span>
+                            </p>
+                            <p class="text-muted mb-2">
+                                <i class="fas fa-file"></i> ${result.file_path}
+                            </p>
+        `;
+
+        // Add type-specific information
+        if (result.type === 'Vulnerability' && result.data.severity) {
+            const severityColor = getSeverityColor(result.data.severity);
+            html += `
+                <p class="mb-2">
+                    <span class="badge ${severityColor}">
+                        ${result.data.severity} Severity
+                    </span>
+            `;
+            if (result.data.historical_losses_usd > 0) {
+                html += `
+                    <span class="badge bg-danger">
+                        $${result.data.historical_losses_usd.toLocaleString()} in losses
+                    </span>
+                `;
+            }
+            html += `</p>`;
+        }
+
+        if (result.type === 'Template' && result.data.lines_of_code) {
+            html += `
+                <p class="mb-2">
+                    <span class="badge bg-info">
+                        ${result.data.lines_of_code} lines of code
+                    </span>
+                </p>
+            `;
+        }
+
+        html += `
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    document.getElementById('results').innerHTML = html;
+}
+
+function quickSearch(type) {
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('results').innerHTML = '';
+
+    let endpoint = '';
+    switch(type) {
+        case 'vulnerabilities':
+            endpoint = '/api/vulnerabilities';
+            break;
+        case 'templates':
+            endpoint = '/api/templates';
+            break;
+        case 'deepdives':
+            endpoint = '/api/deepdives';
+            break;
+        case 'integrations':
+            endpoint = '/api/integrations';
+            break;
+    }
+
+    fetch(endpoint)
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('loading').style.display = 'none';
+        if (data.success) {
+            displayQuickResults(data.results, type);
+        }
+    })
+    .catch(error => {
+        document.getElementById('loading').style.display = 'none';
+        console.error('Error:', error);
+    });
+}
+
+function displayQuickResults(results, type) {
+    if (results.length === 0) {
+        document.getElementById('results').innerHTML = `
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No ${type} found.
+            </div>
+        `;
+        return;
+    }
+
+    let html = `<h3 class="mb-3">All ${type.charAt(0).toUpperCase() + type.slice(1)} (${results.length}):</h3>`;
+
+    results.forEach(result => {
+        html += `
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">${result.name}</h5>
+        `;
+
+        if (type === 'vulnerabilities') {
+            const severityColor = getSeverityColor(result.severity);
+            html += `
+                <p class="mb-2">
+                    <span class="badge ${severityColor}">${result.severity}</span>
+            `;
+            if (result.loss > 0) {
+                html += `
+                    <span class="badge bg-danger">
+                        $${result.loss.toLocaleString()} in losses
+                    </span>
+                `;
+            }
+            html += `</p>`;
+        }
+
+        if (type === 'templates' && result.lines) {
+            html += `
+                <p class="mb-2">
+                    <span class="badge bg-info">${result.type}</span>
+                    <span class="badge bg-secondary">${result.lines} lines</span>
+                </p>
+            `;
+        }
+
+        if ((type === 'deepdives' || type === 'integrations') && result.protocol) {
+            html += `
+                <p class="mb-2">
+                    <span class="badge bg-primary">${result.protocol}</span>
+                </p>
+            `;
+        }
+
+        html += `
+                    <p class="text-muted mb-0">
+                        <i class="fas fa-file"></i> ${result.file_path}
+                    </p>
+                </div>
+            </div>
+        `;
+    });
+
+    document.getElementById('results').innerHTML = html;
+}
+
+function getTypeColor(type) {
+    const colors = {
+        'Vulnerability': 'text-danger',
+        'Template': 'text-success',
+        'DeepDive': 'text-info',
+        'Integration': 'text-warning',
+        'VulnerableContract': 'text-secondary'
+    };
+    return colors[type] || 'text-primary';
+}
+
+function getTypeIcon(type) {
+    const icons = {
+        'Vulnerability': 'fas fa-bug',
+        'Template': 'fas fa-file-code',
+        'DeepDive': 'fas fa-book-open',
+        'Integration': 'fas fa-plug',
+        'VulnerableContract': 'fas fa-exclamation-triangle'
+    };
+    return icons[type] || 'fas fa-file';
+}
+
+function getSeverityColor(severity) {
+    const colors = {
+        'CRITICAL': 'bg-danger',
+        'HIGH': 'bg-warning',
+        'MEDIUM': 'bg-info',
+        'LOW': 'bg-secondary'
+    };
+    return colors[severity.toUpperCase()] || 'bg-secondary';
+}
+
+// Allow search on Enter key
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+});
+</script>
+{% endblock %}
