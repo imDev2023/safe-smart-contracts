@@ -51,6 +51,34 @@ open knowledge-base-action/03-attack-prevention/
 open knowledge-base-action/05-workflows/pre-deployment.md
 ```
 
+### For DEX/Oracle Developers
+```bash
+# 1. Quick access guide
+open KB-LOOKUP.md              # Master index for fast file access
+
+# 2. Development workflow
+open DEVELOPMENT.md            # How to use KB while coding
+
+# 3. Choose your integration
+# Uniswap:
+open knowledge-base-action/06-defi-trading/13-uniswap-v2-integration.md
+open knowledge-base-action/06-defi-trading/14-uniswap-v3-integration.md
+open knowledge-base-action/06-defi-trading/15-uniswap-v4-integration.md
+
+# Chainlink:
+open knowledge-base-action/06-defi-trading/08-chainlink-datafeed-integration.md
+open knowledge-base-action/06-defi-trading/09-chainlink-vrf-integration.md
+open knowledge-base-action/06-defi-trading/10-chainlink-automation-integration.md
+
+# 4. Security before deployment
+open knowledge-base-action/06-defi-trading/11-oracle-security-checklist.md
+open knowledge-base-action/06-defi-trading/12-dex-security-checklist.md
+
+# 5. Deep learning
+open knowledge-base-research/repos/uniswap/
+open knowledge-base-research/repos/chainlink/
+```
+
 ### For Learning
 ```bash
 # 1. Read quick references
@@ -64,6 +92,10 @@ open knowledge-base-action/02-contract-templates/
 
 # 4. Master code snippets
 open knowledge-base-action/04-code-snippets/
+
+# 5. Deep dives (30+ min reads)
+open knowledge-base-research/repos/uniswap/
+open knowledge-base-research/repos/chainlink/
 ```
 
 ---
@@ -127,6 +159,26 @@ open knowledge-base-action/04-code-snippets/
 05-workflows/                (2 processes, 30 KB)
   ├── contract-development.md       - 8-phase development
   └── pre-deployment.md             - 400+ verification checks
+
+06-defi-trading/             (18 files, 230 KB - NEW!)
+  ├── 00-oracle-selection.md           - Oracle comparison matrix
+  ├── 08-chainlink-datafeed-integration.md      - Price feeds setup
+  ├── 09-chainlink-vrf-integration.md           - VRF randomness setup
+  ├── 10-chainlink-automation-integration.md    - Keeper automation setup
+  ├── 13-uniswap-v2-integration.md              - Uniswap V2 swap integration
+  ├── 14-uniswap-v3-integration.md              - Uniswap V3 LP integration
+  ├── 15-uniswap-v4-integration.md              - Uniswap V4 hook integration
+  ├── 11-oracle-security-checklist.md           - Oracle security (28 items)
+  ├── 12-dex-security-checklist.md              - DEX security (51 items)
+  ├── 02-slippage-protection.md                 - Slippage protection patterns
+  ├── 03-sniper-bot-prevention.md               - Bot detection methods
+  ├── 04-flash-swaps.md                         - Flash swap safety
+  ├── 05-mev-mitigation.md                      - MEV extraction mitigation
+  ├── 06-price-oracles.md                       - Oracle integration guide
+  ├── 07-trading-bot-security.md                - Bot security patterns
+  ├── 00-DEX-OVERVIEW.md                        - AMM fundamentals
+  ├── 01-liquidity-pools.md                     - Pool operations
+  └── README.md                                  - DEX section overview
 ```
 
 ### 🔄 Deduplication & Sync System (Phase 3)
@@ -150,18 +202,30 @@ knowledge-base-action/
   └── CHANGELOG.md                 - Version history
 ```
 
+### 🛠️ Developer Tools (NEW!)
+**Fast KB access and workflow guides**
+
+```
+ROOT LEVEL:
+  ├── DEVELOPMENT.md               - How to use KB during development
+  ├── KB-LOOKUP.md                 - Master index for fast file access
+  └── INDEX.md                      - Complete searchable knowledge base index
+```
+
 ---
 
 ## Key Statistics
 
 | Metric | Value |
 |--------|-------|
-| **Total Files** | 238 |
-| **Total Size** | 822 KB |
-| **Documentation Lines** | 40,000+ |
-| **Solidity Code Lines** | 3,000+ |
-| **Code Examples** | 100+ |
-| **Vulnerabilities Covered** | 38 |
+| **Total Files** | 259 |
+| **Total Size** | 1,657 KB |
+| **Documentation Lines** | 102,000+ |
+| **Code Examples** | 250+ |
+| **Complete Contract Templates** | 8 |
+| **Integration Guides** | 6 (Uniswap V2/V3/V4 + Chainlink 3x) |
+| **Security Checklists** | 2 (51 DEX items + 28 Oracle items) |
+| **Vulnerabilities Covered** | 38+ |
 | **Design Patterns** | 14 |
 | **Gas Optimization Tips** | 100+ |
 | **Security Checks** | 400+ |
@@ -178,30 +242,49 @@ knowledge-base-action/
 - Complete pre-deployment in 2-3 hours
 - Build secure tokens in 2-4 hours
 
+### 🔄 DEX/Oracle Developers (NEW!)
+- Use KB-LOOKUP.md for instant file access
+- Follow DEVELOPMENT.md workflow guide
+- Integrate Uniswap (V2/V3/V4) in 30-45 minutes
+- Integrate Chainlink (feeds/VRF/automation) in 20-30 minutes
+- Security review with 51-item + 28-item checklists before deploying
+- Copy-paste code examples from 6 integration guides
+
 ### 🔍 Auditors
 - Use 360+ item pre-deployment checklist
 - Reference all 10 critical vulnerabilities
 - Check against real-world exploit examples
 - Complete thorough audit in 4-8 hours
+- Use 51-item DEX checklist + 28-item Oracle checklist for DeFi protocols
 
 ### 🏗️ Architects
 - Design with 10 documented patterns
 - Choose appropriate templates
 - Plan upgrade strategies
 - Make informed decisions
+- Use oracle selection matrix for DeFi
 
 ### 📚 Learners
 - Study 100+ code examples
 - Understand 10 critical attacks
 - Practice with templates
 - Follow 2-4 week learning path
+- Deep-dive into Uniswap and Chainlink architecture (repos)
 
 ---
 
 ## Features
 
+### 🚀 Fast Access Tools (NEW!)
+- **KB-LOOKUP.md**: Master index for finding guides by feature (< 1 min)
+- **DEVELOPMENT.md**: Workflow guide for using KB while coding
+- Instant file location references with line numbers
+- Quick search script integration
+- 3-tier access: quick guides → security checklists → deep dives
+
 ### ✨ Production-Ready Code
 - 7 Solidity contract templates (2,400+ lines)
+- 6 integration guides with working examples (Uniswap + Chainlink)
 - Full NatSpec documentation
 - Gas optimized
 - Security best practices applied
