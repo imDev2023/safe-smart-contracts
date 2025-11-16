@@ -730,12 +730,15 @@ knowledge-base-action/
 ./search.sh "reentrancy"
 
 # Search DEX/trading content
-./search.sh "uniswap"         # Uniswap architecture
-./search.sh "slippage"        # Slippage protection
+./search.sh "uniswap"         # Uniswap V2/V3/V4 architecture + integration
+./search.sh "chainlink"       # Chainlink oracles, VRF, automation
+./search.sh "slippage"        # Slippage protection patterns
 ./search.sh "MEV"             # MEV extraction and mitigation
-./search.sh "oracle"          # Price oracle integration
+./search.sh "oracle"          # Price oracle integration (Chainlink, Band, Pyth)
 ./search.sh "sniper"          # Sniper bot prevention
 ./search.sh "flash"           # Flash swap/loan attacks
+./search.sh "tick"            # Uniswap V3 concentrated liquidity
+./search.sh "hook"            # Uniswap V4 hook system
 
 # Search in specific section
 ./search.sh "ERC20" --section action
@@ -769,11 +772,21 @@ knowledge-base-action/
 | **Gas optimization tips** | `01-quick-reference/gas-optimization-wins.md` |
 | **Design patterns** | `01-quick-reference/pattern-catalog.md` |
 | **Pre-deployment checklist** | `01-quick-reference/security-checklist.md` |
-| **Chainlink oracles** | `06-defi-trading/06-price-oracles.md` |
+| **Oracle selection guide** | `06-defi-trading/00-oracle-selection.md` |
+| **Chainlink data feeds setup** | `06-defi-trading/08-chainlink-datafeed-integration.md` |
+| **Chainlink VRF setup** | `06-defi-trading/09-chainlink-vrf-integration.md` |
+| **Chainlink automation setup** | `06-defi-trading/10-chainlink-automation-integration.md` |
+| **Uniswap V2 swap integration** | `06-defi-trading/13-uniswap-v2-integration.md` |
+| **Uniswap V3 LP integration** | `06-defi-trading/14-uniswap-v3-integration.md` |
+| **Uniswap V4 hook integration** | `06-defi-trading/15-uniswap-v4-integration.md` |
+| **Oracle security checklist** | `06-defi-trading/11-oracle-security-checklist.md` |
+| **DEX security checklist** | `06-defi-trading/12-dex-security-checklist.md` |
 | **Slippage protection** | `06-defi-trading/02-slippage-protection.md` |
 | **MEV mitigation** | `06-defi-trading/05-mev-mitigation.md` |
 | **Trading bot security** | `06-defi-trading/07-trading-bot-security.md` |
-| **Deep research** | `knowledge-base-research/` |
+| **Uniswap deep research** | `knowledge-base-research/repos/uniswap/` |
+| **Chainlink deep research** | `knowledge-base-research/repos/chainlink/` |
+| **All deep research** | `knowledge-base-research/` |
 
 #### **Option 3: Search by Solidity Concept**
 
@@ -829,11 +842,22 @@ Patterns listed in `01-quick-reference/pattern-catalog.md`:
 
 | Category | Files | Size | Lines | Content |
 |----------|-------|------|-------|---------|
-| **Action KB** | 40 | 850 KB | 50,000+ | Production-ready + DEX |
-| **Research KB** | 200+ | 250 KB | 18,000+ | Deep dives |
+| **Action KB** | 43 | 1,100 KB | 65,000+ | Production-ready + DEX (13 defi-trading files) |
+| **Research KB** | 207 | 485 KB | 35,000+ | Deep dives (4 Uniswap + 2 Chainlink research) |
 | **Sync System** | 4 | 40 KB | 1,000+ | Automation |
 | **Version Control** | 3 | 32 KB | 1,000+ | Tracking |
-| **TOTAL** | 247 | 1,172 KB | 90,000+ | Comprehensive |
+| **TOTAL** | 257 | 1,657 KB | 102,000+ | Comprehensive |
+
+### Breakdown by Purpose
+
+**Quick-Action (kba):**
+- 06-defi-trading: 18 files (230 KB) - Uniswap V2/V3/V4, Chainlink, security checklists
+- Other action: 25 files (870 KB) - Templates, snippets, workflows, patterns, vulnerabilities
+
+**Research & Learning (kbr):**
+- Uniswap: 4 files (135 KB) - Deep dives on V2, V3, V4 architecture
+- Chainlink: 2 files (60 KB) - Deep dive on oracle network
+- Other research: 201 files (290 KB) - ConsenSys, OZ, patterns, vulnerabilities
 
 ---
 
@@ -873,6 +897,22 @@ Patterns listed in `01-quick-reference/pattern-catalog.md`:
 - Security → `01-quick-reference/security-checklist.md`
 - Deployment → `05-workflows/pre-deployment.md`
 
+### "I need to integrate DEX/Oracle..."
+- Choose oracle (Chainlink/Band/Pyth) → `06-defi-trading/00-oracle-selection.md`
+- Chainlink price feeds → `06-defi-trading/08-chainlink-datafeed-integration.md`
+- Chainlink VRF (randomness) → `06-defi-trading/09-chainlink-vrf-integration.md`
+- Chainlink Automation (Keepers) → `06-defi-trading/10-chainlink-automation-integration.md`
+- Uniswap V2 swap → `06-defi-trading/13-uniswap-v2-integration.md`
+- Uniswap V3 liquidity → `06-defi-trading/14-uniswap-v3-integration.md`
+- Uniswap V4 hooks → `06-defi-trading/15-uniswap-v4-integration.md`
+- Protect against slippage → `06-defi-trading/02-slippage-protection.md`
+- Protect against MEV/bots → `06-defi-trading/03-sniper-bot-prevention.md` or `05-mev-mitigation.md`
+
+### "I need to audit DEX/Oracle..."
+- Oracle security → `06-defi-trading/11-oracle-security-checklist.md`
+- DEX integration → `06-defi-trading/12-dex-security-checklist.md`
+- Attack vectors → `06-defi-trading/04-flash-swaps.md`, `07-trading-bot-security.md`
+
 ---
 
 ## 🔗 Cross-References
@@ -894,13 +934,17 @@ Patterns listed in `01-quick-reference/pattern-catalog.md`:
 2. Code Snippets - `04-code-snippets/`
 3. OpenZeppelin Reference - `01-quick-reference/oz-quick-ref.md`
 4. Development Workflow - `05-workflows/contract-development.md`
+5. **DEX Integration** - `06-defi-trading/13-15-uniswap-*.md`
+6. **Oracle Integration** - `06-defi-trading/08-10-chainlink-*.md`
 
 ### For Learners
 1. Start Here - `00-START-HERE.md`
 2. Vulnerabilities - `03-attack-prevention/`
 3. Patterns - `01-quick-reference/pattern-catalog.md`
 4. Templates - `02-contract-templates/`
-5. Research - `knowledge-base-research/`
+5. **DEX Deep Learning** - `knowledge-base-research/repos/uniswap/`
+6. **Oracle Deep Learning** - `knowledge-base-research/repos/chainlink/`
+7. All Research - `knowledge-base-research/`
 
 ---
 
