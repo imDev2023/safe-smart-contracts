@@ -245,6 +245,115 @@ def api_integrations():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
+@app.route('/api/relationships/<node_id>', methods=['GET'])
+def api_relationships(node_id):
+    """Get all relationships for a node"""
+    try:
+        # Get the node info
+        cursor = kg.conn.execute("SELECT * FROM nodes WHERE id = ?", (node_id,))
+        node = cursor.fetchone()
+
+        if not node:
+            return jsonify({'success': False, 'error': 'Node not found'})
+
+        # Get outgoing relationships
+        cursor = kg.conn.execute("""
+            SELECT e.relationship_type, e.properties, n.id, n.name, n.type
+            FROM edges e
+            JOIN nodes n ON e.target_id = n.id
+            WHERE e.source_id = ?
+            ORDER BY e.relationship_type
+        """, (node_id,))
+        outgoing = []
+        for row in cursor.fetchall():
+            outgoing.append({
+                'relationship': row['relationship_type'],
+                'target_id': row['id'],
+                'target_name': row['name'],
+                'target_type': row['type'],
+                'properties': json.loads(row['properties']) if row['properties'] else {}
+            })
+
+        # Get incoming relationships
+        cursor = kg.conn.execute("""
+            SELECT e.relationship_type, e.properties, n.id, n.name, n.type
+            FROM edges e
+            JOIN nodes n ON e.source_id = n.id
+            WHERE e.target_id = ?
+            ORDER BY e.relationship_type
+        """, (node_id,))
+        incoming = []
+        for row in cursor.fetchall():
+            incoming.append({
+                'relationship': row['relationship_type'],
+                'source_id': row['id'],
+                'source_name': row['name'],
+                'source_type': row['type'],
+                'properties': json.loads(row['properties']) if row['properties'] else {}
+            })
+
+        return jsonify({
+            'success': True,
+            'node': {
+                'id': node['id'],
+                'name': node['name'],
+                'type': node['type'],
+                'kb_source': node['kb_source'],
+                'file_path': node['file_path']
+            },
+            'outgoing': outgoing,
+            'incoming': incoming,
+            'total_connections': len(outgoing) + len(incoming)
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
+
+@app.route('/graph')
+def graph_page():
+    """Graph visualization page"""
+    return render_template('graph.html')
+
+@app.route('/api/graph/all', methods=['GET'])
+def api_graph_all():
+    """Get all nodes and edges for visualization"""
+    try:
+        # Get all nodes
+        cursor = kg.conn.execute("SELECT id, name, type, kb_source FROM nodes")
+        nodes = []
+        for row in cursor.fetchall():
+            nodes.append({
+                'id': row['id'],
+                'name': row['name'],
+                'type': row['type'],
+                'kb_source': row['kb_source']
+            })
+
+        # Get all edges
+        cursor = kg.conn.execute("""
+            SELECT source_id, target_id, relationship_type, properties
+            FROM edges
+        """)
+        edges = []
+        for row in cursor.fetchall():
+            edges.append({
+                'source': row['source_id'],
+                'target': row['target_id'],
+                'type': row['relationship_type'],
+                'properties': json.loads(row['properties']) if row['properties'] else {}
+            })
+
+        return jsonify({
+            'success': True,
+            'nodes': nodes,
+            'edges': edges,
+            'stats': {
+                'total_nodes': len(nodes),
+                'total_edges': len(edges)
+            }
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
+
 if __name__ == '__main__':
     print("="*80)
     print("🌐 Safe Smart Contracts - Web Interface")
