@@ -447,206 +447,142 @@ Each file follows this structure:
 
 ---
 
-### 06-DEFI-TRADING (13 Files, 1000+ KB Total, 170,000+ words)
+### 06-DEFI-TRADING (10 Quick-Action Files + 7 Research Files, 1200+ KB Total, 200,000+ words)
+
+**ACTION FILES (10 Files, 8-25 KB each):**
+Quick reference guides, decision matrices, checklists, and step-by-step integration instructions (2-5 min reads)
+
+**RESEARCH FILES (7 Files in kbr, 50-70 KB each):**
+Comprehensive architecture deep dives extracted from source code (30+ min reads)
+
 **Purpose:** Decentralized exchange (DEX), automated market maker (AMM), oracle networks, and trading protocol security
 
 ```
-06-defi-trading/
-├── README.md                               (40 KB)
-│   WHAT'S HERE:
-│   • Quick start by use case (builder, integrator, auditor)
-│   • Integration examples for swaps, oracles, MEV protection
-│   • Real attacks covered (Harvest Finance $34M, liquidation races)
-│   • Tools & services comparison table
-│   • Common mistakes to avoid
+knowledge-base-action/06-defi-trading/
+├── README.md                               (40 KB) [See section overview above]
 │
-├── 00-DEX-OVERVIEW.md                      (18 KB, 480 lines)
-│   COVERS:
-│   • Automated Market Maker (AMM) fundamentals
-│   • Constant product formula (x × y = k)
-│   • Uniswap V2, V3, V4 architecture comparison
-│   • Liquidity pool structure and LP tokens
-│   • Concentrated liquidity in V3
-│   • Trading flow and multi-hop swaps
-│   • Liquidity provider economics
-│   • Impermanent loss calculation
-│   • Core attack vectors overview
-│   KEYWORDS: AMM, DEX, Uniswap, liquidity, pool, constant product
+├── 00-oracle-selection.md                  (8 KB, 200 lines)
+│   QUICK REFERENCE FOR:
+│   • Oracle comparison matrix (Chainlink, Band, Pyth, UMA)
+│   • Decision tree for oracle selection
+│   • Cost analysis per update
+│   • When to use each oracle type
+│   • Recommendation patterns
+│   TIME: 2 minutes to read
 │
 ├── 01-liquidity-pools.md                   (16 KB, 420 lines)
-│   COVERS:
+│   SAFE POOL OPERATIONS:
 │   • Pool creation and initialization
 │   • Adding/removing liquidity safely
 │   • Fee collection and compounding
-│   • Pool health monitoring
 │   • TWAP oracle calculation
-│   • LP position management pattern
-│   • Gas optimization for pool operations
-│   • Impermanent loss avoidance
-│   KEYWORDS: Pool, liquidity, fees, TWAP, position management
+│   TIME: 5 minutes to read
 │
 ├── 02-slippage-protection.md               (22 KB, 560 lines)
-│   COVERS:
-│   • Price impact slippage vs volatility slippage vs MEV slippage
-│   • AmountMin / AmountOutMin protection
+│   SLIPPAGE PROTECTION PATTERNS:
+│   • amountOutMin / amountInMin
 │   • Deadline enforcement
+│   • Dynamic slippage calculation
 │   • Multi-hop routing optimization
-│   • Dynamic slippage based on volatility
-│   • Batch swap patterns
-│   • Time-weighted slippage adjustment
-│   • Flash loan attack scenarios
-│   • MEV sandwich attacks
-│   KEYWORDS: Slippage, protection, amountMin, deadline, MEV
+│   TIME: 5 minutes to read
 │
 ├── 03-sniper-bot-prevention.md             (25 KB, 650 lines)
-│   COVERS:
-│   • Sniper bot mechanics and real-world MEV extraction
-│   • Sequence analysis detection (timing, frequency, volumes)
-│   • Price impact anomaly detection
-│   • Mempool monitoring detection
-│   • Private mempool integration (Flashbots Protect)
-│   • MEV auction mechanisms
+│   BOT DETECTION & PREVENTION:
+│   • Sniper bot mechanics
+│   • Sequence analysis detection
+│   • Private mempool integration
 │   • Intent-based architecture (UniswapX)
-│   • Rate limiting and account restrictions
-│   • Commit-reveal two-step execution
-│   • Sandwich attack, liquidation race, oracle manipulation
-│   KEYWORDS: Bot, MEV, frontrunning, sandwich, private mempool
+│   TIME: 5 minutes to read
 │
 ├── 04-flash-swaps.md                       (21 KB, 540 lines)
-│   COVERS:
-│   • Flash swap vs flash loan mechanics
-│   • Step-by-step flash swap execution
+│   FLASH SWAP SAFETY:
+│   • Flash swap mechanics
 │   • Fee calculation and repayment
-│   • Price oracle manipulation attacks
-│   • Flash loan arbitrage attacks
-│   • Collateral theft via flash loans
-│   • Reentrancy guards + state validation
-│   • TWAP oracle immunity to flash attacks
-│   • Minimum balances and rate limiting
-│   • Strict post-callback validation
-│   • Safe flash swap usage pattern
-│   KEYWORDS: Flash swap, flash loan, oracle manipulation, TWAP
+│   • Reentrancy protection
+│   • TWAP oracle immunity
+│   TIME: 5 minutes to read
 │
 ├── 05-mev-mitigation.md                    (24 KB, 620 lines)
-│   COVERS:
+│   MEV PROTECTION STRATEGIES:
 │   • MEV categories (sandwich, liquidation, arbitrage)
-│   • Annual MEV statistics ($500M+)
-│   • Private mempool strategy (Flashbots Protect)
-│   • Batch auction mechanisms (CoW Protocol)
-│   • MEV-burn approach
-│   • Intent-based architecture
-│   • Threshold encryption (MPC networks)
-│   • Gas price monitoring strategies
-│   • Fair liquidation auctions
-│   • MEV protection comparison table
-│   KEYWORDS: MEV, extraction, mitigation, batch, auction, intent
+│   • Private mempool (Flashbots)
+│   • Batch auctions (CoW Protocol)
+│   • Threshold encryption
+│   TIME: 5 minutes to read
 │
 ├── 06-price-oracles.md                     (20 KB, 520 lines)
-│   COVERS:
-│   • Oracle problem and price manipulation
-│   • DEX prices vs TWAP vs Chainlink feeds vs hybrid
-│   • Chainlink Data Feeds integration
-│   • Chainlink Automation (Keeper Network)
-│   • Chainlink SVR feeds (OEV mitigation)
+│   ORACLE INTEGRATION:
+│   • Oracle problem and solutions
+│   • DEX prices vs TWAP vs Chainlink
 │   • Stale price detection
-│   • Flash loan immunity verification
 │   • Multiple feed consensus
-│   • Price range validation
-│   • Oracle aggregation patterns
-│   • Real price oracle attacks
-│   KEYWORDS: Oracle, Chainlink, price feed, TWAP, flash attack
+│   TIME: 5 minutes to read
 │
 ├── 07-trading-bot-security.md              (22 KB, 570 lines)
-│   COVERS:
-│   • Bot categories (arbitrage, market maker, liquidation, MEV)
-│   • Private key management (hardware wallet, KMS, encrypted)
+│   BOT SECURITY PATTERNS:
+│   • Private key management
 │   • Rate limiting and circuit breakers
-│   • Slippage validation and dynamic limits
-│   • Position management and risk limits
-│   • Attack vectors (sandwich, oracle manipulation, key theft, liquidation race)
-│   • Safe bot architecture pattern
-│   • External signer integration
-│   • Daily loss limits and stop losses
-│   • Deployment strategy (testnet → small → scale)
-│   • Monitoring and performance metrics
-│   KEYWORDS: Bot, trading, security, private key, circuit breaker, monitoring
+│   • Safe bot architecture
+│   • Attack vectors and defenses
+│   TIME: 5 minutes to read
 │
-├── 08-uniswap-v2-deep-dive.md              (50 KB, 1500+ lines)
-│   COVERS:
-│   • Complete V2 architecture with exact source references
-│   • Factory pattern and CREATE2 deterministic addresses
-│   • Pair contract core mechanics (reserves, reentrancy guard)
-│   • Constant product formula (x*y=k) with fee
-│   • Swap mechanism with k invariant verification
-│   • Liquidity provider economics and LP tokens
-│   • Fee collection and protocol fees
-│   • TWAP oracle with cumulative prices
-│   • Flash swap pattern and callback system
-│   • Safe transfer pattern for non-standard ERC20
-│   • 100+ code snippets with file:line references
-│   KEYWORDS: Uniswap V2, AMM, swap, liquidity, factory, oracle
+├── 08-chainlink-datafeed-integration.md    (18 KB, 450 lines)
+│   STEP-BY-STEP CHAINLINK DATA FEEDS:
+│   • Quick 3-step integration
+│   • Feed address lookup by chain
+│   • Complete working example
+│   • Best practices and gotchas
+│   TIME: 5 minutes to read
 │
-├── 09-uniswap-v3-deep-dive.md              (65 KB, 2000+ lines)
-│   COVERS:
-│   • Concentrated liquidity revolution with ticks and tick spacing
-│   • Tick system: conversion, spacing, bitmap optimization
-│   • Position management with separate upper/lower tick tracking
-│   • Fee growth calculation: global, below, above, inside
-│   • Oracle system: TWAP, observations, cardinality growth
-│   • Multi-hop swap architecture with callback pattern
-│   • SwapRouter routing and NonfungiblePositionManager ERC721 wrapping
-│   • Impermanent loss only within [tickLower, tickUpper] range
-│   • Flash swaps with oracle integration
-│   • Complete V2 vs V3 comparison with code examples
-│   • 200+ code snippets with file:line references
-│   KEYWORDS: Uniswap V3, concentrated liquidity, tick, TWAP, oracle, ERC721
+├── 09-chainlink-vrf-integration.md         (20 KB, 500 lines)
+│   STEP-BY-STEP CHAINLINK VRF:
+│   • 4-step VRF setup
+│   • Subscription management
+│   • Request and fulfill pattern
+│   • Testing and security
+│   TIME: 5 minutes to read
 │
-├── 10-uniswap-v4-deep-dive.md              (60 KB, 1800+ lines)
-│   COVERS:
-│   • V4 architecture: Singleton PoolManager pattern
-│   • Hook system with 14 permission flags (address-based)
-│   • Concentrated liquidity with ticks and tick bitmap
-│   • Core swap logic with liquidity changes at tick boundaries
-│   • Fee growth calculation and position fee accrual
-│   • ERC6909 token standard for balance tracking
-│   • Balance delta encoding (packing two int128 in int256)
-│   • Hook validation and execution with assembly
-│   • Dynamic fee override via hooks
-│   • Position tracking with salt for uniqueness
-│   • Complete V2 vs V3 vs V4 comparison
-│   • 150+ code snippets with file:line references
-│   KEYWORDS: Uniswap V4, hooks, concentrated liquidity, singleton, ERC6909
+├── 10-chainlink-automation-integration.md  (22 KB, 550 lines)
+│   STEP-BY-STEP CHAINLINK AUTOMATION:
+│   • 3-step keeper setup
+│   • checkUpkeep + performUpkeep pattern
+│   • Trigger types (time, custom, log, cron)
+│   • Security and monitoring
+│   TIME: 5 minutes to read
 │
-├── 11-chainlink-oracle-deep-dive.md        (70 KB, 2500+ lines)
-│   COVERS:
-│   • Chainlink decentralized oracle network architecture
-│   • Data Feeds: pluggable aggregators (median, identical, reduce, LLO, secure mint)
-│   • Off-Chain Reporting (OCR): v1, v2, v3 consensus mechanisms
-│   • Verifiable Random Function (VRF): ECVRF, proof generation, uniqueness verification
-│   • Data pipeline: sources → processing → aggregation → blockchain
-│   • Job types: FluxMonitor (legacy), OCR (current), Automation (Keepers)
-│   • Feeds Manager integration: registration, job distribution, configuration
-│   • Multi-chain support: EVM, Solana, Starknet, Aptos, Tron, TON, Sui
-│   • Security models: economic staking, cryptographic proofs, operational security
-│   • Smart contract integration: AggregatorV3Interface, VRFConsumerBaseV2, AutomationCompatible
-│   • Chainlink vs Band, Pyth, UMA oracle comparison
-│   • 250+ code patterns with source references from oracle node implementation
-│   KEYWORDS: Chainlink, oracle, data feed, VRF, OCR, aggregator, consensus, keeper
+├── 11-oracle-security-checklist.md         (16 KB, 400 lines)
+│   ORACLE SECURITY VERIFICATION:
+│   • Price feed safety (10 items)
+│   • Chainlink-specific (8 items)
+│   • Multi-oracle pattern (6 items)
+│   • VRF security (4 items)
+│   • Testing & deployment (10 items)
+│   TIME: 3 minutes to check
 │
-└── README.md                               (See top for overview)
-    CROSS-REFERENCES:
-    • Slippage 02-slippage-protection.md
-    • Sniper/MEV 03-sniper-bot-prevention.md, 05-mev-mitigation.md
-    • Oracle 06-price-oracles.md, 11-chainlink-oracle-deep-dive.md
-    • Bot security 07-trading-bot-security.md
-    • Flash attacks 04-flash-swaps.md
-    • Uniswap V2 08-uniswap-v2-deep-dive.md
-    • Uniswap V3 09-uniswap-v3-deep-dive.md (concentrated liquidity, TWAP)
-    • Uniswap V4 10-uniswap-v4-deep-dive.md (hooks, singleton pattern)
-    • Chainlink oracle 11-chainlink-oracle-deep-dive.md (VRF, OCR, data feeds)
+├── 12-dex-security-checklist.md            (18 KB, 450 lines)
+│   DEX INTEGRATION VERIFICATION:
+│   • Pre-integration checks (8 items)
+│   • Slippage protection (8 items)
+│   • V2, V3, V4 specific (19 items)
+│   • Flash swap protection (5 items)
+│   • Testing & deployment (11 items)
+│   TIME: 3 minutes to check
+│
+└── 00-DEX-OVERVIEW.md                      (18 KB, 480 lines)
+    GENERAL REFERENCE:
+    • AMM fundamentals
+    • Uniswap V2, V3, V4 comparison
+    • Constant product formula
+    • Core attack vectors overview
+    TIME: 5 minutes to read
 ```
 
-**Use This Section For**: DEX integration, trading protocol security, MEV protection, oracle selection, bot development
+**Use This Section For**: Quick lookups, step-by-step integration, security checklists, decision matrices
+
+---
+
+**RESEARCH FILES** (moved to knowledge-base-research/repos/):
+See section below for comprehensive architecture deep dives on Uniswap and Chainlink.
 
 ---
 
@@ -683,13 +619,23 @@ knowledge-base-research/
 │   │   ├── [Content from 3 optimization repositories]
 │   │   └── [100+ optimization techniques]
 │   │
-│   └── openzeppelin/                   (16 files)
-│       ├── 00-ARCHITECTURE.md
-│       ├── SUMMARY.md
-│       ├── 01-security-contracts/      (ReentrancyGuard, AccessControl, etc.)
-│       ├── 02-token-standards/         (ERC20, ERC721, ERC1155)
-│       ├── 03-upgrade-patterns/        (Proxy patterns)
-│       └── 04-utilities/               (Helper libraries)
+│   ├── openzeppelin/                   (16 files)
+│   │   ├── 00-ARCHITECTURE.md
+│   │   ├── SUMMARY.md
+│   │   ├── 01-security-contracts/      (ReentrancyGuard, AccessControl, etc.)
+│   │   ├── 02-token-standards/         (ERC20, ERC721, ERC1155)
+│   │   ├── 03-upgrade-patterns/        (Proxy patterns)
+│   │   └── 04-utilities/               (Helper libraries)
+│   │
+│   ├── uniswap/                        (4 files - DEX Protocol Deep Dives)
+│   │   ├── README.md                   (Overview of V2/V3/V4 architecture)
+│   │   ├── 08-uniswap-v2-deep-dive.md  (50 KB, 1500+ lines - Factory pattern)
+│   │   ├── 09-uniswap-v3-deep-dive.md  (65 KB, 2000+ lines - Concentrated liquidity)
+│   │   └── 10-uniswap-v4-deep-dive.md  (60 KB, 1800+ lines - Singleton + hooks)
+│   │
+│   └── chainlink/                      (2 files - Oracle Network Deep Dives)
+│       ├── README.md                   (Overview of oracle architecture)
+│       └── 11-chainlink-oracle-deep-dive.md  (70 KB, 2500+ lines - Feeds, VRF, OCR)
 ```
 
 **Use This Section For**: Deep research, background learning, comprehensive understanding
