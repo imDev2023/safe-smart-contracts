@@ -447,7 +447,7 @@ Each file follows this structure:
 
 ---
 
-### 06-DEFI-TRADING (11 Files, 550+ KB Total, 90,000+ words)
+### 06-DEFI-TRADING (12 Files, 750+ KB Total, 140,000+ words)
 **Purpose:** Decentralized exchange (DEX), automated market maker (AMM), and trading protocol security
 
 ```
@@ -586,7 +586,22 @@ Each file follows this structure:
 │   • 100+ code snippets with file:line references
 │   KEYWORDS: Uniswap V2, AMM, swap, liquidity, factory, oracle
 │
-├── 09-uniswap-v4-deep-dive.md              (60 KB, 1800+ lines)
+├── 09-uniswap-v3-deep-dive.md              (65 KB, 2000+ lines)
+│   COVERS:
+│   • Concentrated liquidity revolution with ticks and tick spacing
+│   • Tick system: conversion, spacing, bitmap optimization
+│   • Position management with separate upper/lower tick tracking
+│   • Fee growth calculation: global, below, above, inside
+│   • Oracle system: TWAP, observations, cardinality growth
+│   • Multi-hop swap architecture with callback pattern
+│   • SwapRouter routing and NonfungiblePositionManager ERC721 wrapping
+│   • Impermanent loss only within [tickLower, tickUpper] range
+│   • Flash swaps with oracle integration
+│   • Complete V2 vs V3 comparison with code examples
+│   • 200+ code snippets with file:line references
+│   KEYWORDS: Uniswap V3, concentrated liquidity, tick, TWAP, oracle, ERC721
+│
+├── 10-uniswap-v4-deep-dive.md              (60 KB, 1800+ lines)
 │   COVERS:
 │   • V4 architecture: Singleton PoolManager pattern
 │   • Hook system with 14 permission flags (address-based)
@@ -610,7 +625,8 @@ Each file follows this structure:
     • Bot security 07-trading-bot-security.md
     • Flash attacks 04-flash-swaps.md
     • Uniswap V2 08-uniswap-v2-deep-dive.md
-    • Uniswap V4 09-uniswap-v4-deep-dive.md
+    • Uniswap V3 09-uniswap-v3-deep-dive.md (concentrated liquidity, TWAP)
+    • Uniswap V4 10-uniswap-v4-deep-dive.md (hooks, singleton pattern)
 ```
 
 **Use This Section For**: DEX integration, trading protocol security, MEV protection, oracle selection, bot development
