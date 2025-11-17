@@ -213,7 +213,7 @@ class KnowledgeGraph:
             return []
         
         # Escape special characters for LIKE
-        escaped_query = query.replace('%', '\%').replace('_', '\_')
+        escaped_query = query.replace('%', '\\%').replace('_', '\\_')
         search_pattern = f'%{escaped_query}%'
         
         cursor = self.conn.execute("""
