@@ -378,6 +378,517 @@
             "loss_usd": 34000000.0
           }
         ]
+      },
+      "vuln_arbitrary_storage_location": {
+        "id": "vuln_arbitrary_storage_location",
+        "name": "Arbitrary Storage Location",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/arbitrary-storage-location.md",
+        "kb_type": "action",
+        "keywords": [
+          "arbitrary storage location"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_assert_violation": {
+        "id": "vuln_assert_violation",
+        "name": "Assert Violation",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/assert-violation.md",
+        "kb_type": "action",
+        "keywords": [
+          "gas"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_asserting_contract_from_code_size": {
+        "id": "vuln_asserting_contract_from_code_size",
+        "name": "Asserting Contract From Code Size",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/asserting-contract-from-code-size.md",
+        "kb_type": "action",
+        "keywords": [
+          "asserting contract from code size"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_authorization_txorigin": {
+        "id": "vuln_authorization_txorigin",
+        "name": "Authorization Txorigin",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/authorization-txorigin.md",
+        "kb_type": "action",
+        "keywords": [
+          "authorization txorigin"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_default_visibility": {
+        "id": "vuln_default_visibility",
+        "name": "Default Visibility",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/default-visibility.md",
+        "kb_type": "action",
+        "keywords": [
+          "default visibility"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_delegatecall_untrusted_callee": {
+        "id": "vuln_delegatecall_untrusted_callee",
+        "name": "Delegatecall Untrusted Callee",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/delegatecall-untrusted-callee.md",
+        "kb_type": "action",
+        "keywords": [
+          "signature"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_dos_gas_limit": {
+        "id": "vuln_dos_gas_limit",
+        "name": "Dos Gas Limit",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/dos-gas-limit.md",
+        "kb_type": "action",
+        "keywords": [
+          "gas",
+          "loop"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_dos_revert": {
+        "id": "vuln_dos_revert",
+        "name": "Dos Revert",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/dos-revert.md",
+        "kb_type": "action",
+        "keywords": [
+          "overflow/underflow"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_floating_pragma": {
+        "id": "vuln_floating_pragma",
+        "name": "Floating Pragma",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/floating-pragma.md",
+        "kb_type": "action",
+        "keywords": [
+          "floating pragma"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_hash_collision": {
+        "id": "vuln_hash_collision",
+        "name": "Hash Collision",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/hash-collision.md",
+        "kb_type": "action",
+        "keywords": [
+          "signature"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_inadherence_to_standards": {
+        "id": "vuln_inadherence_to_standards",
+        "name": "Inadherence To Standards",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/inadherence-to-standards.md",
+        "kb_type": "action",
+        "keywords": [
+          "inadherence to standards"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_incorrect_constructor": {
+        "id": "vuln_incorrect_constructor",
+        "name": "Incorrect Constructor",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/incorrect-constructor.md",
+        "kb_type": "action",
+        "keywords": [
+          "incorrect constructor"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_incorrect_inheritance_order": {
+        "id": "vuln_incorrect_inheritance_order",
+        "name": "Incorrect Inheritance Order",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/incorrect-inheritance-order.md",
+        "kb_type": "action",
+        "keywords": [
+          "incorrect inheritance order"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_insufficient_access_control": {
+        "id": "vuln_insufficient_access_control",
+        "name": "Insufficient Access Control",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/insufficient-access-control.md",
+        "kb_type": "action",
+        "keywords": [
+          "insufficient access control"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_insufficient_gas_griefing": {
+        "id": "vuln_insufficient_gas_griefing",
+        "name": "Insufficient Gas Griefing",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/insufficient-gas-griefing.md",
+        "kb_type": "action",
+        "keywords": [
+          "signature",
+          "gas"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_lack_of_precision": {
+        "id": "vuln_lack_of_precision",
+        "name": "Lack Of Precision",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/lack-of-precision.md",
+        "kb_type": "action",
+        "keywords": [
+          "lack of precision"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_missing_protection_signature_replay": {
+        "id": "vuln_missing_protection_signature_replay",
+        "name": "Missing Protection Signature Replay",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/missing-protection-signature-replay.md",
+        "kb_type": "action",
+        "keywords": [
+          "signature",
+          "gas"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_msgvalue_loop": {
+        "id": "vuln_msgvalue_loop",
+        "name": "Msgvalue Loop",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/msgvalue-loop.md",
+        "kb_type": "action",
+        "keywords": [
+          "gas",
+          "loop"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_off_by_one": {
+        "id": "vuln_off_by_one",
+        "name": "Off By One",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/off-by-one.md",
+        "kb_type": "action",
+        "keywords": [
+          "loop"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_outdated_compiler_version": {
+        "id": "vuln_outdated_compiler_version",
+        "name": "Outdated Compiler Version",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/outdated-compiler-version.md",
+        "kb_type": "action",
+        "keywords": [
+          "outdated compiler version"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_overflow_underflow": {
+        "id": "vuln_overflow_underflow",
+        "name": "Overflow Underflow",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/overflow-underflow.md",
+        "kb_type": "action",
+        "keywords": [
+          "gas",
+          "overflow/underflow"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_requirement_violation": {
+        "id": "vuln_requirement_violation",
+        "name": "Requirement Violation",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/requirement-violation.md",
+        "kb_type": "action",
+        "keywords": [
+          "requirement violation"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_shadowing_state_variables": {
+        "id": "vuln_shadowing_state_variables",
+        "name": "Shadowing State Variables",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/shadowing-state-variables.md",
+        "kb_type": "action",
+        "keywords": [
+          "shadowing state variables"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_signature_malleability": {
+        "id": "vuln_signature_malleability",
+        "name": "Signature Malleability",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/signature-malleability.md",
+        "kb_type": "action",
+        "keywords": [
+          "signature"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_transaction_ordering_dependence": {
+        "id": "vuln_transaction_ordering_dependence",
+        "name": "Transaction Ordering Dependence",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/transaction-ordering-dependence.md",
+        "kb_type": "action",
+        "keywords": [
+          "gas"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_unbounded_return_data": {
+        "id": "vuln_unbounded_return_data",
+        "name": "Unbounded Return Data",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/unbounded-return-data.md",
+        "kb_type": "action",
+        "keywords": [
+          "signature",
+          "gas"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_unchecked_return_values": {
+        "id": "vuln_unchecked_return_values",
+        "name": "Unchecked Return Values",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/unchecked-return-values.md",
+        "kb_type": "action",
+        "keywords": [
+          "gas"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_unencrypted_private_data_on_chain": {
+        "id": "vuln_unencrypted_private_data_on_chain",
+        "name": "Unencrypted Private Data On Chain",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/unencrypted-private-data-on-chain.md",
+        "kb_type": "action",
+        "keywords": [
+          "unencrypted private data on chain"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_unexpected_ecrecover_null_address": {
+        "id": "vuln_unexpected_ecrecover_null_address",
+        "name": "Unexpected Ecrecover Null Address",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/unexpected-ecrecover-null-address.md",
+        "kb_type": "action",
+        "keywords": [
+          "signature"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_uninitialized_storage_pointer": {
+        "id": "vuln_uninitialized_storage_pointer",
+        "name": "Uninitialized Storage Pointer",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/uninitialized-storage-pointer.md",
+        "kb_type": "action",
+        "keywords": [
+          "uninitialized storage pointer"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_unsafe_low_level_call": {
+        "id": "vuln_unsafe_low_level_call",
+        "name": "Unsafe Low Level Call",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/unsafe-low-level-call.md",
+        "kb_type": "action",
+        "keywords": [
+          "unsafe low level call"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_unsecure_signatures": {
+        "id": "vuln_unsecure_signatures",
+        "name": "Unsecure Signatures",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/unsecure-signatures.md",
+        "kb_type": "action",
+        "keywords": [
+          "signature"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_unsupported_opcodes": {
+        "id": "vuln_unsupported_opcodes",
+        "name": "Unsupported Opcodes",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/unsupported-opcodes.md",
+        "kb_type": "action",
+        "keywords": [
+          "gas"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_unused_variables": {
+        "id": "vuln_unused_variables",
+        "name": "Unused Variables",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/unused-variables.md",
+        "kb_type": "action",
+        "keywords": [
+          "signature",
+          "gas"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_use_of_deprecated_functions": {
+        "id": "vuln_use_of_deprecated_functions",
+        "name": "Use Of Deprecated Functions",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/use-of-deprecated-functions.md",
+        "kb_type": "action",
+        "keywords": [
+          "gas"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
+      },
+      "vuln_weak_sources_randomness": {
+        "id": "vuln_weak_sources_randomness",
+        "name": "Weak Sources Randomness",
+        "severity": "MEDIUM",
+        "cwe": "",
+        "file_path": "knowledge-base-action/03-attack-prevention/weak-sources-randomness.md",
+        "kb_type": "action",
+        "keywords": [
+          "weak sources randomness"
+        ],
+        "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+        "prevention_methods": [],
+        "real_exploits": []
       }
     },
     "templates": {
@@ -1071,9 +1582,9 @@
   ],
   "statistics": {
     "total_files": 284,
-    "total_entities": 53,
+    "total_entities": 89,
     "total_relationships": 16,
-    "action_kb_entities": 17,
+    "action_kb_entities": 53,
     "research_kb_entities": 36,
     "protocols_covered": 20,
     "vulnerability_sources": 5,

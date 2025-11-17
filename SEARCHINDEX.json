@@ -17,45 +17,97 @@
           "size_kb": 13,
           "lines": 312,
           "type": "reference",
-          "keywords": ["vulnerability", "security", "matrix", "severity", "prevention"],
+          "keywords": [
+            "vulnerability",
+            "security",
+            "matrix",
+            "severity",
+            "prevention"
+          ],
           "description": "Top 20 vulnerabilities in table format with severity, description, prevention methods",
-          "use_cases": ["quick lookup", "vulnerability reference", "audit preparation"]
+          "use_cases": [
+            "quick lookup",
+            "vulnerability reference",
+            "audit preparation"
+          ]
         },
         {
           "name": "pattern-catalog.md",
           "size_kb": 18,
           "lines": 674,
           "type": "reference",
-          "keywords": ["pattern", "design", "factory", "proxy", "vault", "staking", "architectural"],
+          "keywords": [
+            "pattern",
+            "design",
+            "factory",
+            "proxy",
+            "vault",
+            "staking",
+            "architectural"
+          ],
           "description": "10 essential design patterns with code templates, gas costs, and use cases",
-          "use_cases": ["architecture design", "pattern selection", "code structure"]
+          "use_cases": [
+            "architecture design",
+            "pattern selection",
+            "code structure"
+          ]
         },
         {
           "name": "gas-optimization-wins.md",
           "size_kb": 21,
           "lines": 837,
           "type": "reference",
-          "keywords": ["gas", "optimization", "efficiency", "savings", "techniques"],
+          "keywords": [
+            "gas",
+            "optimization",
+            "efficiency",
+            "savings",
+            "techniques"
+          ],
           "description": "21 gas optimization techniques ranked by impact with before/after examples",
-          "use_cases": ["gas optimization", "performance tuning", "cost reduction"]
+          "use_cases": [
+            "gas optimization",
+            "performance tuning",
+            "cost reduction"
+          ]
         },
         {
           "name": "oz-quick-ref.md",
           "size_kb": 16,
           "lines": 640,
           "type": "reference",
-          "keywords": ["openzeppelin", "oz", "import", "contract", "library"],
+          "keywords": [
+            "openzeppelin",
+            "oz",
+            "import",
+            "contract",
+            "library"
+          ],
           "description": "OpenZeppelin contracts quick reference with imports, functions, and gas costs",
-          "use_cases": ["library reference", "openzeppelin lookup", "code snippets"]
+          "use_cases": [
+            "library reference",
+            "openzeppelin lookup",
+            "code snippets"
+          ]
         },
         {
           "name": "security-checklist.md",
           "size_kb": 27,
           "lines": 802,
           "type": "checklist",
-          "keywords": ["security", "checklist", "verification", "deployment", "audit"],
+          "keywords": [
+            "security",
+            "checklist",
+            "verification",
+            "deployment",
+            "audit"
+          ],
           "description": "360+ pre-deployment verification items organized in 10 categories",
-          "use_cases": ["pre-deployment", "audit checklist", "quality verification"]
+          "use_cases": [
+            "pre-deployment",
+            "audit checklist",
+            "quality verification"
+          ]
         }
       ]
     },
@@ -68,77 +120,173 @@
           "size_kb": 8,
           "lines": 232,
           "type": "template",
-          "keywords": ["erc20", "token", "fungible", "transfer", "approve"],
+          "keywords": [
+            "erc20",
+            "token",
+            "fungible",
+            "transfer",
+            "approve"
+          ],
           "solidity_version": "0.8.20",
-          "features": ["AccessControl", "Pausable", "Burnable", "Permit", "Custom Errors"],
+          "features": [
+            "AccessControl",
+            "Pausable",
+            "Burnable",
+            "Permit",
+            "Custom Errors"
+          ],
           "description": "Production-ready ERC20 token with security features",
-          "use_cases": ["governance tokens", "utility tokens", "reward tokens"]
+          "use_cases": [
+            "governance tokens",
+            "utility tokens",
+            "reward tokens"
+          ]
         },
         {
           "name": "secure-erc721.sol",
           "size_kb": 9,
           "lines": 298,
           "type": "template",
-          "keywords": ["erc721", "nft", "non-fungible", "token", "enumerable"],
+          "keywords": [
+            "erc721",
+            "nft",
+            "non-fungible",
+            "token",
+            "enumerable"
+          ],
           "solidity_version": "0.8.20",
-          "features": ["Enumerable", "URIStorage", "SafeMint"],
+          "features": [
+            "Enumerable",
+            "URIStorage",
+            "SafeMint"
+          ],
           "description": "Production-ready ERC721 NFT with advanced features",
-          "use_cases": ["nft collections", "digital collectibles", "gaming assets"]
+          "use_cases": [
+            "nft collections",
+            "digital collectibles",
+            "gaming assets"
+          ]
         },
         {
           "name": "access-control-template.sol",
           "size_kb": 8,
           "lines": 268,
           "type": "template",
-          "keywords": ["access", "control", "rbac", "role", "permission"],
+          "keywords": [
+            "access",
+            "control",
+            "rbac",
+            "role",
+            "permission"
+          ],
           "solidity_version": "0.8.20",
-          "features": ["Role-based Access Control", "Three-tier hierarchy"],
+          "features": [
+            "Role-based Access Control",
+            "Three-tier hierarchy"
+          ],
           "description": "Role-based access control (RBAC) implementation",
-          "use_cases": ["complex governance", "multi-admin systems", "permission layers"]
+          "use_cases": [
+            "complex governance",
+            "multi-admin systems",
+            "permission layers"
+          ]
         },
         {
           "name": "upgradeable-template.sol",
           "size_kb": 9,
           "lines": 295,
           "type": "template",
-          "keywords": ["upgradeable", "proxy", "uups", "storage", "versioning"],
+          "keywords": [
+            "upgradeable",
+            "proxy",
+            "uups",
+            "storage",
+            "versioning"
+          ],
           "solidity_version": "0.8.20",
-          "features": ["UUPS Pattern", "Storage Gaps", "Version Tracking"],
+          "features": [
+            "UUPS Pattern",
+            "Storage Gaps",
+            "Version Tracking"
+          ],
           "description": "UUPS upgradeable contract pattern",
-          "use_cases": ["long-term contracts", "evolving systems", "bug fixes"]
+          "use_cases": [
+            "long-term contracts",
+            "evolving systems",
+            "bug fixes"
+          ]
         },
         {
           "name": "staking-template.sol",
           "size_kb": 12,
           "lines": 409,
           "type": "template",
-          "keywords": ["staking", "rewards", "lockup", "defi", "incentives"],
+          "keywords": [
+            "staking",
+            "rewards",
+            "lockup",
+            "defi",
+            "incentives"
+          ],
           "solidity_version": "0.8.20",
-          "features": ["Continuous Rewards", "Lockup Periods", "ReentrancyGuard"],
+          "features": [
+            "Continuous Rewards",
+            "Lockup Periods",
+            "ReentrancyGuard"
+          ],
           "description": "Token staking with continuous rewards",
-          "use_cases": ["defi protocols", "reward systems", "liquidity incentives"]
+          "use_cases": [
+            "defi protocols",
+            "reward systems",
+            "liquidity incentives"
+          ]
         },
         {
           "name": "pausable-template.sol",
           "size_kb": 9,
           "lines": 298,
           "type": "template",
-          "keywords": ["pausable", "emergency", "stop", "circuit", "breaker"],
+          "keywords": [
+            "pausable",
+            "emergency",
+            "stop",
+            "circuit",
+            "breaker"
+          ],
           "solidity_version": "0.8.20",
-          "features": ["Emergency Stop", "Admin Controls"],
+          "features": [
+            "Emergency Stop",
+            "Admin Controls"
+          ],
           "description": "Emergency stop circuit breaker pattern",
-          "use_cases": ["emergency response", "maintenance mode"]
+          "use_cases": [
+            "emergency response",
+            "maintenance mode"
+          ]
         },
         {
           "name": "multisig-template.sol",
           "size_kb": 12,
           "lines": 396,
           "type": "template",
-          "keywords": ["multisig", "multi-signature", "wallet", "gnosis", "treasury"],
+          "keywords": [
+            "multisig",
+            "multi-signature",
+            "wallet",
+            "gnosis",
+            "treasury"
+          ],
           "solidity_version": "0.8.20",
-          "features": ["ECDSA Signatures", "Quorum-based Execution"],
+          "features": [
+            "ECDSA Signatures",
+            "Quorum-based Execution"
+          ],
           "description": "Multi-signature wallet implementation",
-          "use_cases": ["treasury management", "multi-party control", "cold wallets"]
+          "use_cases": [
+            "treasury management",
+            "multi-party control",
+            "cold wallets"
+          ]
         }
       ]
     },
@@ -151,10 +299,21 @@
           "size_kb": 14,
           "lines": 440,
           "type": "vulnerability",
-          "keywords": ["reentrancy", "delegatecall", "external call", "recursive"],
+          "keywords": [
+            "reentrancy",
+            "delegatecall",
+            "external call",
+            "recursive"
+          ],
           "severity": "critical",
-          "real_exploits": ["The DAO ($60 million)"],
-          "prevention_methods": ["ReentrancyGuard", "Checks-Effects-Interactions", "Mutex"],
+          "real_exploits": [
+            "The DAO ($60 million)"
+          ],
+          "prevention_methods": [
+            "ReentrancyGuard",
+            "Checks-Effects-Interactions",
+            "Mutex"
+          ],
           "description": "Classic, cross-function, and read-only reentrancy attacks",
           "cve": "Multiple"
         },
@@ -163,10 +322,23 @@
           "size_kb": 21,
           "lines": 666,
           "type": "vulnerability",
-          "keywords": ["access", "control", "permission", "authorization", "owner"],
+          "keywords": [
+            "access",
+            "control",
+            "permission",
+            "authorization",
+            "owner"
+          ],
           "severity": "critical",
-          "real_exploits": ["Rubixi ($5M)", "Parity Wallet ($280M)"],
-          "prevention_methods": ["Ownable", "AccessControl", "Role-based Permissions"],
+          "real_exploits": [
+            "Rubixi ($5M)",
+            "Parity Wallet ($280M)"
+          ],
+          "prevention_methods": [
+            "Ownable",
+            "AccessControl",
+            "Role-based Permissions"
+          ],
           "description": "Missing and weak access control vulnerabilities",
           "cve": "CWE-276"
         },
@@ -175,10 +347,23 @@
           "size_kb": 17,
           "lines": 553,
           "type": "vulnerability",
-          "keywords": ["overflow", "underflow", "integer", "arithmetic", "safemath"],
+          "keywords": [
+            "overflow",
+            "underflow",
+            "integer",
+            "arithmetic",
+            "safemath"
+          ],
           "severity": "high",
-          "real_exploits": ["BeautyChain ($900M+)", "BEC Token"],
-          "prevention_methods": ["Solidity 0.8+ Checks", "SafeMath", "Checked Operations"],
+          "real_exploits": [
+            "BeautyChain ($900M+)",
+            "BEC Token"
+          ],
+          "prevention_methods": [
+            "Solidity 0.8+ Checks",
+            "SafeMath",
+            "Checked Operations"
+          ],
           "description": "Integer overflow and underflow vulnerabilities",
           "cve": "CWE-190"
         },
@@ -187,10 +372,22 @@
           "size_kb": 19,
           "lines": 620,
           "type": "vulnerability",
-          "keywords": ["frontrunning", "mempool", "sandwich", "mev", "ordering"],
+          "keywords": [
+            "frontrunning",
+            "mempool",
+            "sandwich",
+            "mev",
+            "ordering"
+          ],
           "severity": "high",
-          "real_exploits": ["MEV $500M+ annually"],
-          "prevention_methods": ["Commit-Reveal", "Private Pools", "Batch Auctions"],
+          "real_exploits": [
+            "MEV $500M+ annually"
+          ],
+          "prevention_methods": [
+            "Commit-Reveal",
+            "Private Pools",
+            "Batch Auctions"
+          ],
           "description": "Mempool manipulation and sandwich attacks",
           "cve": "CWE-362"
         },
@@ -199,10 +396,23 @@
           "size_kb": 17,
           "lines": 554,
           "type": "vulnerability",
-          "keywords": ["dos", "denial", "service", "unbounded", "loop", "gas"],
+          "keywords": [
+            "dos",
+            "denial",
+            "service",
+            "unbounded",
+            "loop",
+            "gas"
+          ],
           "severity": "high",
-          "real_exploits": ["Various protocols"],
-          "prevention_methods": ["Bounded Operations", "Pull Pattern", "Withdrawal Pattern"],
+          "real_exploits": [
+            "Various protocols"
+          ],
+          "prevention_methods": [
+            "Bounded Operations",
+            "Pull Pattern",
+            "Withdrawal Pattern"
+          ],
           "description": "Denial of service attacks",
           "cve": "CWE-674"
         },
@@ -211,10 +421,22 @@
           "size_kb": 17,
           "lines": 548,
           "type": "vulnerability",
-          "keywords": ["timestamp", "randomness", "block", "predictable", "entropy"],
+          "keywords": [
+            "timestamp",
+            "randomness",
+            "block",
+            "predictable",
+            "entropy"
+          ],
           "severity": "medium",
-          "real_exploits": ["Multiple"],
-          "prevention_methods": ["Chainlink VRF", "Time Locks", "Probabilistic"],
+          "real_exploits": [
+            "Multiple"
+          ],
+          "prevention_methods": [
+            "Chainlink VRF",
+            "Time Locks",
+            "Probabilistic"
+          ],
           "description": "Block timestamp manipulation and weak randomness",
           "cve": "CWE-340"
         },
@@ -223,10 +445,21 @@
           "size_kb": 13,
           "lines": 404,
           "type": "vulnerability",
-          "keywords": ["delegatecall", "storage", "collision", "proxy", "erc1967"],
+          "keywords": [
+            "delegatecall",
+            "storage",
+            "collision",
+            "proxy",
+            "erc1967"
+          ],
           "severity": "critical",
-          "real_exploits": ["Parity Wallet ($280M)"],
-          "prevention_methods": ["Proper Proxy Patterns", "Storage Validation"],
+          "real_exploits": [
+            "Parity Wallet ($280M)"
+          ],
+          "prevention_methods": [
+            "Proper Proxy Patterns",
+            "Storage Validation"
+          ],
           "description": "Unsafe delegatecall and storage collision attacks",
           "cve": "CWE-471"
         },
@@ -235,10 +468,22 @@
           "size_kb": 15,
           "lines": 486,
           "type": "vulnerability",
-          "keywords": ["unchecked", "return", "silent", "failure", "require"],
+          "keywords": [
+            "unchecked",
+            "return",
+            "silent",
+            "failure",
+            "require"
+          ],
           "severity": "high",
-          "real_exploits": ["King of Ether"],
-          "prevention_methods": ["Explicit Checks", "Wrapper Patterns", "SafeERC20"],
+          "real_exploits": [
+            "King of Ether"
+          ],
+          "prevention_methods": [
+            "Explicit Checks",
+            "Wrapper Patterns",
+            "SafeERC20"
+          ],
           "description": "Unchecked return values and silent failures",
           "cve": "CWE-252"
         },
@@ -247,10 +492,20 @@
           "size_kb": 15,
           "lines": 462,
           "type": "vulnerability",
-          "keywords": ["tx.origin", "msg.sender", "authentication", "phishing"],
+          "keywords": [
+            "tx.origin",
+            "msg.sender",
+            "authentication",
+            "phishing"
+          ],
           "severity": "high",
-          "real_exploits": ["Phishing attacks"],
-          "prevention_methods": ["Use msg.sender", "Signature Verification"],
+          "real_exploits": [
+            "Phishing attacks"
+          ],
+          "prevention_methods": [
+            "Use msg.sender",
+            "Signature Verification"
+          ],
           "description": "tx.origin authentication bypass",
           "cve": "CWE-477"
         },
@@ -259,12 +514,535 @@
           "size_kb": 15,
           "lines": 495,
           "type": "vulnerability",
-          "keywords": ["flash", "loan", "oracle", "manipulation", "arbitrage"],
+          "keywords": [
+            "flash",
+            "loan",
+            "oracle",
+            "manipulation",
+            "arbitrage"
+          ],
           "severity": "high",
-          "real_exploits": ["Harvest Finance ($34M)"],
-          "prevention_methods": ["Price Oracles", "Time Locks", "Sanity Checks"],
+          "real_exploits": [
+            "Harvest Finance ($34M)"
+          ],
+          "prevention_methods": [
+            "Price Oracles",
+            "Time Locks",
+            "Sanity Checks"
+          ],
           "description": "Flash loan attacks and oracle manipulation",
           "cve": "CWE-1021"
+        },
+        {
+          "name": "arbitrary-storage-location.md",
+          "size_kb": 1.4,
+          "lines": 21,
+          "type": "vulnerability",
+          "keywords": [
+            "arbitrary storage location"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "assert-violation.md",
+          "size_kb": 1.2,
+          "lines": 21,
+          "type": "vulnerability",
+          "keywords": [
+            "gas"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "asserting-contract-from-code-size.md",
+          "size_kb": 1.5,
+          "lines": 29,
+          "type": "vulnerability",
+          "keywords": [
+            "asserting contract from code size"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "authorization-txorigin.md",
+          "size_kb": 2.5,
+          "lines": 76,
+          "type": "vulnerability",
+          "keywords": [
+            "authorization txorigin"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "default-visibility.md",
+          "size_kb": 1.8,
+          "lines": 27,
+          "type": "vulnerability",
+          "keywords": [
+            "default visibility"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "delegatecall-untrusted-callee.md",
+          "size_kb": 3.1,
+          "lines": 74,
+          "type": "vulnerability",
+          "keywords": [
+            "signature"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "dos-gas-limit.md",
+          "size_kb": 3.5,
+          "lines": 58,
+          "type": "vulnerability",
+          "keywords": [
+            "gas",
+            "loop"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "dos-revert.md",
+          "size_kb": 5.0,
+          "lines": 110,
+          "type": "vulnerability",
+          "keywords": [
+            "overflow/underflow"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "floating-pragma.md",
+          "size_kb": 1.1,
+          "lines": 18,
+          "type": "vulnerability",
+          "keywords": [
+            "floating pragma"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "hash-collision.md",
+          "size_kb": 7.2,
+          "lines": 154,
+          "type": "vulnerability",
+          "keywords": [
+            "signature"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "inadherence-to-standards.md",
+          "size_kb": 1.4,
+          "lines": 28,
+          "type": "vulnerability",
+          "keywords": [
+            "inadherence to standards"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "incorrect-constructor.md",
+          "size_kb": 1.6,
+          "lines": 21,
+          "type": "vulnerability",
+          "keywords": [
+            "incorrect constructor"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "incorrect-inheritance-order.md",
+          "size_kb": 1.5,
+          "lines": 21,
+          "type": "vulnerability",
+          "keywords": [
+            "incorrect inheritance order"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "insufficient-access-control.md",
+          "size_kb": 2.2,
+          "lines": 43,
+          "type": "vulnerability",
+          "keywords": [
+            "insufficient access control"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "insufficient-gas-griefing.md",
+          "size_kb": 2.2,
+          "lines": 48,
+          "type": "vulnerability",
+          "keywords": [
+            "signature",
+            "gas"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "lack-of-precision.md",
+          "size_kb": 1.6,
+          "lines": 22,
+          "type": "vulnerability",
+          "keywords": [
+            "lack of precision"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "missing-protection-signature-replay.md",
+          "size_kb": 1.4,
+          "lines": 22,
+          "type": "vulnerability",
+          "keywords": [
+            "signature",
+            "gas"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "msgvalue-loop.md",
+          "size_kb": 2.7,
+          "lines": 53,
+          "type": "vulnerability",
+          "keywords": [
+            "gas",
+            "loop"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "off-by-one.md",
+          "size_kb": 1.7,
+          "lines": 44,
+          "type": "vulnerability",
+          "keywords": [
+            "loop"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "outdated-compiler-version.md",
+          "size_kb": 0.8,
+          "lines": 18,
+          "type": "vulnerability",
+          "keywords": [
+            "outdated compiler version"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "overflow-underflow.md",
+          "size_kb": 5.1,
+          "lines": 82,
+          "type": "vulnerability",
+          "keywords": [
+            "gas",
+            "overflow/underflow"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "requirement-violation.md",
+          "size_kb": 1.4,
+          "lines": 22,
+          "type": "vulnerability",
+          "keywords": [
+            "requirement violation"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "shadowing-state-variables.md",
+          "size_kb": 1.3,
+          "lines": 31,
+          "type": "vulnerability",
+          "keywords": [
+            "shadowing state variables"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "signature-malleability.md",
+          "size_kb": 2.7,
+          "lines": 63,
+          "type": "vulnerability",
+          "keywords": [
+            "signature"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "transaction-ordering-dependence.md",
+          "size_kb": 1.9,
+          "lines": 22,
+          "type": "vulnerability",
+          "keywords": [
+            "gas"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "unbounded-return-data.md",
+          "size_kb": 5.6,
+          "lines": 94,
+          "type": "vulnerability",
+          "keywords": [
+            "signature",
+            "gas"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "unchecked-return-values.md",
+          "size_kb": 4.4,
+          "lines": 97,
+          "type": "vulnerability",
+          "keywords": [
+            "gas"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "unencrypted-private-data-on-chain.md",
+          "size_kb": 2.7,
+          "lines": 57,
+          "type": "vulnerability",
+          "keywords": [
+            "unencrypted private data on chain"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "unexpected-ecrecover-null-address.md",
+          "size_kb": 2.2,
+          "lines": 43,
+          "type": "vulnerability",
+          "keywords": [
+            "signature"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "uninitialized-storage-pointer.md",
+          "size_kb": 1.3,
+          "lines": 23,
+          "type": "vulnerability",
+          "keywords": [
+            "uninitialized storage pointer"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "unsafe-low-level-call.md",
+          "size_kb": 3.1,
+          "lines": 50,
+          "type": "vulnerability",
+          "keywords": [
+            "unsafe low level call"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "unsecure-signatures.md",
+          "size_kb": 0.3,
+          "lines": 11,
+          "type": "vulnerability",
+          "keywords": [
+            "signature"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "unsupported-opcodes.md",
+          "size_kb": 3.3,
+          "lines": 59,
+          "type": "vulnerability",
+          "keywords": [
+            "gas"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "unused-variables.md",
+          "size_kb": 0.9,
+          "lines": 23,
+          "type": "vulnerability",
+          "keywords": [
+            "signature",
+            "gas"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "use-of-deprecated-functions.md",
+          "size_kb": 1.4,
+          "lines": 30,
+          "type": "vulnerability",
+          "keywords": [
+            "gas"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
+        },
+        {
+          "name": "weak-sources-randomness.md",
+          "size_kb": 3.0,
+          "lines": 70,
+          "type": "vulnerability",
+          "keywords": [
+            "weak sources randomness"
+          ],
+          "severity": "medium",
+          "real_exploits": [],
+          "prevention_methods": [],
+          "description": "<!-- Source: kadenzipfel/smart-contract-vulnerabilities -->",
+          "cve": ""
         }
       ]
     },
@@ -278,8 +1056,19 @@
           "lines": 701,
           "type": "snippets",
           "snippets_count": 60,
-          "keywords": ["import", "openzeppelin", "library", "contract", "using"],
-          "categories": ["Security", "Tokens", "Upgrades", "Utilities"],
+          "keywords": [
+            "import",
+            "openzeppelin",
+            "library",
+            "contract",
+            "using"
+          ],
+          "categories": [
+            "Security",
+            "Tokens",
+            "Upgrades",
+            "Utilities"
+          ],
           "description": "60+ OpenZeppelin import statements organized by category"
         },
         {
@@ -288,8 +1077,19 @@
           "lines": 759,
           "type": "snippets",
           "snippets_count": 24,
-          "keywords": ["modifier", "guard", "access", "state", "check"],
-          "categories": ["Access Control", "Guards", "State Checks", "Rate Limiting"],
+          "keywords": [
+            "modifier",
+            "guard",
+            "access",
+            "state",
+            "check"
+          ],
+          "categories": [
+            "Access Control",
+            "Guards",
+            "State Checks",
+            "Rate Limiting"
+          ],
           "description": "24 reusable modifier templates"
         },
         {
@@ -298,8 +1098,18 @@
           "lines": 773,
           "type": "snippets",
           "snippets_count": 27,
-          "keywords": ["event", "indexed", "log", "filter", "offchain"],
-          "categories": ["Access Events", "Transfer Events", "State Events"],
+          "keywords": [
+            "event",
+            "indexed",
+            "log",
+            "filter",
+            "offchain"
+          ],
+          "categories": [
+            "Access Events",
+            "Transfer Events",
+            "State Events"
+          ],
           "description": "27 standard event patterns with indexed parameters"
         },
         {
@@ -308,8 +1118,19 @@
           "lines": 907,
           "type": "snippets",
           "snippets_count": 34,
-          "keywords": ["error", "custom", "revert", "require", "gasSavings"],
-          "categories": ["Access", "Token", "Math", "State"],
+          "keywords": [
+            "error",
+            "custom",
+            "revert",
+            "require",
+            "gasSavings"
+          ],
+          "categories": [
+            "Access",
+            "Token",
+            "Math",
+            "State"
+          ],
           "description": "34 custom error definitions (gas-efficient)"
         },
         {
@@ -318,8 +1139,20 @@
           "lines": 984,
           "type": "snippets",
           "snippets_count": 27,
-          "keywords": ["library", "utility", "function", "math", "array"],
-          "categories": ["Math", "Arrays", "Strings", "Bit Operations", "Address"],
+          "keywords": [
+            "library",
+            "utility",
+            "function",
+            "math",
+            "array"
+          ],
+          "categories": [
+            "Math",
+            "Arrays",
+            "Strings",
+            "Bit Operations",
+            "Address"
+          ],
           "description": "27 utility functions and helpers"
         }
       ]
@@ -333,7 +1166,13 @@
           "size_kb": 35,
           "lines": 1000,
           "type": "workflow",
-          "keywords": ["development", "workflow", "phase", "process", "planning"],
+          "keywords": [
+            "development",
+            "workflow",
+            "phase",
+            "process",
+            "planning"
+          ],
           "phases": 8,
           "estimated_timeline": "2-4 weeks",
           "description": "8-phase smart contract development workflow",
@@ -353,7 +1192,13 @@
           "size_kb": 40,
           "lines": 1200,
           "type": "checklist",
-          "keywords": ["pre-deployment", "verification", "audit", "checklist", "signing"],
+          "keywords": [
+            "pre-deployment",
+            "verification",
+            "audit",
+            "checklist",
+            "signing"
+          ],
           "steps": 10,
           "total_checks": 400,
           "description": "10-step pre-deployment checklist with 400+ verification items",
@@ -381,37 +1226,61 @@
           "name": "ConsenSys Diligence",
           "files": 65,
           "url": "https://consensysdiligence.github.io/smart-contract-best-practices/",
-          "categories": ["Best Practices", "Development", "Attacks", "Tools"]
+          "categories": [
+            "Best Practices",
+            "Development",
+            "Attacks",
+            "Tools"
+          ]
         },
         {
           "name": "Smart Contract Vulnerabilities",
           "files": 42,
           "url": "https://github.com/kadenzipfel/smart-contract-vulnerabilities",
-          "categories": ["Vulnerability Descriptions", "Exploit Examples"]
+          "categories": [
+            "Vulnerability Descriptions",
+            "Exploit Examples"
+          ]
         },
         {
           "name": "Not So Smart Contracts",
           "files": 45,
           "url": "https://github.com/crytic/not-so-smart-contracts",
-          "categories": ["Real Examples", "Honeypots", "Vulnerable Patterns"]
+          "categories": [
+            "Real Examples",
+            "Honeypots",
+            "Vulnerable Patterns"
+          ]
         },
         {
           "name": "Solidity Patterns",
           "files": 16,
           "url": "https://fravoll.github.io/solidity-patterns/",
-          "categories": ["Design Patterns", "Behavioral", "Security"]
+          "categories": [
+            "Design Patterns",
+            "Behavioral",
+            "Security"
+          ]
         },
         {
           "name": "Gas Optimization",
           "files": 12,
           "url": "Multiple repositories",
-          "categories": ["Optimization Techniques", "Benchmarks", "Comparisons"]
+          "categories": [
+            "Optimization Techniques",
+            "Benchmarks",
+            "Comparisons"
+          ]
         },
         {
           "name": "OpenZeppelin",
           "files": 16,
           "url": "https://github.com/OpenZeppelin/openzeppelin-contracts",
-          "categories": ["Reference Implementations", "Security Contracts", "Token Standards"]
+          "categories": [
+            "Reference Implementations",
+            "Security Contracts",
+            "Token Standards"
+          ]
         }
       ]
     }
@@ -420,19 +1289,34 @@
     "by_role": {
       "developer": {
         "start_with": "knowledge-base-action/00-START-HERE.md",
-        "then_visit": ["02-contract-templates", "04-code-snippets", "01-quick-reference"]
+        "then_visit": [
+          "02-contract-templates",
+          "04-code-snippets",
+          "01-quick-reference"
+        ]
       },
       "auditor": {
         "start_with": "01-quick-reference/security-checklist.md",
-        "then_visit": ["03-attack-prevention", "01-quick-reference/vulnerability-matrix.md", "05-workflows/pre-deployment.md"]
+        "then_visit": [
+          "03-attack-prevention",
+          "01-quick-reference/vulnerability-matrix.md",
+          "05-workflows/pre-deployment.md"
+        ]
       },
       "architect": {
         "start_with": "01-quick-reference/pattern-catalog.md",
-        "then_visit": ["02-contract-templates", "knowledge-base-research"]
+        "then_visit": [
+          "02-contract-templates",
+          "knowledge-base-research"
+        ]
       },
       "learner": {
         "start_with": "knowledge-base-action/00-START-HERE.md",
-        "then_visit": ["03-attack-prevention", "02-contract-templates", "knowledge-base-research"]
+        "then_visit": [
+          "03-attack-prevention",
+          "02-contract-templates",
+          "knowledge-base-research"
+        ]
       }
     },
     "by_task": {
@@ -470,6 +1354,7 @@
     "attack_prevention_guides": 10,
     "design_patterns": 10,
     "code_snippets": 172,
-    "pre_deployment_checks": 400
+    "pre_deployment_checks": 400,
+    "total_vulnerabilities": 46
   }
 }
