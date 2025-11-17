@@ -56,13 +56,13 @@ def docs_page():
 
 @app.route('/api/search', methods=['POST'])
 def api_search():
-    """Search the knowledge graph"""
+    """Search the knowledge graph with fuzzy matching"""
     data = request.get_json()
     query = data.get('query', '')
-    limit = data.get('limit', 10)
+    limit = data.get('limit', 20)
 
     try:
-        results = kg.search(query, limit=limit)
+        results = kg.fuzzy_search(query, limit=limit)
         # Convert to JSON-serializable format
         formatted_results = []
         for r in results:

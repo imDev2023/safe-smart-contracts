@@ -202,6 +202,36 @@ class KnowledgeGraph:
 
         return [dict(row) for row in cursor.fetchall()]
 
+    def fuzzy_search(self, query: str, limit: int = 20) -> List[Dict]:
+        """Fuzzy/substring search across all entities (case-insensitive)
+        
+        Searches in both name and file_path, supporting partial matches.
+        Example: 'unch' matches 'unchecked-return-values'
+        Example: 'fla' matches 'flash-loan-attacks'
+        """
+        if not query:
+            return []
+        
+        # Escape special characters for LIKE
+        escaped_query = query.replace('%', '\%').replace('_', '\_')
+        search_pattern = f'%{escaped_query}%'
+        
+        cursor = self.conn.execute("""
+            SELECT * FROM nodes
+            WHERE LOWER(name) LIKE LOWER(?) 
+            OR LOWER(file_path) LIKE LOWER(?)
+            ORDER BY 
+                CASE 
+                    WHEN LOWER(name) LIKE LOWER(?) THEN 1
+                    WHEN LOWER(file_path) LIKE LOWER(?) THEN 2
+                    ELSE 3
+                END,
+                LENGTH(name)
+            LIMIT ?
+        """, (search_pattern, search_pattern, search_pattern, search_pattern, limit))
+        
+        return [dict(row) for row in cursor.fetchall()]
+
     def find_by_type(self, node_type: str) -> List[Dict]:
         """Find all nodes of a specific type"""
         cursor = self.conn.execute("""
