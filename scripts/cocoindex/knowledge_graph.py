@@ -30,7 +30,8 @@ class KnowledgeGraph:
     def _init_database(self):
         """Initialize SQLite database for graph storage"""
         Path(self.db_path).parent.mkdir(parents=True, exist_ok=True)
-        self.conn = sqlite3.connect(self.db_path)
+        # Allow connection from multiple threads (safe for read-heavy operations)
+        self.conn = sqlite3.connect(self.db_path, check_same_thread=False, timeout=10.0)
         self.conn.row_factory = sqlite3.Row
 
         # Create tables
