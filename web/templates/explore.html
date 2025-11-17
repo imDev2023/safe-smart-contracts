@@ -100,39 +100,13 @@ function loadVulnerabilities() {
     .then(data => {
         if (data.success) {
             displayVulnerabilities(data.results);
+        } else {
+            showError('Vulnerabilities', data.error);
         }
+    })
+    .catch(err => {
+        showError('Vulnerabilities', err.message);
     });
-}
-
-function displayVulnerabilities(vulns) {
-    let html = '<h3 class="mb-4"><i class="fas fa-bug text-danger"></i> All Vulnerabilities</h3>';
-
-    vulns.forEach(v => {
-        const severityColor = v.severity === 'CRITICAL' ? 'danger' : (v.severity === 'HIGH' ? 'warning' : 'info');
-
-        html += `
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">${v.name}</h5>
-                    <p class="mb-2">
-                        <span class="badge bg-${severityColor}">${v.severity}</span>
-        `;
-
-        if (v.loss > 0) {
-            html += `<span class="badge bg-danger">$${v.loss.toLocaleString()} in losses</span>`;
-        }
-
-        html += `
-                    </p>
-                    <p class="text-muted mb-0">
-                        <i class="fas fa-file"></i> ${v.file_path}
-                    </p>
-                </div>
-            </div>
-        `;
-    });
-
-    document.getElementById('exploreResults').innerHTML = html;
 }
 
 function loadTemplates() {
@@ -143,11 +117,21 @@ function loadTemplates() {
     .then(data => {
         if (data.success) {
             displayTemplates(data.results);
+        } else {
+            showError('Templates', data.error);
         }
+    })
+    .catch(err => {
+        showError('Templates', err.message);
     });
 }
 
 function displayTemplates(templates) {
+    if (!templates || templates.length === 0) {
+        document.getElementById('exploreResults').innerHTML = '<div class="alert alert-info">No templates found in knowledge base.</div>';
+        return;
+    }
+
     let html = '<h3 class="mb-4"><i class="fas fa-file-code text-success"></i> All Templates</h3>';
 
     templates.forEach(t => {
@@ -178,11 +162,21 @@ function loadDeepDives() {
     .then(data => {
         if (data.success) {
             displayDeepDives(data.results);
+        } else {
+            showError('Deep Dives', data.error);
         }
+    })
+    .catch(err => {
+        showError('Deep Dives', err.message);
     });
 }
 
 function displayDeepDives(deepdives) {
+    if (!deepdives || deepdives.length === 0) {
+        document.getElementById('exploreResults').innerHTML = '<div class="alert alert-info">No deep dives found in knowledge base.</div>';
+        return;
+    }
+
     let html = '<h3 class="mb-4"><i class="fas fa-book-open text-info"></i> All Deep Dives</h3>';
 
     deepdives.forEach(dd => {
@@ -213,11 +207,21 @@ function loadIntegrations() {
     .then(data => {
         if (data.success) {
             displayIntegrations(data.results);
+        } else {
+            showError('Integrations', data.error);
         }
+    })
+    .catch(err => {
+        showError('Integrations', err.message);
     });
 }
 
 function displayIntegrations(integrations) {
+    if (!integrations || integrations.length === 0) {
+        document.getElementById('exploreResults').innerHTML = '<div class="alert alert-info">No integration guides found in knowledge base.</div>';
+        return;
+    }
+
     let html = '<h3 class="mb-4"><i class="fas fa-plug text-warning"></i> All Integration Guides</h3>';
 
     integrations.forEach(i => {
@@ -237,6 +241,52 @@ function displayIntegrations(integrations) {
     });
 
     document.getElementById('exploreResults').innerHTML = html;
+}
+
+function displayVulnerabilities(vulns) {
+    if (!vulns || vulns.length === 0) {
+        document.getElementById('exploreResults').innerHTML = '<div class="alert alert-info">No vulnerabilities found in knowledge base.</div>';
+        return;
+    }
+
+    let html = '<h3 class="mb-4"><i class="fas fa-bug text-danger"></i> All Vulnerabilities</h3>';
+
+    vulns.forEach(v => {
+        const severityColor = v.severity === 'CRITICAL' ? 'danger' : (v.severity === 'HIGH' ? 'warning' : 'info');
+
+        html += `
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">${v.name}</h5>
+                    <p class="mb-2">
+                        <span class="badge bg-${severityColor}">${v.severity}</span>
+        `;
+
+        if (v.loss > 0) {
+            html += `<span class="badge bg-danger">$${v.loss.toLocaleString()} in losses</span>`;
+        }
+
+        html += `
+                    </p>
+                    <p class="text-muted mb-0">
+                        <i class="fas fa-file"></i> ${v.file_path}
+                    </p>
+                </div>
+            </div>
+        `;
+    });
+
+    document.getElementById('exploreResults').innerHTML = html;
+}
+
+function showError(type, message) {
+    document.getElementById('exploreResults').innerHTML = `
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong><i class="fas fa-exclamation-circle"></i> Error loading ${type}:</strong>
+            <p class="mb-0">${message}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    `;
 }
 </script>
 {% endblock %}
