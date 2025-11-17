@@ -1,0 +1,363 @@
+{% extends "base.html" %}
+
+{% block title %}Knowledge Graph - Safe Smart Contracts{% endblock %}
+
+{% block extra_css %}
+<style>
+    .relationship-card {
+        border-left: 4px solid;
+        margin-bottom: 15px;
+        transition: all 0.3s;
+    }
+
+    .relationship-card:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    .rel-demonstrates { border-left-color: #ef4444; }
+    .rel-prevents { border-left-color: #10b981; }
+    .rel-explains { border-left-color: #3b82f6; }
+    .rel-pairs_with { border-left-color: #8b5cf6; }
+    .rel-uses { border-left-color: #f59e0b; }
+    .rel-relates_to { border-left-color: #06b6d4; }
+
+    .node-badge {
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+        display: inline-block;
+        margin: 5px;
+    }
+
+    .node-vulnerability { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); color: #991b1b; }
+    .node-template { background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); color: #14532d; }
+    .node-deepdive { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); color: #1e3a8a; }
+    .node-integration { background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); color: #581c87; }
+    .node-vulnerablecontract { background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%); color: #7c2d12; }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .stat-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+    }
+
+    .stat-box h4 {
+        font-size: 2rem;
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .stat-box p {
+        margin: 0;
+        opacity: 0.9;
+        font-size: 0.9rem;
+    }
+
+    .search-box {
+        margin-bottom: 30px;
+    }
+
+    .connection-arrow {
+        color: #64748b;
+        font-weight: bold;
+        margin: 0 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="container-main">
+        <div class="row mb-4">
+            <div class="col">
+                <h1><i class="fas fa-project-diagram"></i> Knowledge Graph Explorer</h1>
+                <p class="lead text-muted">Explore relationships between 45 nodes across 78 connections</p>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-box">
+                <h4 id="totalNodes">45</h4>
+                <p>Total Nodes</p>
+            </div>
+            <div class="stat-box">
+                <h4 id="totalEdges">78</h4>
+                <p>Relationships</p>
+            </div>
+            <div class="stat-box">
+                <h4 id="connectivity">97.8%</h4>
+                <p>Connectivity</p>
+            </div>
+            <div class="stat-box">
+                <h4 id="graphDensity">3.9%</h4>
+                <p>Graph Density</p>
+            </div>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-box">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control" id="nodeSearch"
+                       placeholder="Search for a node by name...">
+                <button class="btn btn-primary" type="button" onclick="performNodeSearch()">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </div>
+
+        <!-- Filter by Type -->
+        <div class="mb-4">
+            <h4>Filter by Node Type:</h4>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-secondary" onclick="filterByType('all')">All</button>
+                <button type="button" class="btn btn-outline-danger" onclick="filterByType('Vulnerability')">Vulnerabilities</button>
+                <button type="button" class="btn btn-outline-success" onclick="filterByType('Template')">Templates</button>
+                <button type="button" class="btn btn-outline-primary" onclick="filterByType('DeepDive')">Deep Dives</button>
+                <button type="button" class="btn btn-outline-info" onclick="filterByType('Integration')">Integrations</button>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div id="searchResults"></div>
+
+        <!-- Node Details Modal -->
+        <div class="modal fade" id="nodeModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalNodeName"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body" id="modalBody">
+                        <div class="loading">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let allNodes = [];
+
+// Load all nodes on page load
+document.addEventListener('DOMContentLoaded', function() {
+    loadGraphStats();
+    loadAllNodes();
+});
+
+function loadGraphStats() {
+    fetch('/api/statistics')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('totalNodes').textContent = data.stats.total_nodes;
+                document.getElementById('totalEdges').textContent = data.stats.total_edges;
+
+                // Calculate connectivity
+                const connected = 44; // From verification
+                const connectivity = (connected / data.stats.total_nodes * 100).toFixed(1);
+                document.getElementById('connectivity').textContent = connectivity + '%';
+
+                // Calculate density
+                const density = (data.stats.total_edges / (data.stats.total_nodes * (data.stats.total_nodes - 1)) * 100).toFixed(1);
+                document.getElementById('graphDensity').textContent = density + '%';
+            }
+        });
+}
+
+function loadAllNodes() {
+    fetch('/api/graph/all')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                allNodes = data.nodes;
+                displayNodes(allNodes);
+            }
+        });
+}
+
+function displayNodes(nodes) {
+    const resultsDiv = document.getElementById('searchResults');
+
+    if (nodes.length === 0) {
+        resultsDiv.innerHTML = '<p class="text-muted">No nodes found.</p>';
+        return;
+    }
+
+    let html = '<div class="row">';
+    nodes.forEach(node => {
+        const nodeClass = 'node-' + node.type.toLowerCase();
+        html += `
+            <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card h-100" onclick="showNodeDetails('${node.id}')" style="cursor: pointer;">
+                    <div class="card-body">
+                        <span class="node-badge ${nodeClass}">${node.type}</span>
+                        <h5 class="card-title mt-2">${node.name}</h5>
+                        <p class="card-text text-muted small">
+                            <i class="fas fa-folder"></i> ${node.kb_source}
+                        </p>
+                        <button class="btn btn-sm btn-primary">
+                            <i class="fas fa-info-circle"></i> View Relationships
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    html += '</div>';
+
+    resultsDiv.innerHTML = html;
+}
+
+function filterByType(type) {
+    if (type === 'all') {
+        displayNodes(allNodes);
+    } else {
+        const filtered = allNodes.filter(node => node.type === type);
+        displayNodes(filtered);
+    }
+}
+
+function performNodeSearch() {
+    const query = document.getElementById('nodeSearch').value.toLowerCase();
+    if (!query) {
+        displayNodes(allNodes);
+        return;
+    }
+
+    const filtered = allNodes.filter(node =>
+        node.name.toLowerCase().includes(query) ||
+        node.type.toLowerCase().includes(query)
+    );
+    displayNodes(filtered);
+}
+
+function showNodeDetails(nodeId) {
+    const modal = new bootstrap.Modal(document.getElementById('nodeModal'));
+    const modalBody = document.getElementById('modalBody');
+
+    // Show loading
+    modalBody.innerHTML = `
+        <div class="loading" style="display: block;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    `;
+
+    modal.show();
+
+    // Fetch relationships
+    fetch(`/api/relationships/${nodeId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                displayNodeRelationships(data);
+            } else {
+                modalBody.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+            }
+        });
+}
+
+function displayNodeRelationships(data) {
+    const modalBody = document.getElementById('modalBody');
+    const modalTitle = document.getElementById('modalNodeName');
+
+    const node = data.node;
+    const nodeClass = 'node-' + node.type.toLowerCase();
+
+    modalTitle.innerHTML = `
+        <span class="node-badge ${nodeClass}">${node.type}</span> ${node.name}
+    `;
+
+    let html = `
+        <div class="mb-3">
+            <p><strong>File:</strong> <code>${node.file_path}</code></p>
+            <p><strong>Total Connections:</strong> ${data.total_connections}</p>
+        </div>
+        <hr>
+    `;
+
+    // Outgoing relationships
+    if (data.outgoing.length > 0) {
+        html += '<h5><i class="fas fa-arrow-right"></i> Outgoing Relationships</h5>';
+        data.outgoing.forEach(rel => {
+            const relClass = 'rel-' + rel.relationship.toLowerCase();
+            const targetClass = 'node-' + rel.target_type.toLowerCase();
+            html += `
+                <div class="card relationship-card ${relClass}">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <strong>${node.name}</strong>
+                            <span class="connection-arrow">→ ${rel.relationship} →</span>
+                            <span class="node-badge ${targetClass}">${rel.target_type}</span>
+                            <strong class="ms-2">${rel.target_name}</strong>
+                        </div>
+                        ${Object.keys(rel.properties).length > 0 ?
+                            `<div class="mt-2 text-muted small">
+                                <i class="fas fa-info-circle"></i> ${JSON.stringify(rel.properties)}
+                            </div>` : ''}
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    // Incoming relationships
+    if (data.incoming.length > 0) {
+        html += '<h5 class="mt-4"><i class="fas fa-arrow-left"></i> Incoming Relationships</h5>';
+        data.incoming.forEach(rel => {
+            const relClass = 'rel-' + rel.relationship.toLowerCase();
+            const sourceClass = 'node-' + rel.source_type.toLowerCase();
+            html += `
+                <div class="card relationship-card ${relClass}">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <span class="node-badge ${sourceClass}">${rel.source_type}</span>
+                            <strong class="ms-2">${rel.source_name}</strong>
+                            <span class="connection-arrow">→ ${rel.relationship} →</span>
+                            <strong>${node.name}</strong>
+                        </div>
+                        ${Object.keys(rel.properties).length > 0 ?
+                            `<div class="mt-2 text-muted small">
+                                <i class="fas fa-info-circle"></i> ${JSON.stringify(rel.properties)}
+                            </div>` : ''}
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    if (data.total_connections === 0) {
+        html += '<p class="text-muted">This node has no relationships.</p>';
+    }
+
+    modalBody.innerHTML = html;
+}
+
+// Allow Enter key to search
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('nodeSearch').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performNodeSearch();
+        }
+    });
+});
+</script>
+{% endblock %}

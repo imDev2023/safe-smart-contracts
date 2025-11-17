@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Safe Smart Contracts{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="container-main">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold mb-3">
+                <i class="fas fa-shield-alt text-primary"></i>
+                Safe Smart Contracts
+            </h1>
+            <p class="lead text-muted">
+                Generate production-ready smart contracts with built-in security from your comprehensive knowledge base
+            </p>
+            <div class="mt-4">
+                <a href="/generate" class="btn btn-primary btn-lg me-3">
+                    <i class="fas fa-code"></i> Generate Contract
+                </a>
+                <a href="/search" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-search"></i> Search KB
+                </a>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <h3>{{ stats.total_nodes }}</h3>
+                    <p>Total Entities</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <h3>{{ stats.total_edges }}</h3>
+                    <p>Relationships</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <h3>{{ stats.get('kb_files_count', '284') }}</h3>
+                    <p>KB Files</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <h3>v{{ stats.get('version', '1.0.0') }}</h3>
+                    <p>Graph Version</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Version Info -->
+        {% if stats.get('last_rebuild') and stats.get('last_rebuild') != 'unknown' %}
+        <div class="alert alert-info mb-4">
+            <i class="fas fa-info-circle"></i>
+            <strong>Last Rebuild:</strong> {{ stats.get('last_rebuild') }}
+            |
+            <strong>Version:</strong> {{ stats.get('version', '1.0.0') }}
+            |
+            <strong>Auto-upgradeable:</strong> Add new content to KB and run <code>./scripts/cocoindex/rebuild_graph.sh</code>
+        </div>
+        {% endif %}
+
+        <!-- Features -->
+        <h2 class="mb-4"><i class="fas fa-star"></i> Features</h2>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-database text-primary"></i>
+                            Knowledge Graph
+                        </h5>
+                        <p class="card-text">
+                            Query your entire knowledge base with semantic search.
+                            Find vulnerabilities, templates, and patterns instantly.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> {{ stats.nodes_by_type.get('Vulnerability', 0) }} Vulnerabilities indexed</li>
+                            <li><i class="fas fa-check text-success"></i> {{ stats.nodes_by_type.get('Template', 0) }} Contract templates</li>
+                            <li><i class="fas fa-check text-success"></i> {{ stats.nodes_by_type.get('DeepDive', 0) }} Deep dive analyses</li>
+                        </ul>
+                        <a href="/search" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Search Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-code text-primary"></i>
+                            Contract Generation
+                        </h5>
+                        <p class="card-text">
+                            Generate production-ready contracts with automatic security patterns
+                            from your knowledge base.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> DeFi (anti-sniper, slippage, oracle)</li>
+                            <li><i class="fas fa-check text-success"></i> Gaming (VRF, achievements, anti-cheat)</li>
+                            <li><i class="fas fa-check text-success"></i> NFT (royalties, reveal, allowlist)</li>
+                            <li><i class="fas fa-check text-success"></i> AI (Chainlink, usage tracking)</li>
+                        </ul>
+                        <a href="/generate" class="btn btn-primary">
+                            <i class="fas fa-code"></i> Generate Contract
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Node Distribution -->
+        <h2 class="mb-4"><i class="fas fa-chart-pie"></i> Knowledge Graph Distribution</h2>
+        <div class="row g-4 mb-5">
+            {% for node_type, count in stats.nodes_by_type.items() %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h3 class="text-primary">{{ count }}</h3>
+                        <p class="mb-0">{{ node_type }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Quick Start -->
+        <h2 class="mb-4"><i class="fas fa-rocket"></i> Quick Start</h2>
+        <div class="card">
+            <div class="card-body">
+                <h5>Generate Your First Contract:</h5>
+                <ol>
+                    <li>Go to <a href="/generate">Generate</a> page</li>
+                    <li>Select contract type (ERC20 or ERC721)</li>
+                    <li>Choose domain (DeFi, Gaming, NFT, or AI)</li>
+                    <li>Pick features (anti-sniper, VRF, royalties, etc.)</li>
+                    <li>Click "Generate" and get:
+                        <ul>
+                            <li>Production-ready contract (.sol)</li>
+                            <li>Comprehensive test suite</li>
+                            <li>Deployment guide with KB references</li>
+                            <li>Security checklist (400+ checks)</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

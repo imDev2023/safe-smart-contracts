@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block title %}Explore - Safe Smart Contracts{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="container-main">
+        <h1 class="mb-4">
+            <i class="fas fa-compass text-primary"></i>
+            Explore Knowledge Base
+        </h1>
+
+        <div class="row g-4">
+            <!-- Vulnerabilities -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-bug text-danger"></i>
+                            Vulnerabilities
+                        </h5>
+                        <p class="card-text">
+                            Documented vulnerabilities with prevention methods
+                        </p>
+                        <button class="btn btn-danger" onclick="loadVulnerabilities()">
+                            <i class="fas fa-list"></i> View All
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Templates -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-file-code text-success"></i>
+                            Contract Templates
+                        </h5>
+                        <p class="card-text">
+                            Production-ready contract templates
+                        </p>
+                        <button class="btn btn-success" onclick="loadTemplates()">
+                            <i class="fas fa-list"></i> View All
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deep Dives -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-book-open text-info"></i>
+                            Deep Dives
+                        </h5>
+                        <p class="card-text">
+                            In-depth protocol analysis and research
+                        </p>
+                        <button class="btn btn-info" onclick="loadDeepDives()">
+                            <i class="fas fa-list"></i> View All
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integrations -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-plug text-warning"></i>
+                            Integration Guides
+                        </h5>
+                        <p class="card-text">
+                            Guides for Chainlink, Uniswap, and more
+                        </p>
+                        <button class="btn btn-warning" onclick="loadIntegrations()">
+                            <i class="fas fa-list"></i> View All
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Area -->
+        <div class="mt-5" id="exploreResults"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function loadVulnerabilities() {
+    document.getElementById('exploreResults').innerHTML = '<div class="text-center"><div class="spinner-border"></div></div>';
+
+    fetch('/api/vulnerabilities')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            displayVulnerabilities(data.results);
+        }
+    });
+}
+
+function displayVulnerabilities(vulns) {
+    let html = '<h3 class="mb-4"><i class="fas fa-bug text-danger"></i> All Vulnerabilities</h3>';
+
+    vulns.forEach(v => {
+        const severityColor = v.severity === 'CRITICAL' ? 'danger' : (v.severity === 'HIGH' ? 'warning' : 'info');
+
+        html += `
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">${v.name}</h5>
+                    <p class="mb-2">
+                        <span class="badge bg-${severityColor}">${v.severity}</span>
+        `;
+
+        if (v.loss > 0) {
+            html += `<span class="badge bg-danger">$${v.loss.toLocaleString()} in losses</span>`;
+        }
+
+        html += `
+                    </p>
+                    <p class="text-muted mb-0">
+                        <i class="fas fa-file"></i> ${v.file_path}
+                    </p>
+                </div>
+            </div>
+        `;
+    });
+
+    document.getElementById('exploreResults').innerHTML = html;
+}
+
+function loadTemplates() {
+    document.getElementById('exploreResults').innerHTML = '<div class="text-center"><div class="spinner-border"></div></div>';
+
+    fetch('/api/templates')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            displayTemplates(data.results);
+        }
+    });
+}
+
+function displayTemplates(templates) {
+    let html = '<h3 class="mb-4"><i class="fas fa-file-code text-success"></i> All Templates</h3>';
+
+    templates.forEach(t => {
+        html += `
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">${t.name}</h5>
+                    <p class="mb-2">
+                        <span class="badge bg-info">${t.type}</span>
+                        <span class="badge bg-secondary">${t.lines} lines</span>
+                    </p>
+                    <p class="text-muted mb-0">
+                        <i class="fas fa-file"></i> ${t.file_path}
+                    </p>
+                </div>
+            </div>
+        `;
+    });
+
+    document.getElementById('exploreResults').innerHTML = html;
+}
+
+function loadDeepDives() {
+    document.getElementById('exploreResults').innerHTML = '<div class="text-center"><div class="spinner-border"></div></div>';
+
+    fetch('/api/deepdives')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            displayDeepDives(data.results);
+        }
+    });
+}
+
+function displayDeepDives(deepdives) {
+    let html = '<h3 class="mb-4"><i class="fas fa-book-open text-info"></i> All Deep Dives</h3>';
+
+    deepdives.forEach(dd => {
+        html += `
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">${dd.name}</h5>
+                    <p class="mb-2">
+                        <span class="badge bg-primary">${dd.protocol}</span>
+                        <span class="badge bg-secondary">${dd.words} words</span>
+                    </p>
+                    <p class="text-muted mb-0">
+                        <i class="fas fa-file"></i> ${dd.file_path}
+                    </p>
+                </div>
+            </div>
+        `;
+    });
+
+    document.getElementById('exploreResults').innerHTML = html;
+}
+
+function loadIntegrations() {
+    document.getElementById('exploreResults').innerHTML = '<div class="text-center"><div class="spinner-border"></div></div>';
+
+    fetch('/api/integrations')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            displayIntegrations(data.results);
+        }
+    });
+}
+
+function displayIntegrations(integrations) {
+    let html = '<h3 class="mb-4"><i class="fas fa-plug text-warning"></i> All Integration Guides</h3>';
+
+    integrations.forEach(i => {
+        html += `
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">${i.name}</h5>
+                    <p class="mb-2">
+                        <span class="badge bg-primary">${i.protocol}</span>
+                    </p>
+                    <p class="text-muted mb-0">
+                        <i class="fas fa-file"></i> ${i.file_path}
+                    </p>
+                </div>
+            </div>
+        `;
+    });
+
+    document.getElementById('exploreResults').innerHTML = html;
+}
+</script>
+{% endblock %}

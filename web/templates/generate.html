@@ -1,0 +1,345 @@
+{% extends "base.html" %}
+
+{% block title %}Generate Contract - Safe Smart Contracts{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="container-main">
+        <h1 class="mb-4">
+            <i class="fas fa-code text-primary"></i>
+            Generate Smart Contract
+        </h1>
+
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Generation Form -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Contract Configuration</h5>
+
+                        <form id="generateForm">
+                            <!-- Contract Type -->
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Contract Type</label>
+                                <div class="btn-group w-100" role="group">
+                                    <input type="radio" class="btn-check" name="type" id="type-erc20" value="ERC20" checked>
+                                    <label class="btn btn-outline-primary" for="type-erc20">
+                                        <i class="fas fa-coins"></i> ERC20 (Token)
+                                    </label>
+
+                                    <input type="radio" class="btn-check" name="type" id="type-erc721" value="ERC721">
+                                    <label class="btn btn-outline-primary" for="type-erc721">
+                                        <i class="fas fa-image"></i> ERC721 (NFT)
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Domain -->
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Application Domain</label>
+                                <select class="form-select form-select-lg" id="domain" name="domain">
+                                    <option value="defi">💰 DeFi - Trading & Finance</option>
+                                    <option value="gaming">🎮 Gaming - NFTs & VRF</option>
+                                    <option value="nft">🖼️ NFT - Collections & Art</option>
+                                    <option value="ai">🤖 AI - Oracle Integration</option>
+                                </select>
+                            </div>
+
+                            <!-- Features (Dynamic based on domain) -->
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Features</label>
+                                <div id="features-container">
+                                    <!-- DeFi Features -->
+                                    <div class="features-group" id="features-defi">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="anti-sniper" id="feature-anti-sniper" checked>
+                                            <label class="form-check-label" for="feature-anti-sniper">
+                                                <strong>Anti-Sniper Protection</strong> - Prevents bots from buying in first blocks
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="slippage" id="feature-slippage" checked>
+                                            <label class="form-check-label" for="feature-slippage">
+                                                <strong>Slippage Protection</strong> - Max 3% price impact
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="oracle" id="feature-oracle" checked>
+                                            <label class="form-check-label" for="feature-oracle">
+                                                <strong>Chainlink Oracle</strong> - Price feed integration
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Gaming Features -->
+                                    <div class="features-group" id="features-gaming" style="display: none;">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="vrf" id="feature-vrf" checked>
+                                            <label class="form-check-label" for="feature-vrf">
+                                                <strong>Chainlink VRF</strong> - Verifiable randomness
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="achievements" id="feature-achievements" checked>
+                                            <label class="form-check-label" for="feature-achievements">
+                                                <strong>Achievement System</strong> - Track player progress
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="anti-cheat" id="feature-anti-cheat" checked>
+                                            <label class="form-check-label" for="feature-anti-cheat">
+                                                <strong>Anti-Cheat</strong> - Spam and exploit prevention
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- NFT Features -->
+                                    <div class="features-group" id="features-nft" style="display: none;">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="royalties" id="feature-royalties" checked>
+                                            <label class="form-check-label" for="feature-royalties">
+                                                <strong>ERC2981 Royalties</strong> - Marketplace royalty standard
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="reveal" id="feature-reveal" checked>
+                                            <label class="form-check-label" for="feature-reveal">
+                                                <strong>Metadata Reveal</strong> - Prevents rarity sniping
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="allowlist" id="feature-allowlist" checked>
+                                            <label class="form-check-label" for="feature-allowlist">
+                                                <strong>Merkle Allowlist</strong> - Gas-efficient presale
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- AI Features -->
+                                    <div class="features-group" id="features-ai" style="display: none;">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="oracle" id="feature-ai-oracle" checked>
+                                            <label class="form-check-label" for="feature-ai-oracle">
+                                                <strong>Chainlink Functions</strong> - Off-chain AI computation
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="usage-tracking" id="feature-usage-tracking" checked>
+                                            <label class="form-check-label" for="feature-usage-tracking">
+                                                <strong>Usage Metering</strong> - Credit-based system
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="payments" id="feature-payments" checked>
+                                            <label class="form-check-label" for="feature-payments">
+                                                <strong>Payment Splits</strong> - Multi-party distribution
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Generate Button -->
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-code"></i> Generate Contract
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Loading -->
+                <div class="loading" id="loading">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Generating...</span>
+                    </div>
+                    <p class="mt-3">Generating your contract...</p>
+                </div>
+
+                <!-- Results -->
+                <div id="results" style="display: none;"></div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-shield-alt text-success"></i>
+                            Automatic Security
+                        </h5>
+                        <p class="card-text">All contracts include:</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> ReentrancyGuard</li>
+                            <li><i class="fas fa-check text-success"></i> Access Control</li>
+                            <li><i class="fas fa-check text-success"></i> Pausable</li>
+                            <li><i class="fas fa-check text-success"></i> Gas Optimizations</li>
+                            <li><i class="fas fa-check text-success"></i> Custom Errors</li>
+                            <li><i class="fas fa-check text-success"></i> Storage Packing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-file-alt text-info"></i>
+                            Generated Files
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-file-code"></i> Contract.sol</li>
+                            <li><i class="fas fa-vial"></i> Test.sol</li>
+                            <li><i class="fas fa-clipboard-check"></i> Security Checklist</li>
+                            <li><i class="fas fa-book"></i> Deployment Guide</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Handle domain change to show/hide features
+document.getElementById('domain').addEventListener('change', function() {
+    const domain = this.value;
+    document.querySelectorAll('.features-group').forEach(group => {
+        group.style.display = 'none';
+    });
+    document.getElementById('features-' + domain).style.display = 'block';
+});
+
+// Handle form submission
+document.getElementById('generateForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const type = document.querySelector('input[name="type"]:checked').value;
+    const domain = document.getElementById('domain').value;
+
+    // Get selected features
+    const featuresContainer = document.getElementById('features-' + domain);
+    const selectedFeatures = [];
+    featuresContainer.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+        selectedFeatures.push(checkbox.value);
+    });
+
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('results').style.display = 'none';
+
+    fetch('/api/generate', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            type: type,
+            domain: domain,
+            features: selectedFeatures.join(',')
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('loading').style.display = 'none';
+
+        if (data.success) {
+            displayResults(data);
+        } else {
+            document.getElementById('results').innerHTML = `
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> Error: ${data.error}
+                </div>
+            `;
+            document.getElementById('results').style.display = 'block';
+        }
+    })
+    .catch(error => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('results').innerHTML = `
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i> Error: ${error}
+            </div>
+        `;
+        document.getElementById('results').style.display = 'block';
+    });
+});
+
+function displayResults(data) {
+    let html = `
+        <div class="card">
+            <div class="card-body">
+                <h4 class="text-success">
+                    <i class="fas fa-check-circle"></i> Contract Generated Successfully!
+                </h4>
+
+                <div class="alert alert-success mt-3">
+                    <h6>Generated Files:</h6>
+                    <ul class="mb-0">
+                        <li><i class="fas fa-file-code"></i> ${data.files.contract}</li>
+                        <li><i class="fas fa-vial"></i> ${data.files.test}</li>
+                        <li><i class="fas fa-clipboard-check"></i> ${data.files.checklist}</li>
+                        <li><i class="fas fa-book"></i> ${data.files.guide}</li>
+                    </ul>
+                </div>
+
+                <h5 class="mt-4">Contract Preview:</h5>
+                <pre><code class="language-solidity">${escapeHtml(data.preview)}</code></pre>
+
+                <div class="mt-3">
+                    <button class="btn btn-primary me-2" onclick="viewFile('${data.files.contract}')">
+                        <i class="fas fa-eye"></i> View Full Contract
+                    </button>
+                    <button class="btn btn-success me-2" onclick="viewFile('${data.files.guide}')">
+                        <i class="fas fa-book"></i> View Deployment Guide
+                    </button>
+                    <button class="btn btn-info" onclick="downloadFiles()">
+                        <i class="fas fa-download"></i> Download All
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.getElementById('results').innerHTML = html;
+    document.getElementById('results').style.display = 'block';
+    Prism.highlightAll();
+}
+
+function viewFile(filepath) {
+    fetch('/api/file/' + filepath)
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const modal = document.createElement('div');
+            modal.innerHTML = `
+                <div class="modal fade" id="fileModal" tabindex="-1">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">${filepath}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <pre><code class="language-solidity">${escapeHtml(data.content)}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            const modalInstance = new bootstrap.Modal(document.getElementById('fileModal'));
+            modalInstance.show();
+            Prism.highlightAll();
+        }
+    });
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function downloadFiles() {
+    alert('Files are saved in the generated/ directory. Use git to commit and push them.');
+}
+</script>
+{% endblock %}
