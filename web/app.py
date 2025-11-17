@@ -20,8 +20,11 @@ from contract_builder_v2 import EnhancedContractBuilder
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'safe-smart-contracts-2025'
 
-# Initialize knowledge graph
-kg = KnowledgeGraph()
+# Initialize knowledge graph with correct path
+# Get the parent directory (root of project) from web directory
+project_root = Path(__file__).parent.parent
+db_path = project_root / ".cocoindex" / "knowledge_graph.db"
+kg = KnowledgeGraph(str(db_path))
 
 @app.route('/')
 def index():
