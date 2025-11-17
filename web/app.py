@@ -360,7 +360,7 @@ if __name__ == '__main__':
     print("="*80)
     print()
     print("Starting server...")
-    print("Access at: http://localhost:5000")
+    print("Access at: http://localhost:8000")
     print()
     print("Features:")
     print("  • Knowledge Graph Search")
@@ -369,4 +369,4 @@ if __name__ == '__main__':
     print("  • Statistics Dashboard")
     print()
 
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=8000)
