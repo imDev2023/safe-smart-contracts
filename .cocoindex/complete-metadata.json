@@ -1337,6 +1337,37 @@
           "unique",
           "mechanics"
         ]
+      },
+      "template_dn404_template.md": {
+        "id": "template_dn404_template.md",
+        "name": "dn404-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/dn404-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 400,
+        "features": [
+          "ERC20 Compliance",
+          "ERC721 Compliance",
+          "Synchronized Transfers",
+          "Gas Optimized",
+          "Dual Standard"
+        ],
+        "use_cases": [
+          "Hybrid Tokens",
+          "NFT Fractionalization",
+          "Community Tokens",
+          "Tokenized NFT Collections"
+        ],
+        "keywords": [
+          "hybrid",
+          "erc20",
+          "erc721",
+          "token",
+          "nft",
+          "dn404",
+          "synchronized",
+          "dual-standard"
+        ]
       }
     },
     "deepdives": {
@@ -1855,9 +1886,9 @@
   ],
   "statistics": {
     "total_files": 284,
-    "total_entities": 101,
+    "total_entities": 102,
     "total_relationships": 16,
-    "action_kb_entities": 65,
+    "action_kb_entities": 66,
     "research_kb_entities": 36,
     "protocols_covered": 20,
     "vulnerability_sources": 5,

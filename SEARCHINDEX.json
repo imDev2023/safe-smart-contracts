@@ -560,6 +560,37 @@
             "Complex Mechanisms"
           ],
           "description": "Zorb NFT template with unique mechanics"
+        },
+        {
+          "name": "dn404-template.md",
+          "size_kb": 97.0,
+          "lines": 400,
+          "type": "template",
+          "keywords": [
+            "hybrid",
+            "erc20",
+            "erc721",
+            "token",
+            "nft",
+            "dn404",
+            "synchronized",
+            "dual-standard"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "ERC20 Compliance",
+            "ERC721 Compliance",
+            "Synchronized Transfers",
+            "Gas Optimized",
+            "Dual Standard"
+          ],
+          "use_cases": [
+            "Hybrid Tokens",
+            "NFT Fractionalization",
+            "Community Tokens",
+            "Tokenized NFT Collections"
+          ],
+          "description": "Hybrid ERC20/ERC721 implementation with synchronized transfers"
         }
       ]
     },
@@ -1629,6 +1660,6 @@
     "code_snippets": 172,
     "pre_deployment_checks": 400,
     "total_vulnerabilities": 46,
-    "total_templates": 19
+    "total_templates": 20
   }
 }
