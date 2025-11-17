@@ -36,7 +36,10 @@ class EnhancedContractBuilder(SmartContractBuilder):
 
     def __init__(self):
         super().__init__()
-        self.kg = KnowledgeGraph()
+        # Use absolute path for KnowledgeGraph
+        project_root = Path(__file__).parent.parent.parent
+        db_path = project_root / ".cocoindex" / "knowledge_graph.db"
+        self.kg = KnowledgeGraph(str(db_path))
 
     def generate_contract_with_kg(self, args) -> str:
         """Generate contract using knowledge graph insights"""

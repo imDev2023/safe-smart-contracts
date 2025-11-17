@@ -28,10 +28,23 @@ class KnowledgeBaseLoader:
 
     def load_metadata(self) -> Dict:
         """Load complete KB metadata"""
-        metadata_path = Path(".cocoindex/complete-metadata.json")
-        if not metadata_path.exists():
+        # Try multiple paths to support running from different directories
+        possible_paths = [
+            Path(".cocoindex/complete-metadata.json"),  # Current directory
+            Path("../../.cocoindex/complete-metadata.json"),  # From scripts/cocoindex/
+            Path(__file__).parent.parent.parent / ".cocoindex" / "complete-metadata.json",  # Absolute from script
+        ]
+
+        metadata_path = None
+        for path in possible_paths:
+            if path.exists():
+                metadata_path = path
+                break
+
+        if not metadata_path:
             raise FileNotFoundError(
-                "Metadata not found. Run: python scripts/cocoindex/extract_complete_metadata.py"
+                f"Metadata not found in: {[str(p) for p in possible_paths]}\n"
+                f"Run: python scripts/cocoindex/extract_complete_metadata.py"
             )
 
         with open(metadata_path) as f:
