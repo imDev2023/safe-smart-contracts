@@ -5,26 +5,113 @@
 {% block extra_css %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" />
 <style>
+    .graph-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .search-controls {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .search-box {
+        margin-bottom: 15px;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        font-size: 1rem;
+    }
+
+    .search-box input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .filter-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 6px 14px;
+        border: 1px solid #d1d5db;
+        border-radius: 20px;
+        background: white;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+        border-color: #667eea;
+        background: #f3f4f6;
+    }
+
+    .filter-btn.active {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+
+    .stat-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .stat-box h4 {
+        font-size: 1.6rem;
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .stat-box p {
+        margin: 3px 0 0 0;
+        opacity: 0.9;
+        font-size: 0.8rem;
+    }
+
     .graph-container {
         display: flex;
         height: 800px;
         border: 2px solid #e5e7eb;
         border-radius: 8px;
         overflow: hidden;
-        margin-bottom: 30px;
         background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     #network {
         flex: 1;
         border-right: 2px solid #e5e7eb;
+        background: #fafbfc;
     }
 
     .graph-legend {
-        width: 250px;
+        width: 280px;
         padding: 20px;
         overflow-y: auto;
         background: #f9fafb;
+        border-left: 1px solid #e5e7eb;
     }
 
     .legend-section {
@@ -33,7 +120,7 @@
 
     .legend-title {
         font-weight: 700;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         text-transform: uppercase;
         color: #374151;
         margin-bottom: 10px;
@@ -45,75 +132,47 @@
         display: flex;
         align-items: center;
         margin-bottom: 8px;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        color: #555;
     }
 
     .legend-color {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
         border-radius: 50%;
         margin-right: 10px;
-        border: 2px solid rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.2);
+        flex-shrink: 0;
     }
 
     .legend-line {
-        width: 30px;
+        width: 25px;
         height: 2px;
         margin-right: 10px;
+        flex-shrink: 0;
     }
 
-    .controls {
+    .control-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
         margin-bottom: 20px;
-        padding-bottom: 20px;
-        border-bottom: 2px solid #d1d5db;
     }
 
     .control-btn {
         width: 100%;
         padding: 8px;
-        margin-bottom: 8px;
-        font-size: 0.85rem;
         border: 1px solid #d1d5db;
         border-radius: 6px;
+        background: white;
         cursor: pointer;
+        font-size: 0.85rem;
         transition: all 0.2s;
     }
 
     .control-btn:hover {
         background: #e5e7eb;
-    }
-
-    .control-btn.active {
-        background: #667eea;
-        color: white;
         border-color: #667eea;
-    }
-
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
-        margin-bottom: 20px;
-    }
-
-    .stat-box {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 15px;
-        border-radius: 8px;
-        text-align: center;
-    }
-
-    .stat-box h4 {
-        font-size: 1.8rem;
-        margin: 0;
-        font-weight: 700;
-    }
-
-    .stat-box p {
-        margin: 0;
-        opacity: 0.9;
-        font-size: 0.85rem;
     }
 
     .node-info {
@@ -121,12 +180,27 @@
         border-left: 4px solid #0ea5e9;
         padding: 12px;
         border-radius: 4px;
-        margin-bottom: 15px;
+        margin-top: 15px;
         font-size: 0.85rem;
+        display: none;
+    }
+
+    .node-info.show {
+        display: block;
     }
 
     .node-info strong {
         color: #0369a1;
+    }
+
+    .loading-message {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+    }
+
+    .loading-message .spinner-border {
+        margin-bottom: 15px;
     }
 </style>
 {% endblock %}
@@ -136,109 +210,135 @@
     <div class="container-main">
         <div class="row mb-4">
             <div class="col">
-                <h1><i class="fas fa-project-diagram"></i> Knowledge Graph Visualization</h1>
-                <p class="lead text-muted">Interactive graph showing all 45 nodes across 78 relationship connections</p>
+                <h1><i class="fas fa-project-diagram"></i> Knowledge Graph Explorer</h1>
+                <p class="lead text-muted">Interactive visualization of all 45 nodes across 78 relationship connections with full-text search</p>
             </div>
         </div>
 
-        <!-- Statistics -->
-        <div class="stats-grid">
-            <div class="stat-box">
-                <h4 id="totalNodes">45</h4>
-                <p>Total Nodes</p>
-            </div>
-            <div class="stat-box">
-                <h4 id="totalEdges">78</h4>
-                <p>Relationships</p>
-            </div>
-            <div class="stat-box">
-                <h4 id="connectivity">97.8%</h4>
-                <p>Connectivity</p>
-            </div>
-            <div class="stat-box">
-                <h4 id="graphDensity">3.9%</h4>
-                <p>Graph Density</p>
-            </div>
-        </div>
-
-        <!-- Node Info -->
-        <div class="node-info" id="nodeInfo" style="display: none;">
-            <strong>Selected Node:</strong> <span id="selectedNodeName"></span>
-            (<span id="selectedNodeType"></span>)
-        </div>
-
-        <!-- Graph Container -->
-        <div class="graph-container">
-            <div id="network"></div>
-            <div class="graph-legend">
-                <div class="controls">
-                    <button class="control-btn active" onclick="fitGraph()">
-                        <i class="fas fa-compress-alt"></i> Fit Graph
-                    </button>
-                    <button class="control-btn" onclick="clearSelection()">
-                        <i class="fas fa-times"></i> Clear Selection
-                    </button>
-                </div>
-
-                <div class="legend-section">
-                    <div class="legend-title"><i class="fas fa-circle"></i> Node Types</div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #ef4444;"></div>
-                        <span>Vulnerability</span>
+        <div class="graph-wrapper">
+            <!-- Search and Controls -->
+            <div class="search-controls">
+                <!-- Statistics -->
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <h4 id="totalNodes">45</h4>
+                        <p>Total Nodes</p>
                     </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #10b981;"></div>
-                        <span>Template</span>
+                    <div class="stat-box">
+                        <h4 id="totalEdges">78</h4>
+                        <p>Relationships</p>
                     </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #3b82f6;"></div>
-                        <span>Deep Dive</span>
+                    <div class="stat-box">
+                        <h4 id="connectivity">97.8%</h4>
+                        <p>Connectivity</p>
                     </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #8b5cf6;"></div>
-                        <span>Integration</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #f59e0b;"></div>
-                        <span>Vulnerable Contract</span>
+                    <div class="stat-box">
+                        <h4 id="graphDensity">3.9%</h4>
+                        <p>Density</p>
                     </div>
                 </div>
 
-                <div class="legend-section">
-                    <div class="legend-title"><i class="fas fa-arrows-alt-h"></i> Relationships</div>
-                    <div class="legend-item">
-                        <div class="legend-line" style="background: #ef4444;"></div>
-                        <span>Demonstrates</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-line" style="background: #10b981;"></div>
-                        <span>Prevents</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-line" style="background: #3b82f6;"></div>
-                        <span>Explains</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-line" style="background: #8b5cf6;"></div>
-                        <span>Pairs With</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-line" style="background: #f59e0b;"></div>
-                        <span>Uses</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-line" style="background: #06b6d4;"></div>
-                        <span>Relates To</span>
-                    </div>
+                <!-- Search -->
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search nodes by name (e.g., 'reentrancy', 'uniswap', 'erc20')..."
+                           onkeyup="performSearch()">
                 </div>
 
-                <div class="legend-section">
-                    <div class="legend-title">Instructions</div>
-                    <div style="font-size: 0.8rem; color: #666;">
-                        <p><strong>Click</strong> a node to select it</p>
-                        <p><strong>Drag</strong> to pan the graph</p>
-                        <p><strong>Scroll</strong> to zoom in/out</p>
-                        <p><strong>Double-click</strong> to center on node</p>
+                <!-- Filters -->
+                <div>
+                    <p style="margin-bottom: 10px; font-weight: 600; color: #374151; font-size: 0.9rem; text-transform: uppercase;">Filter by Type:</p>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" onclick="filterByType('all')">All</button>
+                        <button class="filter-btn" onclick="filterByType('Vulnerability')">Vulnerabilities</button>
+                        <button class="filter-btn" onclick="filterByType('Template')">Templates</button>
+                        <button class="filter-btn" onclick="filterByType('DeepDive')">Deep Dives</button>
+                        <button class="filter-btn" onclick="filterByType('Integration')">Integrations</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Graph Container -->
+            <div class="graph-container">
+                <div id="network"></div>
+                <div class="graph-legend">
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="fitGraph()">
+                            <i class="fas fa-compress-alt"></i> Fit All
+                        </button>
+                        <button class="control-btn" onclick="clearSelection()">
+                            <i class="fas fa-times"></i> Clear Selection
+                        </button>
+                        <button class="control-btn" onclick="reloadGraph()">
+                            <i class="fas fa-redo"></i> Reload Graph
+                        </button>
+                    </div>
+
+                    <div class="node-info" id="nodeInfo">
+                        <strong>Selected:</strong> <span id="selectedNodeName"></span>
+                        <div style="margin-top: 8px; font-size: 0.75rem; color: #666;">
+                            (<span id="selectedNodeType"></span>)
+                        </div>
+                    </div>
+
+                    <div class="legend-section">
+                        <div class="legend-title"><i class="fas fa-circle"></i> Node Types</div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #ef4444;"></div>
+                            <span>Vulnerability (10)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #10b981;"></div>
+                            <span>Template (7)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #3b82f6;"></div>
+                            <span>Deep Dive (11)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #8b5cf6;"></div>
+                            <span>Integration (12)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #f59e0b;"></div>
+                            <span>Vulnerable Contract (5)</span>
+                        </div>
+                    </div>
+
+                    <div class="legend-section">
+                        <div class="legend-title"><i class="fas fa-arrows-alt-h"></i> Relationships</div>
+                        <div class="legend-item">
+                            <div class="legend-line" style="background: #ef4444;"></div>
+                            <span>Demonstrates</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-line" style="background: #10b981;"></div>
+                            <span>Prevents</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-line" style="background: #3b82f6;"></div>
+                            <span>Explains</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-line" style="background: #8b5cf6;"></div>
+                            <span>Pairs With</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-line" style="background: #f59e0b;"></div>
+                            <span>Uses</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-line" style="background: #06b6d4;"></div>
+                            <span>Relates To</span>
+                        </div>
+                    </div>
+
+                    <div class="legend-section">
+                        <div class="legend-title">Controls</div>
+                        <div style="font-size: 0.75rem; color: #666; line-height: 1.6;">
+                            <p><strong>Click</strong> a node to select</p>
+                            <p><strong>Drag</strong> to pan</p>
+                            <p><strong>Scroll</strong> to zoom</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -248,13 +348,13 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 <script>
-let network;
-let nodes;
-let edges;
+let network = null;
+let nodesDataSet = null;
+let edgesDataSet = null;
 let allNodesData = [];
 let allEdgesData = [];
+let filteredNodeIds = new Set();
 
-// Color mapping for node types
 const nodeColors = {
     'Vulnerability': '#ef4444',
     'Template': '#10b981',
@@ -264,7 +364,6 @@ const nodeColors = {
     'Pattern': '#ec4899'
 };
 
-// Color mapping for relationship types
 const edgeColors = {
     'demonstrates': '#ef4444',
     'prevents': '#10b981',
@@ -274,73 +373,95 @@ const edgeColors = {
     'relates_to': '#06b6d4'
 };
 
-// Initialize on page load
+// Load graph on page load
 document.addEventListener('DOMContentLoaded', function() {
-    loadGraphData();
+    reloadGraph();
 });
 
-function loadGraphData() {
+function reloadGraph() {
+    document.getElementById('network').innerHTML = '<div class="loading-message"><div class="spinner-border text-primary" role="status"></div><p>Loading knowledge graph...</p></div>';
+
     fetch('/api/graph/all')
         .then(response => response.json())
         .then(data => {
             if (data.success) {
                 buildGraph(data.nodes, data.edges);
                 updateStats(data);
+            } else {
+                showError('Failed to load graph: ' + (data.error || 'Unknown error'));
             }
         })
-        .catch(err => console.error('Error loading graph:', err));
+        .catch(err => {
+            showError('Error loading graph: ' + err.message);
+            console.error('Graph load error:', err);
+        });
 }
 
 function buildGraph(nodesData, edgesData) {
-    // Create nodes array for vis.js
-    nodes = new vis.DataSet(nodesData.map(node => ({
-        id: node.id,
-        label: node.name,
-        title: `${node.type}\n${node.name}\n(${node.kb_source} KB)`,
-        color: nodeColors[node.type] || '#999',
-        font: { size: 11, color: '#fff' },
-        physics: true,
-        mass: 3,
-        shape: 'dot',
-        size: 20
-    })));
-
-    // Create edges array for vis.js
-    edges = new vis.DataSet(edgesData.map(edge => ({
-        from: edge.source,
-        to: edge.target,
-        label: edge.type,
-        title: edge.type,
-        color: edgeColors[edge.type.toLowerCase()] || '#999',
-        smooth: {
-            type: 'continuous'
-        },
-        arrows: 'to',
-        physics: true,
-        font: { size: 9 }
-    })));
-
     allNodesData = nodesData;
     allEdgesData = edgesData;
+    filteredNodeIds = new Set(nodesData.map(n => n.id));
+
+    // Create nodes
+    const visNodes = nodesData.map(node => ({
+        id: node.id,
+        label: node.name,
+        title: `${node.type}\n${node.name}`,
+        color: {
+            background: nodeColors[node.type] || '#999',
+            border: '#333',
+            highlight: {
+                background: nodeColors[node.type] || '#999',
+                border: '#667eea'
+            }
+        },
+        font: { size: 12, color: '#fff', bold: { color: '#fff' } },
+        physics: true,
+        mass: 2,
+        shape: 'dot',
+        size: 22,
+        borderWidth: 2
+    }));
+
+    // Create edges
+    const visEdges = edgesData.map(edge => ({
+        from: edge.source,
+        to: edge.target,
+        label: edge.type.replace('_', ' ').toUpperCase(),
+        title: edge.type,
+        color: {
+            color: edgeColors[edge.type.toLowerCase()] || '#999',
+            highlight: '#667eea'
+        },
+        smooth: { type: 'continuous' },
+        arrows: 'to',
+        font: { size: 9, align: 'middle' },
+        width: 2
+    }));
+
+    // Create DataSets
+    nodesDataSet = new vis.DataSet(visNodes);
+    edgesDataSet = new vis.DataSet(visEdges);
 
     // Create network
     const container = document.getElementById('network');
-    const data = { nodes: nodes, edges: edges };
+    const data = { nodes: nodesDataSet, edges: edgesDataSet };
     const options = {
         physics: {
             enabled: true,
-            stabilization: {
-                iterations: 200
-            },
             barnesHut: {
                 gravitationalConstant: -26000,
                 centralGravity: 0.3,
                 springLength: 200,
                 springConstant: 0.04
-            }
+            },
+            maxVelocity: 50,
+            solver: 'barnesHut',
+            timestep: 0.5,
+            stabilization: { iterations: 200 }
         },
         interaction: {
-            navigationButtons: true,
+            navigationButtons: false,
             keyboard: true,
             zoomView: true,
             dragView: true
@@ -356,51 +477,127 @@ function buildGraph(nodesData, edgesData) {
             const node = allNodesData.find(n => n.id === nodeId);
             if (node) {
                 showNodeInfo(node);
-                highlightNode(nodeId);
             }
         } else {
             clearSelection();
         }
+    });
+
+    // Fit graph after stabilization
+    network.once('stabilizationIterationsDone', function() {
+        network.setOptions({ physics: false });
+        fitGraph();
     });
 }
 
 function showNodeInfo(node) {
     document.getElementById('selectedNodeName').textContent = node.name;
     document.getElementById('selectedNodeType').textContent = node.type;
-    document.getElementById('nodeInfo').style.display = 'block';
+    document.getElementById('nodeInfo').classList.add('show');
+    network.selectNodes([node.id]);
 }
 
-function highlightNode(nodeId) {
-    // Highlight the selected node
-    network.selectNodes([nodeId]);
+function performSearch() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+
+    if (!query) {
+        // Show all nodes
+        nodesDataSet.update(allNodesData.map(node => ({
+            id: node.id,
+            hidden: false
+        })));
+        edgesDataSet.update(allEdgesData.map(edge => ({
+            from: edge.source,
+            to: edge.target,
+            hidden: false
+        })));
+        return;
+    }
+
+    // Filter nodes by search
+    const matchingIds = new Set();
+    allNodesData.forEach(node => {
+        const matches = node.name.toLowerCase().includes(query) ||
+                       node.type.toLowerCase().includes(query);
+        if (matches) {
+            matchingIds.add(node.id);
+        }
+    });
+
+    // Update visibility
+    nodesDataSet.update(allNodesData.map(node => ({
+        id: node.id,
+        hidden: !matchingIds.has(node.id)
+    })));
+
+    edgesDataSet.update(allEdgesData.map(edge => ({
+        from: edge.source,
+        to: edge.target,
+        hidden: !(matchingIds.has(edge.source) && matchingIds.has(edge.target))
+    })));
+}
+
+function filterByType(type) {
+    // Update button states
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+
+    if (type === 'all') {
+        // Show all
+        nodesDataSet.update(allNodesData.map(node => ({
+            id: node.id,
+            hidden: false
+        })));
+    } else {
+        // Filter by type
+        nodesDataSet.update(allNodesData.map(node => ({
+            id: node.id,
+            hidden: node.type !== type
+        })));
+    }
 }
 
 function fitGraph() {
-    network.fit({
-        animation: {
-            duration: 800,
-            easingFunction: 'easeInOutQuad'
-        }
-    });
+    if (network) {
+        network.fit({
+            animation: {
+                duration: 600,
+                easingFunction: 'easeInOutQuad'
+            }
+        });
+    }
 }
 
 function clearSelection() {
-    network.unselectAll();
-    document.getElementById('nodeInfo').style.display = 'none';
+    if (network) {
+        network.unselectAll();
+    }
+    document.getElementById('nodeInfo').classList.remove('show');
+    document.getElementById('searchInput').value = '';
+    performSearch();
 }
 
 function updateStats(data) {
     document.getElementById('totalNodes').textContent = data.nodes.length;
     document.getElementById('totalEdges').textContent = data.edges.length;
 
-    // Calculate connectivity (connected components)
     const connectivity = 97.8;
     document.getElementById('connectivity').textContent = connectivity + '%';
 
-    // Calculate density
-    const maxPossibleEdges = data.nodes.length * (data.nodes.length - 1);
-    const density = ((data.edges.length / maxPossibleEdges) * 100).toFixed(1);
+    const maxEdges = data.nodes.length * (data.nodes.length - 1);
+    const density = ((data.edges.length / maxEdges) * 100).toFixed(1);
     document.getElementById('graphDensity').textContent = density + '%';
+}
+
+function showError(message) {
+    document.getElementById('network').innerHTML = `
+        <div style="padding: 40px; color: #dc2626;">
+            <h4><i class="fas fa-exclamation-circle"></i> Error</h4>
+            <p>${message}</p>
+        </div>
+    `;
 }
 </script>
 {% endblock %}
