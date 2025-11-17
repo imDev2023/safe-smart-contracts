@@ -1064,6 +1064,279 @@
           "gnosis",
           "treasury"
         ]
+      },
+      "template_coolcatsnft_template.md": {
+        "id": "template_coolcatsnft_template.md",
+        "name": "coolcatsnft-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/coolcatsnft-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 150,
+        "features": [
+          "Gas Optimized",
+          "NFT Minting",
+          "Standard ERC721"
+        ],
+        "use_cases": [
+          "NFT Launches",
+          "Art Collections"
+        ],
+        "keywords": [
+          "nft",
+          "erc721",
+          "coolcats",
+          "minting",
+          "gas-optimized"
+        ]
+      },
+      "template_supersea_template.md": {
+        "id": "template_supersea_template.md",
+        "name": "supersea-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/supersea-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 100,
+        "features": [
+          "NFT Memberships",
+          "Subscriptions",
+          "ERC721"
+        ],
+        "use_cases": [
+          "SaaS",
+          "Membership Programs"
+        ],
+        "keywords": [
+          "nft",
+          "membership",
+          "subscription",
+          "saas"
+        ]
+      },
+      "template_loot_template.md": {
+        "id": "template_loot_template.md",
+        "name": "loot-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/loot-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 100,
+        "features": [
+          "On-Chain Generation",
+          "No IPFS",
+          "SVG Generation"
+        ],
+        "use_cases": [
+          "On-Chain NFTs",
+          "Generative Art"
+        ],
+        "keywords": [
+          "nft",
+          "on-chain",
+          "svg",
+          "loot"
+        ]
+      },
+      "template_altnouns_template.md": {
+        "id": "template_altnouns_template.md",
+        "name": "altnouns-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/altnouns-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 800,
+        "features": [
+          "Inter-Contract Calls",
+          "SVG Manipulation",
+          "ERC721"
+        ],
+        "use_cases": [
+          "Derivative NFTs",
+          "Community Art"
+        ],
+        "keywords": [
+          "nft",
+          "svg",
+          "derivative",
+          "inter-contract"
+        ]
+      },
+      "template_adventure_gold_template.md": {
+        "id": "template_adventure_gold_template.md",
+        "name": "adventure-gold-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/adventure-gold-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 100,
+        "features": [
+          "ERC20",
+          "NFT-Based Airdrop",
+          "Token Distribution"
+        ],
+        "use_cases": [
+          "Token Airdrops",
+          "Governance"
+        ],
+        "keywords": [
+          "token",
+          "erc20",
+          "airdrop",
+          "nft-based"
+        ]
+      },
+      "template_corruption(s*)_template.md": {
+        "id": "template_corruption(s*)_template.md",
+        "name": "corruption(s*)-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/corruption(s*)-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 100,
+        "features": [
+          "State Changes",
+          "Dynamic Metadata",
+          "ERC721"
+        ],
+        "use_cases": [
+          "Dynamic NFTs",
+          "Interactive Art"
+        ],
+        "keywords": [
+          "nft",
+          "dynamic",
+          "state-changes",
+          "metadata"
+        ]
+      },
+      "template_chainrunners_template.md": {
+        "id": "template_chainrunners_template.md",
+        "name": "chainrunners-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/chainrunners-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 50,
+        "features": [
+          "Pixel Art Generation",
+          "On-Chain Storage",
+          "ERC721"
+        ],
+        "use_cases": [
+          "Generative Art",
+          "On-Chain Images"
+        ],
+        "keywords": [
+          "nft",
+          "art",
+          "on-chain",
+          "pixel"
+        ]
+      },
+      "template_wolfgame_template.md": {
+        "id": "template_wolfgame_template.md",
+        "name": "wolfgame-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/wolfgame-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 400,
+        "features": [
+          "Game Logic",
+          "Risk-Based Mechanics",
+          "On-Chain Gameplay"
+        ],
+        "use_cases": [
+          "On-Chain Games",
+          "Play-to-Earn"
+        ],
+        "keywords": [
+          "game",
+          "on-chain",
+          "risk",
+          "mechanics"
+        ]
+      },
+      "template_curiousaddys_template.md": {
+        "id": "template_curiousaddys_template.md",
+        "name": "curiousaddys-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/curiousaddys-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 100,
+        "features": [
+          "ERC721",
+          "Advanced Mechanisms"
+        ],
+        "use_cases": [
+          "NFT Launches",
+          "Communities"
+        ],
+        "keywords": [
+          "nft",
+          "erc721",
+          "curiousaddys"
+        ]
+      },
+      "template_cryptocoven_template.md": {
+        "id": "template_cryptocoven_template.md",
+        "name": "cryptocoven-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/cryptocoven-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 100,
+        "features": [
+          "Community Features",
+          "ERC721",
+          "DAO-Ready"
+        ],
+        "use_cases": [
+          "Community NFTs",
+          "DAO Membership"
+        ],
+        "keywords": [
+          "nft",
+          "community",
+          "dao",
+          "erc721"
+        ]
+      },
+      "template_space_doodles_template.md": {
+        "id": "template_space_doodles_template.md",
+        "name": "space-doodles-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/space-doodles-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 100,
+        "features": [
+          "ERC721",
+          "Doodle Art"
+        ],
+        "use_cases": [
+          "Art Collections",
+          "NFT Launches"
+        ],
+        "keywords": [
+          "nft",
+          "art",
+          "doodles"
+        ]
+      },
+      "template_zorb_template.md": {
+        "id": "template_zorb_template.md",
+        "name": "zorb-template.md",
+        "file_path": "knowledge-base-action/02-contract-templates/zorb-template.md",
+        "kb_type": "action",
+        "solidity_version": "0.8.0",
+        "lines": 600,
+        "features": [
+          "ERC721",
+          "Unique Mechanics",
+          "Advanced Features"
+        ],
+        "use_cases": [
+          "NFT Launches",
+          "Complex Mechanisms"
+        ],
+        "keywords": [
+          "nft",
+          "erc721",
+          "unique",
+          "mechanics"
+        ]
       }
     },
     "deepdives": {
@@ -1582,9 +1855,9 @@
   ],
   "statistics": {
     "total_files": 284,
-    "total_entities": 89,
+    "total_entities": 101,
     "total_relationships": 16,
-    "action_kb_entities": 53,
+    "action_kb_entities": 65,
     "research_kb_entities": 36,
     "protocols_covered": 20,
     "vulnerability_sources": 5,

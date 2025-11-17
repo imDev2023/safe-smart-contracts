@@ -287,6 +287,279 @@
             "multi-party control",
             "cold wallets"
           ]
+        },
+        {
+          "name": "coolcatsnft-template.md",
+          "size_kb": 5.0,
+          "lines": 150,
+          "type": "template",
+          "keywords": [
+            "nft",
+            "erc721",
+            "coolcats",
+            "minting",
+            "gas-optimized"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "Gas Optimized",
+            "NFT Minting",
+            "Standard ERC721"
+          ],
+          "use_cases": [
+            "NFT Launches",
+            "Art Collections"
+          ],
+          "description": "Gas efficient NFT contract template from CoolCatsNFT"
+        },
+        {
+          "name": "supersea-template.md",
+          "size_kb": 1.9,
+          "lines": 100,
+          "type": "template",
+          "keywords": [
+            "nft",
+            "membership",
+            "subscription",
+            "saas"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "NFT Memberships",
+            "Subscriptions",
+            "ERC721"
+          ],
+          "use_cases": [
+            "SaaS",
+            "Membership Programs"
+          ],
+          "description": "NFT membership and subscription template"
+        },
+        {
+          "name": "loot-template.md",
+          "size_kb": 1.9,
+          "lines": 100,
+          "type": "template",
+          "keywords": [
+            "nft",
+            "on-chain",
+            "svg",
+            "loot"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "On-Chain Generation",
+            "No IPFS",
+            "SVG Generation"
+          ],
+          "use_cases": [
+            "On-Chain NFTs",
+            "Generative Art"
+          ],
+          "description": "On-chain NFT generation without external links"
+        },
+        {
+          "name": "altnouns-template.md",
+          "size_kb": 26.5,
+          "lines": 800,
+          "type": "template",
+          "keywords": [
+            "nft",
+            "svg",
+            "derivative",
+            "inter-contract"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "Inter-Contract Calls",
+            "SVG Manipulation",
+            "ERC721"
+          ],
+          "use_cases": [
+            "Derivative NFTs",
+            "Community Art"
+          ],
+          "description": "Derivative NFT generation with SVG manipulation"
+        },
+        {
+          "name": "adventure-gold-template.md",
+          "size_kb": 1.9,
+          "lines": 100,
+          "type": "template",
+          "keywords": [
+            "token",
+            "erc20",
+            "airdrop",
+            "nft-based"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "ERC20",
+            "NFT-Based Airdrop",
+            "Token Distribution"
+          ],
+          "use_cases": [
+            "Token Airdrops",
+            "Governance"
+          ],
+          "description": "ERC20 token distribution based on NFT ownership"
+        },
+        {
+          "name": "corruption(s*)-template.md",
+          "size_kb": 1.9,
+          "lines": 100,
+          "type": "template",
+          "keywords": [
+            "nft",
+            "dynamic",
+            "state-changes",
+            "metadata"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "State Changes",
+            "Dynamic Metadata",
+            "ERC721"
+          ],
+          "use_cases": [
+            "Dynamic NFTs",
+            "Interactive Art"
+          ],
+          "description": "Dynamic NFT with state changes and metadata updates"
+        },
+        {
+          "name": "chainrunners-template.md",
+          "size_kb": 0.1,
+          "lines": 50,
+          "type": "template",
+          "keywords": [
+            "nft",
+            "art",
+            "on-chain",
+            "pixel"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "Pixel Art Generation",
+            "On-Chain Storage",
+            "ERC721"
+          ],
+          "use_cases": [
+            "Generative Art",
+            "On-Chain Images"
+          ],
+          "description": "On-chain pixel art generation and storage"
+        },
+        {
+          "name": "wolfgame-template.md",
+          "size_kb": 13.3,
+          "lines": 400,
+          "type": "template",
+          "keywords": [
+            "game",
+            "on-chain",
+            "risk",
+            "mechanics"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "Game Logic",
+            "Risk-Based Mechanics",
+            "On-Chain Gameplay"
+          ],
+          "use_cases": [
+            "On-Chain Games",
+            "Play-to-Earn"
+          ],
+          "description": "On-chain game with risk-based mechanics"
+        },
+        {
+          "name": "curiousaddys-template.md",
+          "size_kb": 1.9,
+          "lines": 100,
+          "type": "template",
+          "keywords": [
+            "nft",
+            "erc721",
+            "curiousaddys"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "ERC721",
+            "Advanced Mechanisms"
+          ],
+          "use_cases": [
+            "NFT Launches",
+            "Communities"
+          ],
+          "description": "Curious Addys NFT template with advanced features"
+        },
+        {
+          "name": "cryptocoven-template.md",
+          "size_kb": 1.9,
+          "lines": 100,
+          "type": "template",
+          "keywords": [
+            "nft",
+            "community",
+            "dao",
+            "erc721"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "Community Features",
+            "ERC721",
+            "DAO-Ready"
+          ],
+          "use_cases": [
+            "Community NFTs",
+            "DAO Membership"
+          ],
+          "description": "Community-driven NFT template"
+        },
+        {
+          "name": "space-doodles-template.md",
+          "size_kb": 1.9,
+          "lines": 100,
+          "type": "template",
+          "keywords": [
+            "nft",
+            "art",
+            "doodles"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "ERC721",
+            "Doodle Art"
+          ],
+          "use_cases": [
+            "Art Collections",
+            "NFT Launches"
+          ],
+          "description": "Space Doodles NFT template"
+        },
+        {
+          "name": "zorb-template.md",
+          "size_kb": 20.5,
+          "lines": 600,
+          "type": "template",
+          "keywords": [
+            "nft",
+            "erc721",
+            "unique",
+            "mechanics"
+          ],
+          "solidity_version": "0.8.0",
+          "features": [
+            "ERC721",
+            "Unique Mechanics",
+            "Advanced Features"
+          ],
+          "use_cases": [
+            "NFT Launches",
+            "Complex Mechanisms"
+          ],
+          "description": "Zorb NFT template with unique mechanics"
         }
       ]
     },
@@ -1355,6 +1628,7 @@
     "design_patterns": 10,
     "code_snippets": 172,
     "pre_deployment_checks": 400,
-    "total_vulnerabilities": 46
+    "total_vulnerabilities": 46,
+    "total_templates": 19
   }
 }
