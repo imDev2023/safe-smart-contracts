@@ -4,12 +4,13 @@ Safe Smart Contracts - Web Frontend
 Flask application for knowledge graph queries and contract generation
 """
 
-from flask import Flask, render_template, request, jsonify, send_file
+from flask import Flask, render_template, request, jsonify, send_file, make_response
 import sys
 import os
 from pathlib import Path
 import json
 import subprocess
+from functools import wraps
 
 # Add scripts directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../scripts/cocoindex'))
@@ -25,6 +26,17 @@ app.config['SECRET_KEY'] = 'safe-smart-contracts-2025'
 project_root = Path(__file__).parent.parent
 db_path = project_root / ".cocoindex" / "knowledge_graph.db"
 kg = KnowledgeGraph(str(db_path))
+
+# Decorator to disable caching for API endpoints
+def no_cache(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        response = make_response(f(*args, **kwargs))
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate, public, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+        return response
+    return decorated_function
 
 @app.route('/')
 def index():
@@ -55,6 +67,7 @@ def docs_page():
 # === API ENDPOINTS ===
 
 @app.route('/api/search', methods=['POST'])
+@no_cache
 def api_search():
     """Search the knowledge graph with fuzzy matching"""
     data = request.get_json()
@@ -79,6 +92,7 @@ def api_search():
         return jsonify({'success': False, 'error': str(e)})
 
 @app.route('/api/vulnerabilities', methods=['GET'])
+@no_cache
 def api_vulnerabilities():
     """Get all vulnerabilities"""
     severity = request.args.get('severity')
@@ -101,6 +115,7 @@ def api_vulnerabilities():
         return jsonify({'success': False, 'error': str(e)})
 
 @app.route('/api/templates', methods=['GET'])
+@no_cache
 def api_templates():
     """Get all templates"""
     try:
@@ -120,6 +135,7 @@ def api_templates():
         return jsonify({'success': False, 'error': str(e)})
 
 @app.route('/api/statistics', methods=['GET'])
+@no_cache
 def api_statistics():
     """Get graph statistics"""
     try:
@@ -212,6 +228,7 @@ def api_get_file(filepath):
         return jsonify({'success': False, 'error': str(e)})
 
 @app.route('/api/deepdives', methods=['GET'])
+@no_cache
 def api_deepdives():
     """Get all deep dives"""
     try:
@@ -231,6 +248,7 @@ def api_deepdives():
         return jsonify({'success': False, 'error': str(e)})
 
 @app.route('/api/integrations', methods=['GET'])
+@no_cache
 def api_integrations():
     """Get all integrations"""
     try:
@@ -249,6 +267,7 @@ def api_integrations():
         return jsonify({'success': False, 'error': str(e)})
 
 @app.route('/api/relationships/<node_id>', methods=['GET'])
+@no_cache
 def api_relationships(node_id):
     """Get all relationships for a node"""
     try:
@@ -317,6 +336,7 @@ def graph_page():
     return render_template('graph.html')
 
 @app.route('/api/graph/all', methods=['GET'])
+@no_cache
 def api_graph_all():
     """Get all nodes and edges for visualization"""
     try:

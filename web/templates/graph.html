@@ -381,7 +381,12 @@ document.addEventListener('DOMContentLoaded', function() {
 function reloadGraph() {
     document.getElementById('network').innerHTML = '<div class="loading-message"><div class="spinner-border text-primary" role="status"></div><p>Loading knowledge graph...</p></div>';
 
-    fetch('/api/graph/all')
+    fetch('/api/graph/all?t=' + Date.now(), {
+        cache: 'no-store',
+        headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate'
+        }
+    })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
