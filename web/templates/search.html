@@ -124,7 +124,10 @@ function displayResults(results) {
                                 <span class="badge bg-secondary">${result.kb_source}</span>
                             </p>
                             <p class="text-muted mb-2">
-                                <i class="fas fa-file"></i> ${result.file_path}
+                                <i class="fas fa-file"></i>
+                                <a href="https://github.com/imDev2023/safe-smart-contracts/blob/main/${result.file_path}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">
+                                    ${result.file_path}
+                                </a>
                             </p>
         `;
 
@@ -256,7 +259,10 @@ function displayQuickResults(results, type) {
 
         html += `
                     <p class="text-muted mb-0">
-                        <i class="fas fa-file"></i> ${result.file_path}
+                        <i class="fas fa-file"></i>
+                        <a href="https://github.com/imDev2023/safe-smart-contracts/blob/main/${result.file_path}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">
+                            ${result.file_path}
+                        </a>
                     </p>
                 </div>
             </div>
