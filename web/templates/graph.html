@@ -284,23 +284,23 @@
                         <div class="legend-title"><i class="fas fa-circle"></i> Node Types</div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #ef4444;"></div>
-                            <span>Vulnerability (10)</span>
+                            <span>Vulnerability (<span id="count-vulnerability">46</span>)</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #10b981;"></div>
-                            <span>Template (7)</span>
+                            <span>Template (<span id="count-template">7</span>)</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #3b82f6;"></div>
-                            <span>Deep Dive (11)</span>
+                            <span>Deep Dive (<span id="count-deepdive">11</span>)</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #8b5cf6;"></div>
-                            <span>Integration (12)</span>
+                            <span>Integration (<span id="count-integration">12</span>)</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #f59e0b;"></div>
-                            <span>Vulnerable Contract (5)</span>
+                            <span>Vulnerable Contract (<span id="count-vulnerable">5</span>)</span>
                         </div>
                     </div>
 
@@ -308,27 +308,27 @@
                         <div class="legend-title"><i class="fas fa-arrows-alt-h"></i> Relationships</div>
                         <div class="legend-item">
                             <div class="legend-line" style="background: #ef4444;"></div>
-                            <span>Demonstrates</span>
+                            <span>Demonstrates (<span id="count-demonstrates">5</span>)</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-line" style="background: #10b981;"></div>
-                            <span>Prevents</span>
+                            <span>Prevents (<span id="count-prevents">17</span>)</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-line" style="background: #3b82f6;"></div>
-                            <span>Explains</span>
+                            <span>Explains (<span id="count-explains">21</span>)</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-line" style="background: #8b5cf6;"></div>
-                            <span>Pairs With</span>
+                            <span>Pairs With (<span id="count-pairs">10</span>)</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-line" style="background: #f59e0b;"></div>
-                            <span>Uses</span>
+                            <span>Uses (<span id="count-uses">13</span>)</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-line" style="background: #06b6d4;"></div>
-                            <span>Relates To</span>
+                            <span>Relates To (<span id="count-relates">5</span>)</span>
                         </div>
                     </div>
 
@@ -589,6 +589,53 @@ function updateStats(data) {
     const maxEdges = data.nodes.length * (data.nodes.length - 1);
     const density = ((data.edges.length / maxEdges) * 100).toFixed(1);
     document.getElementById('graphDensity').textContent = density + '%';
+
+    // Update Node Type Counts
+    const nodeTypeCounts = {};
+    data.nodes.forEach(node => {
+        const type = node.type;
+        nodeTypeCounts[type] = (nodeTypeCounts[type] || 0) + 1;
+    });
+
+    // Update legend with actual counts
+    const countMap = {
+        'Vulnerability': 'vulnerability',
+        'Template': 'template',
+        'DeepDive': 'deepdive',
+        'Integration': 'integration',
+        'VulnerableContract': 'vulnerable'
+    };
+
+    Object.entries(countMap).forEach(([type, elementId]) => {
+        const elem = document.getElementById('count-' + elementId);
+        if (elem) {
+            elem.textContent = nodeTypeCounts[type] || 0;
+        }
+    });
+
+    // Update Relationship Type Counts
+    const edgeTypeCounts = {};
+    data.edges.forEach(edge => {
+        const type = edge.type;
+        edgeTypeCounts[type] = (edgeTypeCounts[type] || 0) + 1;
+    });
+
+    // Update edge counts in legend
+    const edgeCountMap = {
+        'DEMONSTRATES': 'demonstrates',
+        'PREVENTS': 'prevents',
+        'EXPLAINS': 'explains',
+        'PAIRS_WITH': 'pairs',
+        'USES': 'uses',
+        'RELATES_TO': 'relates'
+    };
+
+    Object.entries(edgeCountMap).forEach(([type, elementId]) => {
+        const elem = document.getElementById('count-' + elementId);
+        if (elem) {
+            elem.textContent = edgeTypeCounts[type] || 0;
+        }
+    });
 }
 
 function showError(message) {
